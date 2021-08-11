@@ -12,7 +12,7 @@ Inside ./flask-app run the command
 NOTE: Your system may have python aliased as something other than `python3`
 
 ### 2. Activate the Virtual Environment
-`$ source venv/bin.activate`
+`$ source venv/bin/activate`
 
 ### 3. Install Requirements
 `$ pip3 install -r requirements.txt`
