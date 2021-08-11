@@ -24,9 +24,9 @@ def create_app(config_name):
     # eg db.init(app)
 
     # import blueprints here to avoid circular imports
-    #eg from .main import main as main_bp
+    from .main import main as main_bp
 
     # register blueprints
-    # eg app.regsiter_blueprint(main_bp)
+    app.register_blueprint(main_bp)
 
     return app
