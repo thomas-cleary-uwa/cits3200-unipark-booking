@@ -127,3 +127,18 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# VSCode
+.vscode
+
+# OS Environment Files
+.flaskenv
+
+# macOS Files
+.DS_Store
+
+# Database files
+*.sqlite
+
+# pylint
+pylintrc
