@@ -7,15 +7,17 @@ A car bay booking web application for UWA's UniPark office
 ### 1. Create a Python Virtual Environment
 Inside ./flask-app run the command
 
-`$ python3 -m venv venv`
+`$ python -m venv venv`
 
-NOTE: Your system may have python aliased as something other than `python3`
+NOTE: Your system may have python aliased as something other than `python`
 
 ### 2. Activate the Virtual Environment
 `$ source venv/bin/activate`
 
 ### 3. Install Requirements
-`$ pip3 install -r requirements.txt`
+`$ pip install -r requirements.txt`
+
+NOTE: Your system may have pip aliased as something other than `pip`
 
 ### 4. Add .env File
 `$ touch .env`
