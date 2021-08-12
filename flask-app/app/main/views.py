@@ -1,6 +1,8 @@
-""" Routes used by main blueprint
-    
-    Authors: Thomas Cleary, 
+"""
+Routes used by main blueprint
+
+Authors: Thomas Cleary,
+
 """
 
 from flask import render_template

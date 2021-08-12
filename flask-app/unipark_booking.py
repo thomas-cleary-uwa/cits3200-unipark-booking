@@ -1,9 +1,11 @@
-""" Defines the Flask application instance and some tasks to help manage it.
-    This file will be executed when 'flask run' command is used
+"""
+Defines the Flask application instance and some tasks to help manage it.
+This file will be executed when 'flask run' command is used
 
-    NOTE: .flaskenv used in flask commands, .env used in other application instances
+NOTE: .env file used to load environment variables in config.py
 
-    Authors: Thomas Cleary, 
+Authors: Thomas Cleary,
+
 """
 
 import os

@@ -1,6 +1,7 @@
-""" Configuration classes for an application instance
+"""
+Configuration classes for an application instance
 
-    Authors: Thomas Cleary,
+Authors: Thomas Cleary,
 
 """
 

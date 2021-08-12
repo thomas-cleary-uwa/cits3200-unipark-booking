@@ -1,6 +1,8 @@
-""" Initialise the main blueprint of the application
-    
-    Authors: Thomas Cleary, 
+"""
+Initialise the main blueprint of the application
+
+Authors: Thomas Cleary,
+
 """
 
 from flask import Blueprint

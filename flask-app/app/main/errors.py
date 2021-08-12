@@ -1,4 +1,9 @@
-""" Error handling for main blueprint """
+"""
+Error handling for main blueprint
+
+Authors: Thomas Cleary,
+
+"""
 
 from flask import render_template
 from . import main

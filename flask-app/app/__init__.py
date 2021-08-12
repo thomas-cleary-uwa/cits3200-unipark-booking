@@ -1,6 +1,8 @@
-""" Initialises an Application instance
+"""
+Initialises an Application instance
 
-    Authors: Thomas Cleary,
+Authors: Thomas Cleary,
+
 """
 
 from flask import Flask
