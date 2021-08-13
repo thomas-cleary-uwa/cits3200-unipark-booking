@@ -142,3 +142,6 @@ dmypy.json
 
 # pylint
 pylintrc
+
+# google drive
+Icon?
