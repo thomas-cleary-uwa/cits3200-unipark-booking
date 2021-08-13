@@ -2,6 +2,8 @@
 A car bay booking web application for UWA's UniPark office
 <br><br>
 
+**NOTE: PLEASE USE DEV BRANCH AND DO NOT PUSH TO MAIN**
+
 ## To Run the Flask App
 
 ### 1. Create a Python Virtual Environment
