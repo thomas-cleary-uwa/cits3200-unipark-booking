@@ -32,7 +32,13 @@ Currently need values for:
 - FLASK_ENV=**(development or production)**
 - SECRET_KEY=**(secret key used for encryption eg. youwillneverguessthis)**
 
-### 5. Run the Application
+### 5. Create a local database file for the app 
+To run the app you need a local instance of the database. To create this file run the following two commands from /flask-app
+
+`$ flask db migrate`  
+`$ flask db upgrade`
+
+### 6. Run the Application
 Before running the application, consider running the unit tests
 
 `$ flask test`
@@ -40,5 +46,9 @@ Before running the application, consider running the unit tests
 To start the Flask app, run this command from inside /flask-app
 
 `$ flask run`
+
+Optionally to run the app with a fresh/new instance of the database run this command from /flask-app
+
+`$ python run/run_fresh_app.py`
 
 and navigate to **http://localhost:5000/** on your chosen browser
