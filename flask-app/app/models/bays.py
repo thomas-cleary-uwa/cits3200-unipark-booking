@@ -21,7 +21,7 @@ class ParkingLot(db.Model):
     # location?
 
     # Relationships
-    car_bays = db.relationship('CarBay', backref="parking_lot")
+    bays = db.relationship('CarBay', backref="lot")
 
 
     def __repr__(self):
@@ -51,5 +51,5 @@ class CarBay(db.Model):
 
     def __repr__(self):
         return "<Car Bay {} in Lot {}>".format(
-            self.bay_number, self.parking_lot.lot_number
+            self.bay_number, self.lot.lot_number
         )
