@@ -3,11 +3,15 @@
 Authors: Thomas Cleary,
 """
 
+from enum import unique
 from .. import db
 
 
 class ParkingLot(db.Model):
-    """ Represents a parking lot that can contain multiple car bays """             
+    """ Represents a Parking Lot
+
+    That can contain multiple '30 mins unless reserved' car bays.
+    """
     __tablename__ = "ParkingLot"
 
     # Primary Key
@@ -18,6 +22,7 @@ class ParkingLot(db.Model):
     # location?
 
     # Relationships
+    car_bays = db.relationship('CarBay', backref="parking_lot")
 
 
     def __repr__(self):
@@ -25,8 +30,27 @@ class ParkingLot(db.Model):
 
 
 
-class Bay(db.Model):
+class CarBay(db.Model):
     """ Represents a car bay.
 
     That can be reserved by a UWA staff member for guests.
     """
+    __tablename__ = "CarBay"
+
+    # Primary Key
+    id = db.Column(db.Integer, primary_key=True)
+
+    # Attributes
+    bay_number = db.Column(db.Integer, nullable=False)
+    # location?
+
+    # Foreign Keys
+    parking_lot_id = db.Column(db.Integer, db.ForeignKey('ParkingLot.id'))
+
+    # Relationships
+
+
+    def __repr__(self):
+        return "<Car Bay {} in Lot {}".format(
+            self.bay_number, self.parking_lot.lot_number
+        )
