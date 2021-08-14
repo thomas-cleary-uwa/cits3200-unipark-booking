@@ -1,11 +1,11 @@
-"""
+""" Defines Flask App Instance.
+
 Defines the Flask application instance and some tasks to help manage it.
-This file will be executed when 'flask run' command is used
+This file will be executed when the 'flask run' command is used.
 
 NOTE: .env file used to load environment variables in config.py
 
 Authors: Thomas Cleary,
-
 """
 
 import os
@@ -27,8 +27,10 @@ migrate = Migrate(app, db)
 
 @app.shell_context_processor
 def make_shell_context():
-    """ This dictionary of models will be imported into the flask shell when
-        'flask shell' cli command is used
+    """ Import db models into Flask shell.
+    
+    This dictionary of models will be imported into the flask shell when
+    'flask shell' cli command is used
     """
     return dict(
         db=db,
@@ -38,6 +40,9 @@ def make_shell_context():
 
 @app.cli.command()
 def test():
-    """ define a flask comman 'flask test' to run unit tests from cmd line """
+    """ Create 'flask test' command
+    
+    Defines a flask command 'flask test' to run unit tests from cmd line 
+    """
     tests = unittest.TestLoader().discover('tests')
     unittest.TextTestRunner(verbosity=2).run(tests)

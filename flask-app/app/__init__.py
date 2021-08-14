@@ -1,8 +1,6 @@
-"""
-Initialises an Application instance
+""" Initialises an Application instance
 
 Authors: Thomas Cleary,
-
 """
 
 from flask import Flask
@@ -15,7 +13,7 @@ db = SQLAlchemy()
 
 
 def create_app(config_name):
-    """ create and return an instance of the flask application """
+    """ Create and return an instance of the Flask application. """
     # initialise the flask app
     app = Flask(__name__)
 

@@ -1,8 +1,6 @@
-"""
-Configuration classes for an application instance
+""" Configuration classes for an application instance
 
 Authors: Thomas Cleary,
-
 """
 
 import os
