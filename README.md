@@ -21,6 +21,11 @@ NOTE: Your system may have python aliased as something other than `python`
 
 NOTE: Your system may have pip aliased as something other than `pip`
 
+**NOTE: Before attempting to run the flask app, please change the 
+*python.pythonPath* setting in .vscode/settings.json to your virtual environment's python path. This can be found by running the command**  
+
+`$ which python`
+
 ### 4. Add .env File
 `$ touch .env`
 
