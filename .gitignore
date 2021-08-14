@@ -128,9 +128,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# VSCode
-.vscode
-
 # OS Environment Files
 .flaskenv
 
@@ -139,9 +136,6 @@ dmypy.json
 
 # Database files
 *.sqlite
-
-# pylint
-pylintrc
 
 # google drive
 Icon?
