@@ -135,7 +135,7 @@ dmypy.json
 .DS_Store
 
 # Database files
-*.sqlite
+*.sqlite*
 
 # google drive
 Icon?
