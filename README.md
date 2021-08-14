@@ -28,12 +28,16 @@ This is the file that the flask application will take environment variables from
 
 Currently need values for:
 - FLASK_APP=unipark_booking.py
-- FLASK_CONFIG=**(config name from config.py)**
+- FLASK_CONFIG=**(config name from config.py, eg. development)**
 - FLASK_ENV=**(development or production)**
 - SECRET_KEY=**(secret key used for encryption eg. youwillneverguessthis)**
 
 ### 5. Run the Application
-Run this command from inside /flask-app
+Before running the application, consider running the unit tests
+
+`$ flask test`
+
+To start the Flask app, run this command from inside /flask-app
 
 `$ flask run`
 
