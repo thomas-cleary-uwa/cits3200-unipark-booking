@@ -14,7 +14,7 @@ import unittest
 from flask_migrate import Migrate
 
 from app import create_app, db
-from app.models.bays import ParkingLot
+from app.models.bays import ParkingLot, CarBay
 
 
 # create an application instance with config type defined in env variable
@@ -34,7 +34,7 @@ def make_shell_context():
     """
     return dict(
         db=db,
-        ParkingLot=ParkingLot
+        ParkingLot=ParkingLot, CarBay=CarBay
     )
 
 
