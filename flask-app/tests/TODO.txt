@@ -1,0 +1,4 @@
+# Tests to write
+
+- Test that each car park has a unique lot_number
+- Test that each car bay has a unique bay number relative to its parking lot
