@@ -1,9 +1,23 @@
 {% extends 'base/base.html' %}
 
+
 {% block title %}
   {{ title }}
 {% endblock %}
 
+
 {% block content %}
-  <h1>Hello Team 15!</h1>
+
+  <h1>Reservable UniPark Car Bays</h1>
+
+  {% for lot in lots %}
+    <h3>Car Park {{ lot.lot_number }}</h3>
+    <ul>
+      {% for bay in lot.bays %}
+        <li>Bay {{ bay.bay_number }}</li>
+      {% endfor %}
+    </ul>
+
+  {% endfor %}
+
 {% endblock %}

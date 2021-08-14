@@ -100,7 +100,7 @@ def main():
     make_fresh_db()
     add_parking_lots_bays()
 
-    subprocess.run('flask run'.split(), check=False)
+    subprocess.run('flask run --host 0.0.0.0'.split(), check=False)
 
 
 if __name__ == "__main__":

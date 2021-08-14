@@ -3,8 +3,10 @@
 Authors: Thomas Cleary,
 """
 
+from app import db
 from flask import render_template
 
+from ..models.bays import CarBay, ParkingLot
 from . import main
 
 
@@ -12,4 +14,6 @@ from . import main
 @main.route('/index')
 def index():
     """ Initial route for the application. """
-    return render_template('main/index.html', title='index')
+    parking_lots = ParkingLot.query.all()
+
+    return render_template('main/index.html', title='index', lots=parking_lots)
