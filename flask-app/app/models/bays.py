@@ -25,7 +25,7 @@ class ParkingLot(db.Model):
 
 
     def __repr__(self):
-        return "<Parking Lot {}".format(self.lot_number)
+        return "<Parking Lot {}>".format(self.lot_number)
 
 
 
@@ -50,6 +50,6 @@ class CarBay(db.Model):
 
 
     def __repr__(self):
-        return "<Car Bay {} in Lot {}".format(
+        return "<Car Bay {} in Lot {}>".format(
             self.bay_number, self.parking_lot.lot_number
         )
