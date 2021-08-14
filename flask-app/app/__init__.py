@@ -6,11 +6,12 @@ Authors: Thomas Cleary,
 """
 
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
 from config import configs
 
 # initialise flask extensions here
-# eg db = SQLAlchemy()
+db = SQLAlchemy()
 
 
 def create_app(config_name):
@@ -23,7 +24,7 @@ def create_app(config_name):
     configs[config_name].init_app(app)
 
     # initalise flask extensions
-    # eg db.init(app)
+    db.init_app(app)
 
     # import blueprints here to avoid circular imports
     from .main import main as main_bp

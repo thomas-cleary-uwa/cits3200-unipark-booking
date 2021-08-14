@@ -22,7 +22,10 @@ class Config:
     # (CSRF attacks)
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
 
-    # add more environment variables here
+    # The Flask-SQLAlchemy documentation suggests setting key
+    # SQLALCHEMY_TRACK_MODIFICATIONS to False to use less memory
+    # unless signals for object changes are needed
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     @staticmethod
     def init_app(app):

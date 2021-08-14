@@ -11,12 +11,18 @@ Authors: Thomas Cleary,
 import os
 import unittest
 
-from app import create_app
+from flask_migrate import Migrate
+
+from app import create_app, db
+from app.models.bays import ParkingLot
 
 
 # create an application instance with config type defined in env variable
 # (or default type - development)
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
+
+# add migration engine to app (/migrations created with 'flask db init')
+migrate = Migrate(app, db)
 
 
 @app.shell_context_processor
@@ -24,7 +30,10 @@ def make_shell_context():
     """ This dictionary of models will be imported into the flask shell when
         'flask shell' cli command is used
     """
-    return dict()
+    return dict(
+        db=db,
+        ParkingLot=ParkingLot
+    )
 
 
 @app.cli.command()
