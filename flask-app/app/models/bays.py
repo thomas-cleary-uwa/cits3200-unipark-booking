@@ -3,7 +3,6 @@
 Authors: Thomas Cleary,
 """
 
-from enum import unique
 from .. import db
 
 
