@@ -138,4 +138,4 @@ dmypy.json
 *.sqlite*
 
 # google drive
-Icon?
+Icon*
