@@ -16,6 +16,10 @@ NOTE: Your system may have python aliased as something other than `python`
 ### 2. Activate the Virtual Environment
 `$ source venv/bin/activate`
 
+NOTE: On windows
+
+`$ venv\scripts\activate`
+
 ### 3. Install Requirements
 `$ pip install -r requirements.txt`
 
