@@ -44,10 +44,18 @@ Currently need values for:
 - SECRET_KEY=**(secret key used for encryption eg. youwillneverguessthis)**
 
 ### 5. Create a local database file for the app 
-To run the app you need a local instance of the database. To create this file run the following two commands from /flask-app
+To run the app you need a local instance of the database. 
+
+#### 5a Manual Option
+To create this file run the following two commands from /flask-app
 
 `$ flask db migrate`  
 `$ flask db upgrade`
+
+#### 5b Automated Option
+To automatically run the above commands and start the application simply run from /flask-app
+
+`$ python run/run_fresh_app.py`
 
 ### 6. Run the Application
 Before running the application, consider running the unit tests
