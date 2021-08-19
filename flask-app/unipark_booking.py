@@ -14,7 +14,8 @@ import unittest
 from flask_migrate import Migrate
 
 from app import create_app, db
-from app.models.bays import ParkingLot, CarBay
+from app.models.parking_lot import ParkingLot
+from app.models.car_bay import CarBay
 
 
 # create an application instance with config type defined in env variable
