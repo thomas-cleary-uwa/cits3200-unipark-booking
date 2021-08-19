@@ -18,7 +18,7 @@ NOTE: Your system may have python aliased as something other than `python`
 
 NOTE: On windows
 
-`$ venv\scripts\activate`
+`$ venv\Scripts\activate`
 
 ### 3. Install Requirements
 `$ pip install -r requirements.txt`
@@ -26,7 +26,7 @@ NOTE: On windows
 NOTE: Your system may have pip aliased as something other than `pip`
 
 **NOTE: Before attempting to run the flask app, please change the 
-*python.pythonPath* setting in .vscode/settings.json to your virtual environment's python path. This can be found by running the command**  
+*python.pythonPath* setting in .vscode/settings.json to your virtual environment's python path. This can be found by running the command (linux / macOS)**  
 
 `$ which python`
 
