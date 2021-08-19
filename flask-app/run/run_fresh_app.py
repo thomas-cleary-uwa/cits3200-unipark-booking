@@ -22,13 +22,13 @@ from app.models.bays import ParkingLot, CarBay
 def make_fresh_db():
     """ create a fresh instance of the database """
     commands = [
-        'rm db-dev.sqlite',
         'flask db migrate',
         'flask db upgrade',
     ]
 
-    if not os.path.exists('db-dev.sqlite'):
-        commands = commands[1:]
+    db_path = './db-dev.sqlite'
+    if os.path.exists(db_path):
+        os.remove(db_path)
 
     for cmd in commands:
         # try and run the command
