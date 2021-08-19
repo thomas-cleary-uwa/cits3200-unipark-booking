@@ -16,7 +16,8 @@ sys.path.append("../flask-app")
 
 # ignore pylint errors, above line adds the package to the system path at runtime
 from app import db, create_app
-from app.models.bays import ParkingLot, CarBay
+from app.models.parking_lot import ParkingLot
+from app.models.car_bay import CarBay
 
 
 def make_fresh_db():

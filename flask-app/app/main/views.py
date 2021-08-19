@@ -6,7 +6,8 @@ Authors: Thomas Cleary,
 from app import db
 from flask import render_template
 
-from ..models.bays import CarBay, ParkingLot
+from ..models.parking_lot import ParkingLot
+from ..models.car_bay import CarBay
 from . import main
 
 
