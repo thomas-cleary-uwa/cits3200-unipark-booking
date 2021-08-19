@@ -33,6 +33,8 @@ NOTE: Your system may have pip aliased as something other than `pip`
 ### 4. Add .env File
 `$ touch .env`
 
+(Command only on linux / macOS)
+
 This is the file that the flask application will take environment variables from.
 
 Currently need values for:
