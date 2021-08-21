@@ -33,7 +33,7 @@ NOTE: Your system may have pip aliased as something other than `pip`
 ### 4. Add .env File
 `$ touch .env`
 
-(Command only on linux / macOS)
+(Command only on linux / macOS, will need to manually create file manually on Windows)
 
 This is the file that the flask application will take environment variables from.
 
@@ -48,13 +48,13 @@ Currently need values for:
 ### 5. Create a local database file for the app 
 To run the app you need a local instance of the database. 
 
-#### 5a Manual Option
+#### Option 1: Manual Option
 To create this file run the following two commands from /flask-app
 
 `$ flask db migrate`  
 `$ flask db upgrade`
 
-#### 5b Automated Option
+#### Option 2: Automated Option
 To automatically run the above commands and start the application simply run from /flask-app
 
 `$ python run/run_fresh_app.py`
