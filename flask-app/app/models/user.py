@@ -3,9 +3,11 @@
 Authors: Thomas Cleary,
 """
 
+from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from .. import db
+from .. import db, login_manager
+
 
 
 class Role(db.Model):
@@ -54,8 +56,13 @@ class Role(db.Model):
 
 
 
-class User(db.Model):
-    """ Represents a user of the application """
+class User(UserMixin, db.Model):
+    """ Represents a user of the application
+    
+    Subclasses:
+        - UserMixin: for is_authenticated(), is_active(), is_anonymous()...
+        - db.Model:  to define a table for the database
+    """
     __tablename__ = 'User'
 
     # Primary Key
@@ -100,3 +107,15 @@ class User(db.Model):
             self.first_name, self.last_name,
             self.role.name
         )
+
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    """ flask-login calls this when retrieving info about the user.
+    
+    Decorator registers this function with flask-login.
+    Returns the user object of user_id is a valid identifier,
+    else returns None.
+    """
+    return User.query.get(int(user_id))
