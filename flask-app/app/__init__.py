@@ -26,8 +26,10 @@ def create_app(config_name):
 
     # import blueprints here to avoid circular imports
     from .main import main as main_bp
+    from .auth import auth as auth_bp
 
     # register blueprints
     app.register_blueprint(main_bp)
+    app.register_blueprint(auth_bp)
 
     return app
