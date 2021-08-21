@@ -30,7 +30,7 @@ class Role(db.Model):
     def __repr__(self):
         return "<Role - {}>".format(self.name)
 
-    
+
     @staticmethod
     def insert_roles():
         """ method to insert roles into the db when setting the up the application """
@@ -58,7 +58,7 @@ class Role(db.Model):
 
 class User(UserMixin, db.Model):
     """ Represents a user of the application
-    
+
     Subclasses:
         - UserMixin: for is_authenticated(), is_active(), is_anonymous()...
         - db.Model:  to define a table for the database
@@ -113,7 +113,7 @@ class User(UserMixin, db.Model):
 @login_manager.user_loader
 def load_user(user_id):
     """ flask-login calls this when retrieving info about the user.
-    
+
     Decorator registers this function with flask-login.
     Returns the user object of user_id is a valid identifier,
     else returns None.
