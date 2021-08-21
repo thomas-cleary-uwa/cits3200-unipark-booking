@@ -20,6 +20,9 @@ class Config:
     # (CSRF attacks)
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
 
+    ADMIN_EMAIL    = os.environ.get('ADMIN_EMAIL')
+    ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD')
+
     # The Flask-SQLAlchemy documentation suggests setting key
     # SQLALCHEMY_TRACK_MODIFICATIONS to False to use less memory
     # unless signals for object changes are needed

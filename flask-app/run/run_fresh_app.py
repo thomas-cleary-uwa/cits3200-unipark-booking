@@ -18,9 +18,11 @@ sys.path.append("../flask-app")
 from app import db, create_app
 from app.models.parking_lot import ParkingLot
 from app.models.car_bay import CarBay
+from app.models.user import Role, User
 
 
 class bColours:
+    """ codes to make stdout msgs in colour """
     HEADER    = '\033[95m'
     OKBLUE    = '\033[94m'
     OKCYAN    = '\033[96m'
@@ -79,6 +81,26 @@ def make_fresh_db():
     ))
 
 
+def add_admin():
+    """ add the admin user to the db """
+    app = create_app('development')
+
+    with app.app_context():
+        admin_user = User(
+            email = app.config['ADMIN_EMAIL'],
+            password = app.config['ADMIN_PASSWORD'],
+            first_name = 'Uni',
+            last_name = 'Park',
+            role_id = Role.query.filter_by(name='admin').first().id
+        )
+
+        db.session.add(admin_user)
+        db.session.commit()
+        print("{}- Admin user added.{}\n".format(
+            bColours.OKGREEN, bColours.ENDC
+        ))
+
+
 def add_parking_lots_bays():
     """ add relevant UWA parking lots to db """
 
@@ -117,10 +139,10 @@ def add_parking_lots_bays():
                     db.session.add(new_bay)
                 db.session.commit()
 
-            print("\n{}- Parking Lots added to db.{}\n".format(
+            print("{}- Parking Lots added to db.{}\n".format(
                 bColours.OKGREEN, bColours.ENDC
             ))
-            print("\n{}- Car Bays added to db.{}\n".format(
+            print("{}- Car Bays added to db.{}\n".format(
                 bColours.OKGREEN, bColours.ENDC
             ))
 
@@ -131,12 +153,15 @@ def main():
     - delete db-dev.sqlite
     - create new db.dev.sqlite
 
-    - add Parking Lots to db
+    - add Roles to db
+    - add Admin account to db
+    - add Parking Lots and Car Bays to db
 
     - run the flask app
     """
 
     make_fresh_db()
+    add_admin()
     add_parking_lots_bays()
 
     subprocess.run('flask run --host 0.0.0.0'.split(), check=False)
