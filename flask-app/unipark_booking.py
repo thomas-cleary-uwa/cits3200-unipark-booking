@@ -14,8 +14,12 @@ import unittest
 from flask_migrate import Migrate
 
 from app import create_app, db
+
+# import models
 from app.models.parking_lot import ParkingLot
 from app.models.car_bay import CarBay
+from app.models.user import Role, User
+
 
 
 # create an application instance with config type defined in env variable
@@ -35,7 +39,8 @@ def make_shell_context():
     """
     return dict(
         db=db,
-        ParkingLot=ParkingLot, CarBay=CarBay
+        ParkingLot=ParkingLot, CarBay=CarBay,
+        Role=Role, User=User
     )
 
 
@@ -47,3 +52,9 @@ def test():
     """
     tests = unittest.TestLoader().discover('tests')
     unittest.TextTestRunner(verbosity=2).run(tests)
+
+
+@app.cli.command("add-roles")
+def add_roles():
+    """ add user roles to the application db """
+    Role.insert_roles()
