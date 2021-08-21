@@ -42,6 +42,8 @@ Currently need values for:
 - FLASK_CONFIG=**(config name from config.py, eg. development)**
 - FLASK_ENV=**(development or production)**
 - SECRET_KEY=**(secret key used for encryption eg. youwillneverguessthis)**
+- ADMIN_EMAIL=**(eg. test@uwa.edu.au)**
+- ADMIN_PASSWORD=**(eg. admin)**
 
 ### 5. Create a local database file for the app 
 To run the app you need a local instance of the database. 
