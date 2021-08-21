@@ -35,9 +35,9 @@ class Role(db.Model):
         # use dictionary to store list of permissions
         # permission class to be added later
         roles = {
-            'Disabled' : [],
-            'User'     : [],
-            'Admin'    : []
+            'disabled' : [],
+            'user'     : [],
+            'admin'    : []
         }
 
         default_role = 'User'
@@ -67,8 +67,8 @@ class User(db.Model):
 
 
     # Profile Attributes
-    first_name = db.Column(db.String(64), unique=True, index=True)
-    last_name  = db.Column(db.String(64), unique=True, index=True)
+    first_name = db.Column(db.String(64), index=True)
+    last_name  = db.Column(db.String(64), index=True)
 
     # Foreign Keys
     role_id = db.Column(db.Integer, db.ForeignKey('Role.id'))
@@ -94,6 +94,9 @@ class User(db.Model):
         return check_password_hash(self.password_hash, password)
 
 
-    def repr(self):
-        return "<User {} - {} {}>".format(
-            self.id, self.first_name, self.last_name)
+    def __repr__(self):
+        return "<User {} - {} {} ({})>".format(
+            self.id,
+            self.first_name, self.last_name,
+            self.role.name
+        )
