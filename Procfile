@@ -1,1 +1,1 @@
-web: flask db init; flask db migrate; flask db upgrade; python setup_application.py; gunicorn unipark-booking:app;
+web: flask db init; flask db migrate; flask db upgrade; python setup_application.py; gunicorn unipark_booking:app;
