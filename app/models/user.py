@@ -18,7 +18,7 @@ class Role(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
     # Attributes
-    name    = db.Column(db.String(64), unique=True)
+    name    = db.Column(db.String(128), unique=True)
     #
     # default is true for only one role
     default = db.Column(db.Boolean, default=False, index=True)
@@ -74,8 +74,8 @@ class User(UserMixin, db.Model):
 
 
     # Profile Attributes
-    first_name = db.Column(db.String(64), index=True)
-    last_name  = db.Column(db.String(64), index=True)
+    first_name = db.Column(db.String(128), index=True)
+    last_name  = db.Column(db.String(128), index=True)
 
     # Foreign Keys
     role_id = db.Column(db.Integer, db.ForeignKey('Role.id'))
