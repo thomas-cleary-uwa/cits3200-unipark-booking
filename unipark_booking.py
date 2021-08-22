@@ -103,7 +103,7 @@ def add_admin():
     db.session.commit()
 
 
-@app.cli.command()
+@app.cli.command("deploy-app")
 def deploy():
     upgrade_db()
     add_roles()
