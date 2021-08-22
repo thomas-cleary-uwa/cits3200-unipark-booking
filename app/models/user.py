@@ -70,7 +70,7 @@ class User(UserMixin, db.Model):
 
     # Authentication Attributes
     email         = db.Column(db.String(128), unique=True, index=True)
-    password_hash = db.Column(db.String(64), unique=True, index=True)
+    password_hash = db.Column(db.String(256), unique=True, index=True)
 
 
     # Profile Attributes
