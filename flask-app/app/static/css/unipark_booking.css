@@ -1,3 +1,189 @@
+@font-face {
+  font-family: uwaSlab;
+  src : url("https://static.weboffice.uwa.edu.au/visualid/fonts/uwa/uwa-slab-regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: SourceSansPro;
+  src : url("https://static.weboffice.uwa.edu.au/visualid/fonts/source-sans-pro/SourceSansPro-Regular.ttf");
+}
+
+:root {
+  --uwa-blue : rgb(42, 53, 134);
+  --uwa-darker-blue : rgb(38, 48, 122);
+  --uwa-dark-grey : rgb(236, 236, 236);
+  --uwa-light-grey : rgb(246, 246, 246);
+  --uwa-grey-font : rgb(70, 70, 70);
+  --uwa-yellow : rgb(248, 211, 75);
+  --uwa-darker-yellow : rgb(219, 183, 61);
+  --uwa-link-blue : rgb(38, 85, 175);
+  --uwa-top-border-colour : rgb(219, 219, 219);
+}
+
+
+/*
+all routes
+*/
+body {
+  font-family: SourceSansPro, Arial, Helvetica, sans-serif;
+}
+
+footer {
+  width: 100%;
+  background-color: var(--uwa-dark-grey);
+}
+
+footer p {
+  font-family: SourceSansPro;
+  color: var(--uwa-grey-font);
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+
+.panel-banner {
+  text-align: center;
+  padding: 0.25em;
+  margin: 0;
+}
+
+.uwa-link {
+  color: var(--uwa-link-blue);
+}
+
+.uwa-link:hover {
+  color: var(--uwa-darker-yellow);
+}
+
+.uwa-heading {
+  color : var(--uwa-blue);
+  font-size: larger;
+}
+
+.uwa-subheading {
+  color : var(--uwa-grey-font);
+}
+
+.uwa-btn {
+  background-color: var(--uwa-darker-yellow);
+  border-radius: 0;
+  padding: 0.05em 0.1em, 0.05em 0.1em;
+}
+
+.uwa-submit {
+  border-top-style: solid;
+  border-width: thin;
+  border-top-color: var(--uwa-top-border-colour);
+}
+
+.uwa-btn:hover {
+  background-color: var(--uwa-yellow);
+  color: var(--uwa-blue);
+}
+
+
+.uwa-light-panel {
+  background-color: var(--uwa-light-grey);
+}
+
+.uwa-light-panel .login-visible{
+  padding: 1em 0.5em 1em 0.5em;
+}
+
+
+.uwa-dark-grey {
+  background-color: var(--uwa-dark-grey);
+  padding: 1em;
+}
+
+#flex-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+#uwa-navbar {
+  background-color: var(--uwa-blue);
+
+  /* From Student Connect Login */
+  padding-bottom: 30px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 30px;
+
+  font-family: uwaSlab;
+  font-size: xx-large;
+}
+
+#uwa-navbar a, #uwa-navbar span{
+  color : rgb(255, 255, 255);
+  padding : 0.5em;
+}
+
+#logout-link:hover span {
+  color : var(--uwa-yellow);
+}
+
+#uwa-nav-logo:hover, #logout-link:hover {
+  background-color: var(--uwa-darker-blue);
+  border-radius: 10%;
+}
+
+.material-icons.md-24 { 
+  font-size: 24px; 
+  vertical-align: middle;
+}
+
+.material-icons.md-36 { 
+  font-size: 36px; 
+  vertical-align: middle;
+}
+
+.material-icons.md-48 { 
+  font-size: 48px; 
+  vertical-align: middle;
+}
+
+#uwa-flash-msg {
+  border-color: var(--uwa-yellow);
+}
+
+#content-container {
+  padding-top: 2em;
+}
+
+/*
+/login route
+*/
+
+
+.login-field {
+  width: 100%;
+  font-size: larger;
+}
+
+#login-form .uwa-btn.material-icons.md-24 {
+  padding-left: 1em;
+  padding-right: 0 !important;
+}
+
+#welcome-banner {
+  padding : 1.5em 1.5em 1.5em 1.5em;
+}
+
+#inner-welcome-banner {
+  font-family: uwaSlab;
+  font-size: 28;
+  color: var(--uwa-blue);
+}
+
+#contacts-table td {
+  color: var(--uwa-grey-font);
+}
+
+/* 
+/index route
+*/
 .map {
   width : 100%;
   height : auto;

@@ -43,5 +43,4 @@ def login():
 def logout():
     """ Logs an authenticated user out of the application """
     logout_user()
-    flash('You have been logged out.')
     return redirect(url_for('auth.login'))

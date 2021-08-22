@@ -11,13 +11,13 @@ from wtforms.validators import DataRequired, Length, Email, Regexp
 
 class LoginForm(FlaskForm):
     """ Login form for existing users """
-    email = StringField('Email', validators=[
+    email = StringField('Staff Email:', validators=[
         DataRequired(),
         Length(1, 64),
         Email()
     ])
 
-    password = PasswordField('Password', validators=[
+    password = PasswordField('Password:', validators=[
         DataRequired()
     ])
 

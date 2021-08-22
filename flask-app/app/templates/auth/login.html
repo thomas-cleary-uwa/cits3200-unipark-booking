@@ -2,36 +2,101 @@
 
 
 {% block title %}
-  Login
+  Login - UniPark Booking
 {% endblock %}
 
 {% block content %}
 
-<h1>Login</h1>
+<div class="row justify-content-center">
 
-<form action="" method="POST" novalidate>
-  {{ login_form.hidden_tag() }}
+  <div class="col-md-9 uwa-light-panel mb-5" id="login-form">
+    <div class="row uwa-dark-grey">
+      <p class="panel-banner uwa-heading">
+        Log In
+      </p>
+    </div>
 
-  <div class="form-group">
-    {{ login_form.email.label() }}<br>
-    {{ login_form.email(size=32) }}<br>
-    {% for error in login_form.email.errors %}
-      <span style="color:red;">[{{ error }}]</span>
-    {% endfor %}
-  </div>
+    <form action="" method="POST" novalidate>
+      {{ login_form.hidden_tag() }}
+    
+      <div class="form-group">
+        <div class="row login-visible">
+          <div class="col-md-4">
+            {{ login_form.email.label(class_="uwa-subheading") }}<br>
+          </div>
+          <div class="col-md-8">
+            {{ login_form.email(class_="login-field") }}<br>
+          </div>
+        </div>
 
-  <div class="form-group">
-    {{ login_form.password.label }}<br>
-    {{ login_form.password(size=32) }}<br>
-    {% for error in login_form.password.errors %}
-    <span style="color:red;">[{{ error }}]</span>
-    {% endfor %}
-  </div>
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-8">
+            {% for error in login_form.email.errors %}
+              <span style="color:red;">[{{ error }}]</span>
+            {% endfor %}  
+          </div>
+        </div>
 
-  <div class="form-group">
-    {{ login_form.submit }}<br>
-  </div>
+        <div class="row login-visible">
+          <div class="col-md-4">
+            {{ login_form.password.label(class_="uwa-subheading") }}<br>
+          </div>
+          <div class="col-md-8">
+            {{ login_form.password(class_="login-field") }}<br>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-8">
+            {% for error in login_form.password.errors %}
+              <span style="color:red;">[{{ error }}]</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="row login-visible">
+          <div class="col-md-8 offset-md-4 pt-3 uwa-submit">
+            <button class="btn uwa-btn uwa-heading" type="submit">
+              Log In 
+              <span class="material-icons md-24 uwa-heading">
+                login
+              </span>
+            </button>
+          </div>
+        </div>
   
-</form>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-md-9 uwa-light-panel mb-5" id="contact-links">
+    <div class="row uwa-dark-grey">
+      <p class="panel-banner uwa-heading">
+        Request A Booking
+      </p>
+    </div>
+    <table class='table' id="contacts-table">
+      <thead>
+        <th>Department</th><th>Contact Address</th>
+      </thead>
+      <tr>
+        <td>
+          UniPark Office
+        </td>
+        <td>
+          <a class="uwa-link" href="unipark-cm@uwa.edu.au">
+            unipark-cm@uwa.edu.au
+          </a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
 
 {% endblock %}
