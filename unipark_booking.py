@@ -11,7 +11,7 @@ Authors: Thomas Cleary,
 import os
 import unittest
 
-from flask_migrate import Migrate, upgrade
+from flask_migrate import Migrate, upgrade, migrate
 
 from app import create_app, db
 
@@ -60,14 +60,37 @@ def add_roles():
     Role.insert_roles()
 
 
-@app.cli.command()
-def deploy():
-    """Run deployment tasks."""
-    # migrate database to latest revision
-    upgrade()
-    # create or update user roles
-    Role.insert_roles()
+@app.cli.command("add-bays")
+def add_bays():
+    bays = {
+        9 : 12,
+        12 : 6,
+        19 : 3,
+        22 : 11
+    }
 
+    for lot_num in bays:
+        new_lot = ParkingLot(lot_number=lot_num)
+        db.session.add(new_lot)
+        db.session.commit()
+
+        for bay_num in range(1, bays[lot_num]+1):
+            new_bay = CarBay(
+                bay_number = bay_num,
+                parking_lot_id = new_lot.id
+            )
+            db.session.add(new_bay)
+        db.session.commit()
+
+
+
+@app.cli.command("upgrade-db")
+def upgrade_db():
+    upgrade()
+
+
+@app.cli.command("add-admin")
+def add_admin():
     admin_user = User(
         email = app.config['ADMIN_EMAIL'],
         password = app.config['ADMIN_PASSWORD'],
@@ -78,3 +101,11 @@ def deploy():
 
     db.session.add(admin_user)
     db.session.commit()
+
+
+@app.cli.command('deploy')
+def deploy():
+    upgrade_db()
+    add_roles()
+    add_admin()
+    add_bays()

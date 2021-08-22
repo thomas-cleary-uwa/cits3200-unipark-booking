@@ -27,40 +27,31 @@ def add_admin_and_roles():
 def add_parking_lots_bays():
     """ add relevant UWA parking lots to db """
 
-    parking_lot_filename = "./parking-lots.csv"
+    # add parking lot to db
+    app = create_app('heroku')
+    with app.app_context():
 
-    # get parking lot numbers from  csv file
-    with open(parking_lot_filename, "r") as lotnums_csv:
-        lotnums_csvreader = csv.reader(lotnums_csv, delimiter=",")
+        for row in lotnums_csvreader:
+            lot_num, num_bays = tuple(row)
 
-        # skip column names
-        next(lotnums_csvreader)
+            try:
+                lot_num  = int(lot_num)
+                num_bays = int(num_bays)
 
-        # add parking lot to db
-        app = create_app('heroku')
-        with app.app_context():
+            except ValueError as error:
+                pass
 
-            for row in lotnums_csvreader:
-                lot_num, num_bays = tuple(row)
+            new_lot = ParkingLot(lot_number = lot_num)
+            db.session.add(new_lot)
+            db.session.commit()
 
-                try:
-                    lot_num  = int(lot_num)
-                    num_bays = int(num_bays)
-
-                except ValueError as error:
-                    pass
-
-                new_lot = ParkingLot(lot_number = lot_num)
-                db.session.add(new_lot)
-                db.session.commit()
-
-                for bay_num in range(1, num_bays+1):
-                    new_bay = CarBay(
-                        bay_number = bay_num,
-                        parking_lot_id = new_lot.id
-                    )
-                    db.session.add(new_bay)
-                db.session.commit()
+            for bay_num in range(1, num_bays+1):
+                new_bay = CarBay(
+                    bay_number = bay_num,
+                    parking_lot_id = new_lot.id
+                )
+                db.session.add(new_bay)
+            db.session.commit()
 
 
 def  main():
