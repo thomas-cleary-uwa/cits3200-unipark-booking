@@ -17,7 +17,7 @@ def add_admin_and_roles():
             role_id = Role.query.filter_by(name="admin").first().id
         )
 
-        db.session.add(admin)
+        db.session.add(admin) 
         db.session.commit()
 
 
