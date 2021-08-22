@@ -56,7 +56,7 @@ class Role(db.Model):
 
 
 
-class User(UserMixin, db.Model):
+class User(UserMixin, db.Model): 
     """ Represents a user of the application
 
     Subclasses:
