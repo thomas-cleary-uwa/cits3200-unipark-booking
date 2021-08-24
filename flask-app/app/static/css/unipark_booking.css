@@ -109,6 +109,7 @@ body {
 
 #uwa-flash-msg {
   border-color: var(--uwa-yellow);
+  margin-bottom: 3em; /* Create separation between flash message and login panel */
 }
 
 #content-container {
@@ -140,7 +141,6 @@ body {
 .uwa-heading {
   color : var(--uwa-blue);
   font-size: larger;
-  text-align: center;
   margin: 0;
 }
 
