@@ -66,7 +66,6 @@ class AdminTestCases(unittest.TestCase):
         """ test that the admin can log in and out """
         email    = self.app.config["ADMIN_EMAIL"]
         password = self.app.config["ADMIN_PASSWORD"]
-        print("\n{}\n".format(password))
 
         admin_user = User.query.filter_by(email=email).first()
         self.assertTrue(admin_user is not None)
