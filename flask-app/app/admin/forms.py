@@ -14,20 +14,6 @@ from ..models.user import User, Role
 from .. import create_app
 
 
-# get list of tuples (value, label)
-# value = permission level, label = permission name
-# load_dotenv()
-# FLASK_CONFIG = os.getenv("FLASK_CONFIG")
-# app = create_app(FLASK_CONFIG)
-# with app.app_context():
-#     ROLES = Role.get_role_names()
-
-# NOTE need to eventually get roles collected from DB not static list
-ROLES = [
-    "user",
-    "admin"
-]
-
 
 class AddUserForm(FlaskForm):
     """ Form for admin user to create a new user """
@@ -52,7 +38,8 @@ class AddUserForm(FlaskForm):
         DataRequired()
     ])
 
-    role = SelectField("Role: ", choices=ROLES)
+    # role added as dyanmic attribute 
+    # (when using this form us setattr() to add a SelectField attribute to this class)
 
     submit = SubmitField('Add User')
 

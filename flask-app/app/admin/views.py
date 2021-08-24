@@ -5,6 +5,7 @@ Authors: Thomas Cleary,
 
 from flask import redirect, render_template, url_for, flash
 from flask_login import current_user, login_required
+from wtforms import SelectField
 
 from app import db
 
@@ -28,8 +29,8 @@ def index():
 @admin_required
 def users():
     """ route for admin to see list of all users """
-    users = User.query.all()
-    return render_template("admin/users.html", users=users)
+    all_users = User.query.all()
+    return render_template("admin/users.html", users=all_users)
 
 
 @admin.route("/add-user", methods=['GET', 'POST'])
@@ -37,6 +38,9 @@ def users():
 @admin_required
 def add_user():
     """ route for admin user to create new account """
+
+    role = SelectField("Role: ", choices=Role.get_role_names())
+    setattr(AddUserForm, 'role', role)
     add_user_form = AddUserForm()
 
     if add_user_form.validate_on_submit():
