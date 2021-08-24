@@ -3,13 +3,30 @@
 Authors: Thomas Cleary,
 """
 
-from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SelectMultipleField, SubmitField
-from wtforms.validators import DataRequired, Length, Email, Regexp, EqualTo, ValidationError
-from ..models.user import User, Permission
+import os
+from dotenv import load_dotenv
 
-# get list of permission names to use in AddUserForm
-PERMISSIONS = [key for key in Permission.__dict__ if not key.startswith("__")]
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SelectField, SubmitField
+from wtforms.validators import DataRequired, Length, Email, Regexp, EqualTo, ValidationError
+
+from ..models.user import User, Role
+from .. import create_app
+
+
+# get list of tuples (value, label)
+# value = permission level, label = permission name
+# load_dotenv()
+# FLASK_CONFIG = os.getenv("FLASK_CONFIG")
+# app = create_app(FLASK_CONFIG)
+# with app.app_context():
+#     ROLES = Role.get_role_names()
+
+# NOTE need to eventually get roles collected from DB not static list
+ROLES = [
+    "user",
+    "admin"
+]
 
 
 class AddUserForm(FlaskForm):
@@ -35,7 +52,7 @@ class AddUserForm(FlaskForm):
         DataRequired()
     ])
 
-    permissions = SelectMultipleField("Permissions: ", choices=PERMISSIONS)
+    role = SelectField("Role: ", choices=ROLES)
 
     submit = SubmitField('Add User')
 

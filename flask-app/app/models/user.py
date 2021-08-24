@@ -44,6 +44,12 @@ class Role(db.Model):
 
 
     @staticmethod
+    def get_role_names():
+        """ return a list of role names """
+        return [role.name for role in Role.query.all()]
+
+
+    @staticmethod
     def insert_roles():
         """ method to insert roles into the db when setting the up the application """
         # use dictionary to store list of permissions
