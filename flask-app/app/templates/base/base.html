@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- "h-100" making footer stick to bottom ... I don't know why though-->
 <html lang="en" class="h-100">
 
 <head>
@@ -24,17 +25,19 @@
   {% block styleSheets %}{% endblock %}
 </head>
 
+<!-- These 3 classes "d-flex flex-column min-vh-100" are keeping footer stuck to bottom of page-->
 <body class="d-flex flex-column min-vh-100">
+
   <!-- Top Navbar -->
   {% include 'base/uwa_navbar.html' %}
 
-<div class="container" id="content-container">
+  <div class="container" id="content-container">
 
   <!-- Flashed messages -->
   {% include 'base/flashed_msgs.html' %}
 
   {% block content %}{% endblock %}
-</div>
+  </div>
 
   <!-- Bottom Footer -->
   {% include 'base/footer.html' %}

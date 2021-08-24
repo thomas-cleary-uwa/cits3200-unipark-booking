@@ -10,7 +10,7 @@
 <div class="row justify-content-center">
 
   <div class="col-md-9 uwa-light-panel mb-5" id="login-form">
-    <div class="row uwa-dark-grey">
+    <div class="row uwa-dark-panel">
       <p class="panel-banner uwa-heading">
         Log In
       </p>
@@ -22,7 +22,7 @@
       <div class="form-group">
         <div class="row login-visible">
           <div class="col-md-4">
-            {{ login_form.email.label(class_="uwa-subheading") }}<br>
+            {{ login_form.email.label }}<br>
           </div>
           <div class="col-md-8">
             {{ login_form.email(class_="login-field") }}<br>
@@ -40,7 +40,7 @@
 
         <div class="row login-visible">
           <div class="col-md-4">
-            {{ login_form.password.label(class_="uwa-subheading") }}<br>
+            {{ login_form.password.label }}<br>
           </div>
           <div class="col-md-8">
             {{ login_form.password(class_="login-field") }}<br>
@@ -69,31 +69,6 @@
   
       </div>
     </form>
-  </div>
-</div>
-
-<div class="row justify-content-center">
-  <div class="col-md-9 uwa-light-panel mb-5" id="contact-links">
-    <div class="row uwa-dark-grey">
-      <p class="panel-banner uwa-heading">
-        Request A Booking
-      </p>
-    </div>
-    <table class='table' id="contacts-table">
-      <thead>
-        <th>Department</th><th>Contact Address</th>
-      </thead>
-      <tr>
-        <td>
-          UniPark Office
-        </td>
-        <td>
-          <a class="uwa-link" href="unipark-cm@uwa.edu.au">
-            unipark-cm@uwa.edu.au
-          </a>
-        </td>
-      </tr>
-    </table>
   </div>
 </div>
 

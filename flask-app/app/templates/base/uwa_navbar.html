@@ -1,4 +1,4 @@
- <div id="flex-nav"> 
+ <div class="flex-nav"> 
   <nav class="navbar navbar-expand-lg" id="uwa-navbar">
 
     <a class="navbar-brand" id="uwa-nav-logo" href="https://www.uwa.edu.au/">
@@ -31,11 +31,10 @@
 
   </nav>
 
+<!-- Only shown on login page -->
 {% if not current_user.is_authenticated %}
-  <div class="uwa-dark-grey" id="welcome-banner">
-    <div id="inner-welcome-banner">
-      <h1>UniPark Bookings</h1>
-    </div>
+  <div class="uwa-dark-panel uwa-heading" id="welcome-banner">
+    <h1>UniPark Bookings</h1>
   </div>
 {% endif %}
 </div>
