@@ -15,6 +15,14 @@ from .forms import AddUserForm
 
 
 
+@admin.route("/admin")
+@login_required
+@admin_required
+def index():
+    """ home route for admin users """
+    return render_template("admin/index.html")
+
+
 @admin.route("/users")
 @login_required
 @admin_required
