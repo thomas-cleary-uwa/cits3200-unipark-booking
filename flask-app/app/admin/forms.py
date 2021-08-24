@@ -4,10 +4,12 @@ Authors: Thomas Cleary,
 """
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, SelectMultipleField, SubmitField
 from wtforms.validators import DataRequired, Length, Email, Regexp, EqualTo, ValidationError
-from ..models.user import User
+from ..models.user import User, Permission
 
+# get list of permission names to use in AddUserForm
+PERMISSIONS = [key for key in Permission.__dict__ if not key.startswith("__")]
 
 
 class AddUserForm(FlaskForm):
@@ -32,6 +34,8 @@ class AddUserForm(FlaskForm):
     password2 = PasswordField('Cofirm Password: ', validators=[
         DataRequired()
     ])
+
+    permissions = SelectMultipleField("Permissions: ", choices=PERMISSIONS)
 
     submit = SubmitField('Add User')
 
