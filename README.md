@@ -11,7 +11,7 @@ Inside ./flask-app run the command
 
 `$ python -m venv venv`
 
-NOTE: Your system may have python aliased as something other than `python`
+NOTE: Your system may have python3 aliased as something other than `python`
 
 ### 2. Activate the Virtual Environment
 `$ source venv/bin/activate`
@@ -52,12 +52,14 @@ To run the app you need a local instance of the database.
 To create this file run the following two commands from /flask-app
 
 `$ flask db migrate`  
-`$ flask db upgrade`
+`$ flask db upgrade`  
 
 #### Option 2: Automated Option
 To automatically run the above commands and start the application simply run from /flask-app
 
 `$ python run/run_fresh_app.py`
+
+**NOTE: This script also calls `flask run`**
 
 ### 6. Run the Application
 Before running the application, consider running the unit tests
