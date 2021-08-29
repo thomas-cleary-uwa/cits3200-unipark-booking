@@ -70,5 +70,5 @@ To automatically run the above commands and start the application simply run fro
 `$ python run/run_fresh_app.py`
 
 
-#### Finally
+### 6. Finally
 Navigate to **http://localhost:5000/** on your chosen browser
