@@ -26,15 +26,12 @@ NOTE: On windows
 
 NOTE: Your system may have pip aliased as something other than `pip`
 
-**NOTE: Before attempting to run the flask app, please change the 
-*python.pythonPath* setting in .vscode/settings.json to your virtual environment's python path. This can be found by running the command (linux / macOS)**  
-
-`$ which python`
-
 ### 4. Add .env File
-`$ touch .env`
-
-(Command only on linux / macOS, will need to manually create file manually on Windows)
+`$ touch .env` (Command only on linux / macOS)<br>
+or<br>
+`$ vi .env`<br>
+or<br>
+Manually create the file in *VSCode*
 
 This is the file that the flask application will take environment variables from.
 
@@ -46,7 +43,7 @@ Currently need values for:
 - ADMIN_EMAIL=**(eg. test@uwa.edu.au)**
 - ADMIN_PASSWORD=**(eg. admin)**
 
-### 5. Create a local database file for the app 
+### 5. Setup the Database and Run the Flask App
 To run the app you need a local instance of the database. 
 
 #### Option 1: Manual Option
@@ -55,14 +52,6 @@ To create this file run the following two commands from /flask-app
 `$ flask db migrate`  
 `$ flask db upgrade`  
 
-#### Option 2: Automated Option
-To automatically run the above commands and start the application simply run from /flask-app
-
-`$ python run/run_fresh_app.py`
-
-**NOTE: This script also calls `flask run`**
-
-### 6. Run the Application
 Before running the application, consider running the unit tests
 
 `$ flask test`
@@ -71,8 +60,15 @@ To start the Flask app, run this command from inside /flask-app
 
 `$ flask run`
 
-Optionally to run the app with a fresh/new instance of the database run this command from /flask-app
+#### Option 2: Automated Option
+To automatically run the above commands and start the application simply run from /flask-app
 
 `$ python run/run_fresh_app.py`
 
-and navigate to **http://localhost:5000/** on your chosen browser
+**NOTE: This script also calls `flask run`**
+
+`$ python run/run_fresh_app.py`
+
+
+#### Finally
+Navigate to **http://localhost:5000/** on your chosen browser
