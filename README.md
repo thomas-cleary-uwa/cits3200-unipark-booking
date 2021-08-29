@@ -27,11 +27,11 @@ NOTE: On windows
 NOTE: Your system may have pip aliased as something other than `pip`
 
 ### 4. Add .env File
-`$ touch .env` (Command only on linux / macOS)<br>
+`$ touch .env` - and then edit .env in a text editor (Command only on linux / macOS)<br>
 or<br>
-`$ vi .env`<br>
+`$ vi .env` (make sure to save the file when exiting using **:wq**<br> 
 or<br>
-Manually create the file in *VSCode*
+**Manually create the file in _VSCode_**
 
 This is the file that the flask application will take environment variables from.
 
@@ -47,7 +47,7 @@ Currently need values for:
 To run the app you need a local instance of the database. 
 
 #### Option 1: Manual Option
-To create this file run the following two commands from /flask-app
+To create the SQLite database file run the following two commands from /flask-app
 
 `$ flask db migrate`  
 `$ flask db upgrade`  
