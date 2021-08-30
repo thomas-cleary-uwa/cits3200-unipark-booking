@@ -18,6 +18,8 @@ class CarBay(db.Model):
 
     # Attributes
     bay_number = db.Column(db.Integer, nullable=False)
+    latitude = db.Column(db.Float, unique = True, nullable=False)
+    longitude = db.Column(db.Float, unique = True, nullable=False)
     # location?
 
     # Foreign Keys
