@@ -16,7 +16,9 @@
         <h3>Car Park {{ lot.lot_number }}</h3>
         <ul>
           {% for bay in lot.bays %}
-            <li>Bay {{ bay.bay_number }}</li>
+            <a href="https://maps.google.com/?q={{ bay.latitude }},{{ bay.longitude }}">
+              <li>Bay {{ bay.bay_number }}</li>
+            </a>
           {% endfor %}
         </ul>
         {% endfor %}
