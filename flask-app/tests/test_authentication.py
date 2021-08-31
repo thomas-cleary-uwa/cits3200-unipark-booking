@@ -1,4 +1,4 @@
-""" Tests associated with the admin user of the application
+""" Tests associated with application authentication (login / logout)
 
 Authors: Thomas Cleary,
 """
@@ -11,10 +11,12 @@ from app import create_app, db
 from app.models.user import User, Role
 
 
-class AdminTestCases(unittest.TestCase):
-    """ tests to run to ensure the admin account is functional """
+class AuthenticationTestCases(unittest.TestCase):
+    """ a subclass of TestCase for unittest module to run methods (unit tests) """
 
     def setUp(self):
+        # This sets up the testing environment
+
         # create an application and push its context on the stack
         self.app = create_app('testing')
         self.app_context = self.app.app_context()
@@ -47,33 +49,14 @@ class AdminTestCases(unittest.TestCase):
 
         
     def tearDown(self):
+        # get rid of the testing environment
         db.session.remove()
         db.drop_all()
         self.app_context.pop()
 
 
-    def test_admin_exists(self):
-        """ test the admin user exists in the db
-
-        Test that there is at least one user who is an admin in the database.
-        Test that this admin user has: 
-            - first_name "Test", last_name="Admin", role_id=<role id of admin user>
-        """
-
-        admin_role = Role.query.filter_by(name='admin').first()
-
-        # Test that the admin exists
-        self.assertTrue(admin_role is not None)
-
-        # Test that there name is correct
-        self.assertTrue(User.query.filter_by(
-            email=self.app.config["ADMIN_EMAIL"],
-            first_name='Test', last_name='Admin',
-            role_id=admin_role.id) is not None)
-
-
-    def test_admin_can_login_out(self):
-        """ test that the admin can log in and out """
+    def test_login_logout_admin(self):
+        """ test that an admin user can login """
         # from SetUp()
         email    = self.app.config["ADMIN_EMAIL"]
         password = self.app.config["ADMIN_PASSWORD"]
@@ -95,9 +78,9 @@ class AdminTestCases(unittest.TestCase):
             test_client.get('auth/logout', follow_redirects=True)
             self.assertTrue(current_user.is_anonymous) # check no one is logged in
 
-
-    def test_regular_user_not_admin(self):
-        """ test that a regular user is not given admin permission when logged in """
+    
+    def test_login_logout_user(self):
+        """ test that a regular user can login and logout """
         # from SetUp()
         email = "test.user@uwa.edu.au"
         password = "user1234"
@@ -112,11 +95,13 @@ class AdminTestCases(unittest.TestCase):
                 data=dict(email=email, password=password), follow_redirects=True
             )
             self.assertTrue(current_user.is_authenticated) # check they are logged in
-            self.assertFalse(current_user.is_administrator()) # check they are not an admin user
             self.assertTrue(current_user.role.name == "user") # check their role is "user"
             self.assertTrue(current_user.id == regular_user.id) # check that logged in user has corerct id
 
             # logout
             test_client.get('auth/logout', follow_redirects=True)
             self.assertTrue(current_user.is_anonymous) # check no one is logged in
+
+
+
 

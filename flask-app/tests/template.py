@@ -9,13 +9,12 @@ from app import create_app, db
 from app.models.user import User, Role
 
 
-class AdminTestCases(unittest.TestCase):
-    """ tests to run to ensure the admin account is functional
-    
-    This sets up the testing environment
-    """
+class TemplateTestCases(unittest.TestCase):
+    """ a subclass of TestCase for unittest module to run methods (unit tests) """
 
     def setUp(self):
+        # This sets up the testing environment
+
         # create an application and push its context on the stack
         self.app = create_app('testing')
         self.app_context = self.app.app_context()
