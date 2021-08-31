@@ -51,11 +51,7 @@ def add_user():
         first_name = names[0].capitalize()
         last_name = names[1].capitalize()
 
-        role_name = add_user_form.role.data
-
-        # NOTE currently form not dynamically getting list of roles so is hard coded as
-        # user = 1, admin = 2
-        # please fix this
+        role_name = add_user_form.role.data # ignore pylint error, we just added the role member
 
         new_user = User(
             email=email,
