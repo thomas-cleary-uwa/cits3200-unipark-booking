@@ -113,8 +113,8 @@ def edit_user(user_id):
             return redirect(url_for('admin.edit_user', user_id=user_id))
         
         editing_user.email = entered_email
-        editing_user.first_name = edit_user_form.first_name.data.capitalize()
-        editing_user.last_name = edit_user_form.last_name.data.capitalize()
+        editing_user.first_name = edit_user_form.first_name.data.strip().capitalize()
+        editing_user.last_name = edit_user_form.last_name.data.strip().capitalize()
         editing_user.role_id = Role.query.filter_by(name=edit_user_form.role.data).first().id
 
         db.session.commit()
