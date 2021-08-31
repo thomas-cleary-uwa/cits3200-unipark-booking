@@ -18,9 +18,11 @@ class CarBay(db.Model):
 
     # Attributes
     bay_number = db.Column(db.Integer, nullable=False)
-    latitude = db.Column(db.Float, unique = True, nullable=False)
-    longitude = db.Column(db.Float, unique = True, nullable=False)
-    # location?
+    latitude = db.Column(db.Float, nullable=False)
+    longitude = db.Column(db.Float, nullable=False)
+    
+    # Constraints
+    db.UniqueConstraint(latitude, longitude)
 
     # Foreign Keys
     parking_lot_id = db.Column(db.Integer, db.ForeignKey('ParkingLot.id'))
