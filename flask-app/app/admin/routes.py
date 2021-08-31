@@ -4,7 +4,7 @@ Authors: Thomas Cleary,
 """
 
 from flask import redirect, render_template, url_for, flash
-from flask_login import login_required
+from flask_login import current_user, login_required
 from wtforms import SelectField
 
 from app import db
@@ -108,13 +108,28 @@ def edit_user(user_id):
 @admin_required
 def delete_user(user_id):
     """ route to perform deletion of user from db """
-    user_to_delete = User.query.get(user_id)
-    if user_to_delete is None:
-        flash("Something went wrong: user could not be found")
+
+    # if admin user is trying to delete themself
+    if user_id == current_user.id:
+        # if they are the last admin, do not let them delete themself
+        admin_role_id = Role.query.filter_by(name="admin").first().id
+        if User.query.filter_by(role_id=admin_role_id).count() <= 1:
+            flash("Deletion of the only admin account not allowed. Make another admin account to delete this one.")
+        
+        else:
+            db.session.delete(current_user)
+            db.session.commit()
+            return redirect(url_for("auth.logout"))
+
 
     else:
-        db.session.delete(user_to_delete)
-        db.session.commit()
-        flash("User <{}> was successfully deleted.".format(user_to_delete.email))
+        user_to_delete = User.query.get(user_id)
+        if user_to_delete is None:
+            flash("Something went wrong: user could not be found")
+
+        else:
+            db.session.delete(user_to_delete)
+            db.session.commit()
+            flash("User <{}> was successfully deleted.".format(user_to_delete.email))
 
     return redirect(url_for("admin.users"))
