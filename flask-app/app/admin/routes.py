@@ -29,8 +29,15 @@ def index():
 @admin_required
 def users():
     """ route for admin to see list of all users """
-    all_users = User.query.all()
-    return render_template("admin/users.html", users=all_users)
+    all_users = User.query.join(Role, User.role_id==Role.id)
+    admin_users = all_users.filter(Role.name=="admin")
+    normal_users = all_users.filter(Role.name=="user")
+    disabled_users = all_users.filter(Role.name=="disabled")
+    return render_template(
+        "admin/users.html", 
+        admin_users=admin_users, 
+        normal_users=normal_users,
+        disabled_users=disabled_users)
 
 
 @admin.route("/add-user", methods=['GET', 'POST'])
