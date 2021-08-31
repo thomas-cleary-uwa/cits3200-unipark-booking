@@ -1,4 +1,4 @@
-"""empty message
+"""add car bay model
 
 Revision ID: 52ea9dfb30ac
 Revises: d628e5cc1e74

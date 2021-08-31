@@ -1,6 +1,239 @@
+/* Stylesheet For the UniPark Booking Application */
+
+
+/* 
+*** Fonts used on student connect login page **********************************
+*/
+@font-face {
+  font-family: uwaSlab;
+  src : url("https://static.weboffice.uwa.edu.au/visualid/fonts/uwa/uwa-slab-regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: SourceSansPro;
+  src : url("https://static.weboffice.uwa.edu.au/visualid/fonts/source-sans-pro/SourceSansPro-Regular.ttf");
+}
+
+
+
+/*
+*** Colours used on student connect login page ********************************
+*/
+:root {
+  --uwa-blue : rgb(42, 53, 134);
+  --uwa-darker-blue : rgb(38, 48, 122);
+  --uwa-link-blue : rgb(38, 85, 175);
+
+  --uwa-dark-grey : rgb(236, 236, 236);
+  --uwa-light-grey : rgb(246, 246, 246);
+  --uwa-grey-font : rgb(70, 70, 70);
+
+  --uwa-yellow : rgb(248, 211, 75);
+  --uwa-darker-yellow : rgb(219, 183, 61);
+
+  --uwa-form-separator-colour : rgb(219, 219, 219);
+}
+
+
+
+/*
+*** Google Material Icon Classes **********************************************
+*/
+.material-icons.md-24 { 
+  font-size: 24px; 
+  vertical-align: middle;
+}
+
+.material-icons.md-36 { 
+  font-size: 36px; 
+  vertical-align: middle;
+}
+
+.material-icons.md-48 { 
+  font-size: 48px; 
+  vertical-align: middle;
+}
+
+
+
+/*
+*** Base Template *************************************************************
+*/
+
+body {
+  font-family: SourceSansPro, Arial, Helvetica, sans-serif;
+}
+
+.flex-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.footer p {
+  font-family: SourceSansPro;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+#uwa-navbar {
+  background-color: var(--uwa-blue);
+
+  /* From Student Connect Login */
+  padding-bottom: 30px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 30px;
+
+  font-family: uwaSlab;
+  font-size: xx-large;
+}
+
+#uwa-navbar a, #uwa-navbar span{
+  color : rgb(255, 255, 255);
+  padding : 0.5em;
+}
+
+#logout-link:hover span {
+  color : var(--uwa-yellow);
+}
+
+#uwa-nav-logo {
+  padding-left: 0;
+}
+
+#uwa-nav-logo:hover, #logout-link:hover {
+  background-color: var(--uwa-darker-blue);
+  border-radius: 10%;
+}
+
+#uwa-flash-msg {
+  border-color: var(--uwa-yellow);
+  margin-bottom: 3em; /* Create separation between flash message and login panel */
+}
+
+#content-container {
+  padding-top: 4em;
+}
+
+
+
+/*
+*** Content Panel Classes *****************************************************
+*/
+
+.uwa-dark-panel {
+  background-color: var(--uwa-dark-grey);
+  padding: 1em;
+}
+
+.uwa-light-panel {
+  background-color: var(--uwa-light-grey);
+  color: var(--uwa-grey-font)
+}
+
+
+
+/* 
+*** Headings ******************************************************************
+*/
+
+.uwa-heading, .uwa-heading-large {
+  color : var(--uwa-blue);
+  margin: 0;
+}
+
+.uwa-heading {
+  font-size: larger;
+}
+
+.uwa-heading-large {
+  font-family: uwaSlab;
+  font-size: xxx-large;
+}
+
+
+
+/*
+*** Buttons *******************************************************************
+*/
+
+.uwa-btn {
+  background-color: var(--uwa-darker-yellow);
+  color: var(--uwa-blue);
+  border-radius: 0;
+  padding: 0.05em 0.1em, 0.05em 0.1em;
+}
+
+.uwa-submit {
+  border-top-style: solid;
+  border-width: thin;
+  border-top-color: var(--uwa-form-separator-colour);
+}
+
+.uwa-btn:hover {
+  background-color: var(--uwa-yellow);
+  color: var(--uwa-blue);
+}
+
+.uwa-btn .material-icons.md-24 { 
+  padding-left: 0.5em;
+}
+
+
+
+/*
+*** Links <a> *****************************************************************
+*/
+
+.uwa-link {
+  color: var(--uwa-link-blue);
+}
+
+.uwa-link:hover {
+  color: var(--uwa-darker-yellow);
+}
+
+
+
+/*
+*** /login route **************************************************************
+*/
+
+.login-field {
+  width: 100%;
+  font-size: larger;
+}
+
+/* Add padding to non-error reporting rows in the login form */
+.uwa-light-panel .login-visible{
+  padding: 1em 0.5em 1em 0.5em;
+}
+
+/* Fix spacing in login button */
+#login-form .uwa-btn.material-icons.md-24 {
+  padding-left: 1em;
+  padding-right: 0;
+}
+
+#welcome-banner {
+  padding : 1em 1em 1em 1em;
+  font-family: uwaSlab;
+}
+
+
+
+/* 
+*** /index route **************************************************************
+*/
 .map {
   width : 100%;
   height : auto;
 
   max-width: 100%;
 }
+
+
+/*
+*** Next Category *************************************************************
+*/

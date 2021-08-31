@@ -1,0 +1,75 @@
+ <div class="flex-nav"> 
+  <nav class="navbar navbar-expand-lg" id="uwa-navbar">
+
+    <a class="navbar-brand" id="uwa-nav-logo" href="https://www.uwa.edu.au/">
+      <img src="{{ url_for('static', filename='media/logos/uwacrest-white.svg') }}" id="uwa-nav-logo">
+    </a>
+
+    {% if current_user.is_authenticated %}
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="material-icons md-48">
+          menu
+        </span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+        <ul class="navbar-nav" id="left-navbar">
+          <li class="nav-item">
+            {% if current_user.is_administrator() %}
+            <a class="nav-link" href="{{ url_for('admin.index') }}">
+            {% else %}
+            <a class="nav-link" href="{{ url_for('main.index') }}">
+            {% endif %}
+              <span class="material-icons md-36">
+                home
+              </span>
+              Home
+            </a>
+          </li>
+          {% if current_user.is_administrator() %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('admin.users') }}">
+              <span class="material-icons md-36">
+                manage_accounts
+              </span>
+              Edit Users
+            </a>
+          </li>
+
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span class="material-icons md-36">
+                report_problem
+              </span>
+              Nothing Here Yet
+            </a>
+          </li>
+
+          {% endif %}
+        </ul>
+
+        <ul class="navbar-nav ml-auto" id="right-navbar">
+          <li class="nav-item">
+            <a class="nav-link" id="logout-link" href="{{ url_for('auth.logout') }}">
+              <span class="material-icons md-36">
+                logout
+              </span>
+              Log Out
+            </a>
+          </li>
+        </ul>
+      </div>
+    {% endif %}
+
+  </nav>
+
+<!-- Only shown on login page -->
+{% if not current_user.is_authenticated %}
+  <div class="uwa-dark-panel uwa-heading" id="welcome-banner">
+    <h1>UniPark Bookings</h1>
+  </div>
+  
+{% endif %}
+</div>

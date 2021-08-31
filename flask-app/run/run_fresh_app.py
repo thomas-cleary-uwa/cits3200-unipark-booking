@@ -18,13 +18,34 @@ sys.path.append("../flask-app")
 from app import db, create_app
 from app.models.parking_lot import ParkingLot
 from app.models.car_bay import CarBay
+from app.models.user import Role, User
+
+
+class bColours:
+    """ codes to make stdout msgs in colour """
+    HEADER    = '\033[95m'
+    OKBLUE    = '\033[94m'
+    OKCYAN    = '\033[96m'
+    OKGREEN   = '\033[92m'
+    WARNING   = '\033[93m'
+    FAIL      = '\033[91m'
+    ENDC      = '\033[0m'
+    BOLD      = '\033[1m'
+    UNDERLINE = '\033[4m'
+
 
 
 def make_fresh_db():
     """ create a fresh instance of the database """
     commands = [
-        'flask db migrate',
+        # create db file from current migrations
         'flask db upgrade',
+        # create new migrations from updated models, add message after
+        'flask db migrate',
+        # update db file with new migrations
+        'flask db upgrade',
+        # add roles to Role table
+        'flask add-roles'
     ]
 
     db_path = './db-dev.sqlite'
@@ -34,15 +55,50 @@ def make_fresh_db():
     for cmd in commands:
         # try and run the command
         try:
-            print("\n- ", cmd, sep="")
+            print("\n{}- {}{}".format(
+                bColours.HEADER,
+                cmd, 
+                bColours.ENDC),
+                sep=""
+            )
             exit_value = subprocess.run(cmd.split(), check=True)
-            print("Exit Value: {}".format(exit_value))
+            print("{}Exit Value: {}{}".format(
+                bColours.OKBLUE,
+                exit_value,
+                bColours.ENDC
+            ))
 
         # print an error message if the return code is not 0
         except subprocess.CalledProcessError as error:
-            print("Error: {}".format(error))
+            print("{}Error: {}{}".format(
+                bColours.WARNING, 
+                error,
+                bColours.ENDC
+            ))
 
-    print() # final newline
+    print("\n{}- Roles added to db.{}\n".format(
+        bColours.OKGREEN, bColours.ENDC
+    ))
+
+
+def add_admin():
+    """ add the admin user to the db """
+    app = create_app('development')
+
+    with app.app_context():
+        admin_user = User(
+            email = app.config['ADMIN_EMAIL'],
+            password = app.config['ADMIN_PASSWORD'],
+            first_name = 'Uni',
+            last_name = 'Park',
+            role_id = Role.query.filter_by(name='admin').first().id
+        )
+
+        db.session.add(admin_user)
+        db.session.commit()
+        print("{}- Admin user added.{}\n".format(
+            bColours.OKGREEN, bColours.ENDC
+        ))
 
 
 def add_parking_lots_bays():
@@ -56,7 +112,7 @@ def add_parking_lots_bays():
 
         # skip column names
         next(lotnums_csvreader)
-        
+
         # add parking lot to db
         app = create_app('development')
         with app.app_context():
@@ -82,9 +138,13 @@ def add_parking_lots_bays():
                     )
                     db.session.add(new_bay)
                 db.session.commit()
-                
-            print("- Parking Lots added to db.\n")
-            print("- Car Bays added to db.\n")
+
+            print("{}- Parking Lots added to db.{}\n".format(
+                bColours.OKGREEN, bColours.ENDC
+            ))
+            print("{}- Car Bays added to db.{}\n".format(
+                bColours.OKGREEN, bColours.ENDC
+            ))
 
 
 def main():
@@ -93,12 +153,15 @@ def main():
     - delete db-dev.sqlite
     - create new db.dev.sqlite
 
-    - add Parking Lots to db
+    - add Roles to db
+    - add Admin account to db
+    - add Parking Lots and Car Bays to db
 
     - run the flask app
     """
 
     make_fresh_db()
+    add_admin()
     add_parking_lots_bays()
 
     subprocess.run('flask run --host 0.0.0.0'.split(), check=False)
