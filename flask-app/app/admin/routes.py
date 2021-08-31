@@ -4,7 +4,7 @@ Authors: Thomas Cleary,
 """
 
 from flask import redirect, render_template, url_for, flash
-from flask_login import current_user, login_required
+from flask_login import login_required
 from wtforms import SelectField
 
 from app import db
@@ -74,17 +74,17 @@ def add_user():
 
 # NOTE: probably change the route <int:id> to be a different slug
 # NOTE: Probably want to add reset password functionality at some point
-@admin.route("/edit-user/<int:id>")
+@admin.route("/edit-user/<int:user_id>")
 @login_required
 @admin_required
-def edit_user(id):
+def edit_user(user_id):
     """ provide a form to edit / delete the user with id = id """
     role = SelectField("Role: ", choices=Role.get_role_names())
     setattr(EditUserForm, 'role', role)
 
     edit_user_form = EditUserForm()
 
-    editing_user = User.query.get(id)
+    editing_user = User.query.get(user_id)
     if editing_user is None:
         flash("Something went wrong: Could not find this user")
         return redirect(url_for("admin.users"))
@@ -103,18 +103,18 @@ def edit_user(id):
         editing_user=editing_user)
 
 
-@admin.route("/delete-user/<int:id>")
+@admin.route("/delete-user/<int:user_id>")
 @login_required
 @admin_required
-def delete_user(id):
+def delete_user(user_id):
     """ route to perform deletion of user from db """
-    delete_user = User.query.get(id)
-    if delete_user is None:
+    user_to_delete = User.query.get(user_id)
+    if user_to_delete is None:
         flash("Something went wrong: user could not be found")
 
     else:
-        db.session.delete(delete_user)
+        db.session.delete(user_to_delete)
         db.session.commit()
-        flash("User was successfully deleted.")
+        flash("User <{}> was successfully deleted.".format(user_to_delete.email))
 
     return redirect(url_for("admin.users"))

@@ -25,14 +25,14 @@
       <td>{{ user.email }}</td>
       <td>{{ user.role.name }}</td>
       <td>
-        <a href="{{ url_for('admin.edit_user', id=user.id) }}">
+        <a href="{{ url_for('admin.edit_user', user_id=user.id) }}">
           <span class="material-icons md-24 uwa-heading">
             edit
           </span>
         </a>
       </td>
       <td>
-        <a onclick="return confirmUserDelete()" href="{{ url_for('admin.delete_user', id=user.id) }}">
+        <a onclick="return confirmUserDelete()" href="{{ url_for('admin.delete_user', user_id=user.id) }}">
           <span class="material-icons md-24 uwa-heading">
             delete
           </span>
