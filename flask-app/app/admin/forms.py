@@ -68,23 +68,18 @@ class EditUserForm(FlaskForm):
     first_name = StringField("First Name: ", validators=[
         DataRequired(),
         Regexp(
-            r'^[A-Za-z]$'
+            r'^[A-Za-z]+$',
+            message="Name must only contain letters."
         )
     ])
 
     last_name = StringField("Last Name: ", validators=[
         DataRequired(),
         Regexp(
-            r'^[A-Za-z]$'
+            r'^[A-Za-z]+$',
+            message="Name must only contain letters."
         )
     ])
 
     # role added as dyanmic attribute 
     # (when using this form us setattr() to add a SelectField attribute to this class)
-
-    # Methods of the form 'validate_<field-name>' will be called with previously
-    # defined validators for <field-name>
-    def validate_email(self, field):
-        """ Raises an error if a user with field.data email already exists """
-        if User.query.filter_by(email=field.data).first():
-            raise ValidationError('Email already registered.')
