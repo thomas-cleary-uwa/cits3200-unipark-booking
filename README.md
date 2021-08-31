@@ -1,8 +1,15 @@
 # cits3200-unipark-booking
 A car bay booking web application for UWA's UniPark office
+<br>
+
+**NOTE: DO NOT DIRECTLY MERGE / PUSH TO MAIN OR DEV (PLEASE CREATE A PULL REQUEST)**
 <br><br>
 
-**NOTE: DO NOT DIRECTLY MERGE / PUSH TO MAIN OR DEV (PLEASE CREATE A PULL REQUEST**
+## Linting
+To avoid some incorrect linting when using ***pylint*** add this line to your _.vscode/settings.json_ file:
+
+` "python.linting.pylintArgs": ["--load-plugins", "pylint_flask_sqlalchemy", "pylint_flask"] `
+<br><br>
 
 ## To Run the Flask App
 *Walkthrough: https://youtu.be/_bJY0cp90w4*
