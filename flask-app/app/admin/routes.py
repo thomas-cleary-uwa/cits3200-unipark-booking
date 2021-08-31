@@ -74,7 +74,7 @@ def add_user():
 
 # NOTE: probably change the route <int:id> to be a different slug
 # NOTE: Probably want to add reset password functionality at some point
-@admin.route("/edit-user/<int:user_id>")
+@admin.route("/edit-user/<int:user_id>", methods=['GET', 'POST'])
 @login_required
 @admin_required
 def edit_user(user_id):
@@ -90,6 +90,21 @@ def edit_user(user_id):
         return redirect(url_for("admin.users"))
 
     if edit_user_form.validate_on_submit():
+        # check if email exists in database and is not the same as editing user
+        entered_email = edit_user_form.email.data.strip()
+
+        email_check_user = User.query.filter_by(email=entered_email).first()
+        if email_check_user is not None and email_check_user.id != editing_user.id:
+            flash("The entered email address is already in use.")
+            return redirect(url_for('admin.edit_user', user_id=user_id))
+        
+        editing_user.email = entered_email
+        editing_user.first_name = edit_user_form.first_name.data.capitalize()
+        editing_user.last_name = edit_user_form.last_name.data.capitalize()
+        editing_user.role_id = Role.query.filter_by(name=edit_user_form.role.data).first().id
+
+        db.session.commit()
+
         flash("User Details Successfully Updated.")
         return redirect(url_for('admin.users'))
 
