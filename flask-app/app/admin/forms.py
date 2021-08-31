@@ -21,10 +21,9 @@ class AddUserForm(FlaskForm):
     email = StringField('Email: ', validators=[
         DataRequired(),
         Length(1, 64),
-        Email(),
         Regexp(
-            r'^[A-Za-z]+\.[A-Za-z]+@uwa\.edu\.au$',
-            message='Username must be an firstname.lastname@uwa.edu.au address'
+            r'^\s*[A-Za-z]+\.[A-Za-z]+@uwa\.edu\.au\s*$',
+            message='Email must be an firstname.lastname@uwa.edu.au address'
         )
     ])
 
@@ -58,9 +57,8 @@ class EditUserForm(FlaskForm):
     email = StringField('Email: ', validators=[
         DataRequired(),
         Length(1, 64),
-        Email(),
         Regexp(
-            r'^[A-Za-z]+\.[A-Za-z]+@uwa\.edu\.au$',
+            r'^\s*[A-Za-z]+\.[A-Za-z]+@uwa\.edu\.au\s*$',
             message='Username must be an firstname.lastname@uwa.edu.au address'
         )
     ])
@@ -68,7 +66,7 @@ class EditUserForm(FlaskForm):
     first_name = StringField("First Name: ", validators=[
         DataRequired(),
         Regexp(
-            r'^[A-Za-z]+$',
+            r'^\s*[A-Za-z]+\s*$',
             message="Name must only contain letters."
         )
     ])
@@ -76,7 +74,7 @@ class EditUserForm(FlaskForm):
     last_name = StringField("Last Name: ", validators=[
         DataRequired(),
         Regexp(
-            r'^[A-Za-z]+$',
+            r'^\s*[A-Za-z]+\s*$',
             message="Name must only contain letters."
         )
     ])
