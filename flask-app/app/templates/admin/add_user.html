@@ -1,0 +1,54 @@
+{% extends 'base/base.html' %}
+
+
+{% block title %}
+  Admin - Add User
+{% endblock %}
+
+{% block content %}
+  <h1 class="uwa-heading-large">Add User</h1>
+
+  <form action="" method="POST" novalidate>
+    {{ add_user_form.hidden_tag() }}
+
+    <div class="add_user_form-group">
+      {{ add_user_form.email.label() }}<br>
+      {{ add_user_form.email(size=32) }}<br>
+      {% for error in add_user_form.email.errors %}
+        <span style="color:red;">[{{ error }}]</span>
+      {% endfor %}
+    </div>
+
+    <div class="add_user_form-group">
+      {{ add_user_form.password.label }}<br>
+      {{ add_user_form.password(size=32) }}<br>
+      {% for error in add_user_form.password.errors %}
+      <span style="color:red;">[{{ error }}]</span>
+      {% endfor %}
+    </div>
+
+    <div class="add_user_form-group">
+      {{ add_user_form.password2.label }}<br>
+      {{ add_user_form.password2(size=32) }}<br>
+      {% for error in add_user_form.password2.errors %}
+      <span style="color:red;">[{{ error }}]</span>
+      {% endfor %}
+    </div>
+
+    <div class="add_user_form-group">
+      {{ add_user_form.role.label }}<br>
+      {{ add_user_form.role }}<br>
+      {% for error in add_user_form.role.errors %}
+      <span style="color:red;">[{{ error }}]</span>
+      {% endfor %}
+    </div>
+
+    <button class="btn uwa-btn uwa-heading" type="submit">
+      Add User
+      <span class="material-icons md-24 uwa-heading">
+        person_add
+      </span>
+    </button>
+  </form>
+
+{% endblock %}

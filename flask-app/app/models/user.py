@@ -3,10 +3,19 @@
 Authors: Thomas Cleary,
 """
 
-from flask_login import UserMixin
+from flask_login import UserMixin, AnonymousUserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from .. import db, login_manager
+
+
+class Permission:
+    """ Access permission levels as powers of 2 for Role model """
+    MAKE_BOOKING = 1
+    ADMIN        = 2
+
+    # using this class so in future can expand permissions of different users
+    # if necessary
 
 
 
@@ -17,11 +26,14 @@ class Role(db.Model):
     # Primary Key
     id = db.Column(db.Integer, primary_key=True)
 
+
     # Attributes
     name    = db.Column(db.String(64), unique=True)
-    #
     # default is true for only one role
     default = db.Column(db.Boolean, default=False, index=True)
+    # use powers of 3 to allow for combinations of permissions
+    permissions = db.Column(db.Integer)
+
 
     # Relationships
     users = db.relationship('User', backref='role', lazy='dynamic')
@@ -32,14 +44,20 @@ class Role(db.Model):
 
 
     @staticmethod
+    def get_role_names():
+        """ return a list of role names """
+        return [role.name for role in Role.query.all()]
+
+
+    @staticmethod
     def insert_roles():
         """ method to insert roles into the db when setting the up the application """
         # use dictionary to store list of permissions
         # permission class to be added later
         roles = {
             'disabled' : [],
-            'user'     : [],
-            'admin'    : []
+            'user'     : [Permission.MAKE_BOOKING],
+            'admin'    : [Permission.ADMIN]
         }
 
         default_role = 'User'
@@ -49,10 +67,34 @@ class Role(db.Model):
             if role is None:
                 role = Role(name=role_name)
 
-            role.default = (role.name ==default_role)
+            role.reset_permissions()
+            for permission in roles[role_name]:
+                role.add_permission(permission)
+
+            role.default = (role.name == default_role)
 
             db.session.add(role)
         db.session.commit()
+
+
+        # permission methods
+    def add_permission(self, perm):
+        """ add a permission to a role """
+        if not self.has_permission(perm):
+            self.permissions += perm
+
+    def remove_permission(self, perm):
+        """ remove a permission from a role """
+        if self.has_permission(perm):
+            self.permissions -= perm
+
+    def reset_permissions(self):
+        """ remove all permissions from the role """
+        self.permissions = 0
+
+    def has_permission(self, perm):
+        """ return true if role has the permission 'perm' """
+        return self.permissions & perm == perm
 
 
 
@@ -107,6 +149,31 @@ class User(UserMixin, db.Model):
             self.first_name, self.last_name,
             self.role.name
         )
+
+
+    # permission checking methods
+    def can(self, permission):
+        """ return true if user has permission 'perm' else false """
+        return self.role is not None and self.role.has_permission(permission)
+
+    def is_administrator(self):
+        """ return true if user is an admin else false """
+        return self.can(Permission.ADMIN)
+
+
+
+class AnonymousUser(AnonymousUserMixin):
+    """ Enable the use of can() and is_administrator() with flask-login's current_user """
+    
+    def can(self, permission):
+        """ return true if anonymous user has permission 'permission'
+            else false
+        """
+        return False
+
+    def is_administrator(self):
+        """ return false as anonymous user cannot be an admin """
+        return False
 
 
 

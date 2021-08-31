@@ -138,10 +138,18 @@ body {
 *** Headings ******************************************************************
 */
 
-.uwa-heading {
+.uwa-heading, .uwa-heading-large {
   color : var(--uwa-blue);
-  font-size: larger;
   margin: 0;
+}
+
+.uwa-heading {
+  font-size: larger;
+}
+
+.uwa-heading-large {
+  font-family: uwaSlab;
+  font-size: xxx-large;
 }
 
 
@@ -152,6 +160,7 @@ body {
 
 .uwa-btn {
   background-color: var(--uwa-darker-yellow);
+  color: var(--uwa-blue);
   border-radius: 0;
   padding: 0.05em 0.1em, 0.05em 0.1em;
 }
@@ -165,6 +174,10 @@ body {
 .uwa-btn:hover {
   background-color: var(--uwa-yellow);
   color: var(--uwa-blue);
+}
+
+.uwa-btn .material-icons.md-24 { 
+  padding-left: 0.5em;
 }
 
 
