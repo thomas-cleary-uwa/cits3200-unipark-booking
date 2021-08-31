@@ -26,16 +26,26 @@ class AdminTestCases(unittest.TestCase):
         Role.insert_roles()
 
         admin_user = User(
-            email=self.app.config["ADMIN_EMAIL"],
-            password=self.app.config["ADMIN_PASSWORD"],
-            first_name="Test",
-            last_name="Admin",
-            role_id = Role.query.filter_by(name='admin').first().id
+            email      = self.app.config["ADMIN_EMAIL"],
+            password   = self.app.config["ADMIN_PASSWORD"],
+            first_name = "Test",
+            last_name  = "Admin",
+            role_id    = Role.query.filter_by(name='admin').first().id
         )
         db.session.add(admin_user)
+
+        regular_user = User(
+            email      = "test.user@uwa.edu.au",
+            password   = "user1234",
+            first_name = "Test",
+            last_name  = "User",
+            role_id    = Role.query.filter_by(name="user").first().id 
+        )
+        db.session.add(regular_user)
+
         db.session.commit()
 
-
+        
     def tearDown(self):
         db.session.remove()
         db.drop_all()
@@ -64,6 +74,7 @@ class AdminTestCases(unittest.TestCase):
 
     def test_admin_can_login_out(self):
         """ test that the admin can log in and out """
+        # from SetUp()
         email    = self.app.config["ADMIN_EMAIL"]
         password = self.app.config["ADMIN_PASSWORD"]
 
@@ -77,8 +88,34 @@ class AdminTestCases(unittest.TestCase):
                 data=dict(email=email, password=password), follow_redirects=True
             )
             self.assertTrue(current_user.is_authenticated)
+            self.assertTrue(current_user.is_administrator())
             self.assertTrue(current_user.id == admin_user.id)
 
             # logout
             test_client.get('auth/logout', follow_redirects=True)
             self.assertTrue(current_user.is_anonymous)
+
+
+    def test_regular_user_not_admin(self):
+        """ test that a regular user is not given admin permission when logged in """
+        # from SetUp()
+        email = "test.user@uwa.edu.au"
+        password = "user1234"
+
+        regular_user = User.query.filter_by(email=email).first()
+        self.assertTrue(regular_user is not None)
+
+        with self.app.test_client() as test_client:
+            # login
+            test_client.post(
+                'auth/login',
+                data=dict(email=email, password=password), follow_redirects=True
+            )
+            self.assertTrue(current_user.is_authenticated)
+            self.assertFalse(current_user.is_administrator())
+            self.assertTrue(current_user.id == regular_user.id)
+
+            # logout
+            test_client.get('auth/logout', follow_redirects=True)
+            self.assertTrue(current_user.is_anonymous)
+
