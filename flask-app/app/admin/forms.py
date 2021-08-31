@@ -1,6 +1,6 @@
 """" forms for admin blueprint
 
-Authors: Thomas Cleary,
+Authors: Thomas Cleary, Nur 'Iffah
 """
 
 import os
@@ -26,16 +26,16 @@ class AddUserForm(FlaskForm):
             r'^[A-Za-z]+\.[A-Za-z]+@uwa\.edu\.au$',
             message='Username must be an firstname.lastname@uwa.edu.au address'
         )
-    ])
+    ], render_kw={'placeholder': '12345678@uwa.edu.au'})
 
     password = PasswordField('Password: ', validators=[
         DataRequired(),
-        Length(8, 64),
-        EqualTo('password2', message="Passwords entered must match.")
+        Length(8, 64)
     ])
 
     password2 = PasswordField('Cofirm Password: ', validators=[
-        DataRequired()
+        DataRequired(), 
+        EqualTo('password', message="Passwords entered must match.")
     ])
 
     # role added as dyanmic attribute 
@@ -50,3 +50,4 @@ class AddUserForm(FlaskForm):
         """ Raises an error if a user with field.data email already exists """
         if User.query.filter_by(email=field.data).first():
             raise ValidationError('Email already registered.')
+    
