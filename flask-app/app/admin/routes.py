@@ -101,3 +101,20 @@ def edit_user(id):
         "admin/edit_user.html", 
         edit_user_form=edit_user_form,
         editing_user=editing_user)
+
+
+@admin.route("/delete-user/<int:id>")
+@login_required
+@admin_required
+def delete_user(id):
+    """ route to perform deletion of user from db """
+    delete_user = User.query.get(id)
+    if delete_user is None:
+        flash("Something went wrong: user could not be found")
+
+    else:
+        db.session.delete(delete_user)
+        db.session.commit()
+        flash("User was successfully deleted.")
+
+    return redirect(url_for("admin.users"))

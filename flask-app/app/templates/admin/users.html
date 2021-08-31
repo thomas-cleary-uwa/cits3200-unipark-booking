@@ -32,7 +32,7 @@
         </a>
       </td>
       <td>
-        <a onclick="alertDelete()" href="#">
+        <a onclick="return confirmUserDelete()" href="{{ url_for('admin.delete_user', id=user.id) }}">
           <span class="material-icons md-24 uwa-heading">
             delete
           </span>
