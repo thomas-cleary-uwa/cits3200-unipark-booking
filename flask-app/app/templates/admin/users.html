@@ -9,12 +9,14 @@
 
   <h1 class="uwa-heading-large">All Users</h1>
 
-  <table class="table">
+  <table class="table table-hover table-responsive-md">
     <thead>
       <th>First Name</th>
       <th>Last Name</th>
       <th>Email</th>
       <th>Role</th>
+      <th>Edit</th>
+      <th>Delete</th>
     </thead>
     {% for user in users %}
     <tr>
@@ -22,6 +24,20 @@
       <td>{{ user.last_name }}</td>
       <td>{{ user.email }}</td>
       <td>{{ user.role.name }}</td>
+      <td>
+        <a href="{{ url_for('admin.edit_user', id=user.id) }}">
+          <span class="material-icons md-24 uwa-heading">
+            edit
+          </span>
+        </a>
+      </td>
+      <td>
+        <a onclick="alertDelete()" href="#">
+          <span class="material-icons md-24 uwa-heading">
+            delete
+          </span>
+        </a>
+      </td>
     </tr>
     {% endfor %}
   </table>
@@ -32,6 +48,10 @@
       person_add
     </span>
   </a>
+
+  {% block scripts %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/onclicks.js') }}"></script>
+  {% endblock %}
 
 
 {% endblock %}

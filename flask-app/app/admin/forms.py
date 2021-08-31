@@ -50,3 +50,24 @@ class AddUserForm(FlaskForm):
         """ Raises an error if a user with field.data email already exists """
         if User.query.filter_by(email=field.data).first():
             raise ValidationError('Email already registered.')
+
+
+
+class EditUserForm(FlaskForm):
+    """ Form for an admin user to edit a user's details """
+    email = StringField('Email: ', validators=[
+        DataRequired(),
+        Length(1, 64),
+        Email(),
+        Regexp(
+            r'^[A-Za-z]+\.[A-Za-z]+@uwa\.edu\.au$',
+            message='Username must be an firstname.lastname@uwa.edu.au address'
+        )
+    ])
+
+    # Methods of the form 'validate_<field-name>' will be called with previously
+    # defined validators for <field-name>
+    def validate_email(self, field):
+        """ Raises an error if a user with field.data email already exists """
+        if User.query.filter_by(email=field.data).first():
+            raise ValidationError('Email already registered.')
