@@ -100,6 +100,13 @@ def edit_user(user_id):
         # check if email exists in database and is not the same as editing user
         entered_email = edit_user_form.email.data.strip()
 
+        # if the admin user is editing themself
+        if current_user == editing_user:
+            if edit_user_form.role.data != "admin":
+                flash("You cannot change your own role")
+                return redirect(url_for("admin.edit_user", user_id=user_id))
+
+
         email_check_user = User.query.filter_by(email=entered_email).first()
         if email_check_user is not None and email_check_user.id != editing_user.id:
             flash("The entered email address is already in use.")
