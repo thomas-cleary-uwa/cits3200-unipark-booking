@@ -17,8 +17,6 @@ from . import main
 @login_required
 def index():
     """ Initial route for the application. """
-    parking_lots = ParkingLot.query.all()
-
     if current_user.is_administrator():
         return redirect(url_for("admin.index"))
-    return render_template('main/index.html', lots=parking_lots)
+    return render_template('main/index.html')

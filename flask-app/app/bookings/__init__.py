@@ -5,6 +5,6 @@ Authors: Thomas Cleary,
 
 from flask import Blueprint
 
-admin = Blueprint('bookings', __name__)
+bookings = Blueprint('bookings', __name__)
 
 from . import routes, forms

@@ -1,0 +1,50 @@
+{% extends 'base/base.html' %}
+
+
+{% block title %}
+  Bookings - Parking Lots
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="row">
+    
+    <div class="col-lg-5">
+      <h1 class="uwa-heading-large">Select a Parking Lot</h1>
+      <table class="table table-hover table-responsive-md">
+        <thead>
+          <th>Lot Number</th>
+          <th># of Car Bays</th>
+          <th>Google Maps</th>
+        </thead>
+        {% for lot in parking_lots %}
+          <tr class="text-center">
+            <td>
+              <a class="uwa-link" href="#">
+                <span class="material-icons md-36">
+                  drive_eta
+                </span>
+                {{ lot.lot_number }}
+              </a>
+            </td>
+            <td>{{ lot.bays|length }}</td>
+            <td>
+              <a class="uwa-link" href="https://maps.google.com/?q={{ lot.latitude }},{{ lot.longitude }}">
+                <span class="material-icons md-24 uwa-link">
+                  place
+                </span>
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    <div class="col-lg-5 offset-md-2">
+      <img class="pb-4" id="parking-lot-map" src="{{ url_for('static', filename='media/images/carpark-map.jpg') }}">
+    </div>
+
+  </div>
+
+{% endblock %}
