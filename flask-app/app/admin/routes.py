@@ -94,6 +94,8 @@ def edit_user(user_id):
         return redirect(url_for('admin.users'))
 
     edit_user_form.email.default = editing_user.email
+    edit_user_form.first_name.default = editing_user.first_name
+    edit_user_form.last_name.default = editing_user.last_name
     edit_user_form.role.default = editing_user.role.name
     edit_user_form.process() # need to call this to actually set new default values
     

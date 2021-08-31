@@ -65,6 +65,23 @@ class EditUserForm(FlaskForm):
         )
     ])
 
+    first_name = StringField("First Name: ", validators=[
+        DataRequired(),
+        Regexp(
+            r'^[A-Za-z]$'
+        )
+    ])
+
+    last_name = StringField("Last Name: ", validators=[
+        DataRequired(),
+        Regexp(
+            r'^[A-Za-z]$'
+        )
+    ])
+
+    # role added as dyanmic attribute 
+    # (when using this form us setattr() to add a SelectField attribute to this class)
+
     # Methods of the form 'validate_<field-name>' will be called with previously
     # defined validators for <field-name>
     def validate_email(self, field):
