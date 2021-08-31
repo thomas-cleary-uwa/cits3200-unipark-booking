@@ -18,7 +18,8 @@ class ParkingLot(db.Model):
 
     # Attributes
     lot_number = db.Column(db.Integer, unique=True, nullable=False)
-    # location?
+    latitude = db.Column(db.Float, unique = True, nullable=False)
+    longitude = db.Column(db.Float, unique = True, nullable=False)
 
     # Relationships
     bays = db.relationship('CarBay', backref="lot")
