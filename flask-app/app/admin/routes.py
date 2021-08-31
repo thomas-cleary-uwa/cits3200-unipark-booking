@@ -43,9 +43,6 @@ def add_user():
     setattr(AddUserForm, 'role', role)
     add_user_form = AddUserForm()
 
-    add_user_form.role.default = "user"
-    add_user_form.process() # need to cal this to set new default
-
     if add_user_form.validate_on_submit():
         email = add_user_form.email.data.lower().strip()
         password = add_user_form.password.data.strip()
@@ -68,6 +65,9 @@ def add_user():
 
         flash("User Creation Successful.")
         return redirect(url_for('admin.users'))
+
+    add_user_form.role.default = "user"
+    add_user_form.process() # need to cal this to set new default
     
     return render_template('admin/add_user.html', add_user_form=add_user_form)
 
@@ -89,13 +89,13 @@ def edit_user(user_id):
         flash("Something went wrong: Could not find this user")
         return redirect(url_for("admin.users"))
 
-    edit_user_form.email.default = editing_user.email
-    edit_user_form.role.default = editing_user.role.name
-    edit_user_form.process() # need to call this to actually set new default values
-
     if edit_user_form.validate_on_submit():
         flash("User Details Successfully Updated.")
         return redirect(url_for('admin.users'))
+
+    edit_user_form.email.default = editing_user.email
+    edit_user_form.role.default = editing_user.role.name
+    edit_user_form.process() # need to call this to actually set new default values
     
     return render_template(
         "admin/edit_user.html", 
