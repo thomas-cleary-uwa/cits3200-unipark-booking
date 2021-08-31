@@ -21,9 +21,9 @@
         {% for lot in parking_lots %}
           <tr class="text-center">
             <td>
-              <a class="uwa-link" href="#">
+              <a class="uwa-link" href="{{ url_for('bookings.bays', lot_number=lot.lot_number) }}">
                 <span class="material-icons md-36">
-                  drive_eta
+                  local_parking
                 </span>
                 {{ lot.lot_number }}
               </a>
