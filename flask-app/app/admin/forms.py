@@ -37,6 +37,7 @@ class AddUserForm(FlaskForm):
         DataRequired()
     ])
 
+    # department added as dynamic attribute
     # role added as dyanmic attribute 
     # (when using this form us setattr() to add a SelectField attribute to this class)
 
@@ -79,5 +80,6 @@ class EditUserForm(FlaskForm):
         )
     ])
 
+    # department added as dynamic attribute
     # role added as dyanmic attribute 
     # (when using this form us setattr() to add a SelectField attribute to this class)

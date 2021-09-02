@@ -44,7 +44,7 @@ class Role(db.Model):
 
 
     @staticmethod
-    def get_role_names():
+    def get_names():
         """ return a list of role names """
         return [role.name for role in Role.query.all()]
 
@@ -110,6 +110,11 @@ class Department(db.Model):
 
     # Relationships
     users = db.relationship("User", backref="department", lazy="dynamic")
+
+    @staticmethod
+    def get_names():
+        """ return a list of department names """
+        return [department.name for department in Department.query.all()]
 
 
 

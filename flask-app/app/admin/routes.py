@@ -10,7 +10,7 @@ from wtforms import SelectField
 from app import db
 
 from ..helpers.decorators import admin_required
-from ..models.user import User, Role
+from ..models.user import User, Role, Department
 from . import admin
 from .forms import AddUserForm, EditUserForm
 
@@ -46,8 +46,14 @@ def users():
 def add_user():
     """ route for admin user to create new account """
 
-    role = SelectField("Role: ", choices=Role.get_role_names())
+    # Add dynamic fields to the add user form
+    role = SelectField("Role: ", choices=Role.get_names())
     setattr(AddUserForm, 'role', role)
+
+    department = SelectField("Department: ", choices=Department.get_names())
+    setattr(AddUserForm, 'department', department) 
+
+
     add_user_form = AddUserForm()
 
     if add_user_form.validate_on_submit():
@@ -59,13 +65,15 @@ def add_user():
         last_name = names[1].capitalize().strip()
 
         role_name = add_user_form.role.data # ignore pylint error, we just added the role member
+        dep_name = add_user_form.department.data # ignore pylint error, we just added the department member
 
         new_user = User(
             email=email,
             password=password,
             first_name=first_name,
             last_name=last_name,
-            role_id = Role.query.filter_by(name=role_name).first().id
+            role_id = Role.query.filter_by(name=role_name).first().id,
+            department_id = Department.query.filter_by(name=dep_name).first().id
         )
         db.session.add(new_user)
         db.session.commit()
@@ -74,6 +82,7 @@ def add_user():
         return redirect(url_for('admin.users'))
 
     add_user_form.role.default = "user"
+    add_user_form.department.default = "UniPark"
     add_user_form.process() # need to cal this to set new default
     
     return render_template('admin/add_user.html', add_user_form=add_user_form)
@@ -86,8 +95,13 @@ def add_user():
 @admin_required
 def edit_user(user_id):
     """ provide a form to edit / delete the user with id = id """
-    role = SelectField("Role: ", choices=Role.get_role_names())
+
+    # add dynamic fields
+    role = SelectField("Role: ", choices=Role.get_names())
     setattr(EditUserForm, 'role', role)
+
+    department = SelectField("Department: ", choices=Department.get_names())
+    setattr(EditUserForm, 'department', department)
 
     edit_user_form = EditUserForm()
 
@@ -116,6 +130,7 @@ def edit_user(user_id):
         editing_user.first_name = edit_user_form.first_name.data.strip().capitalize()
         editing_user.last_name = edit_user_form.last_name.data.strip().capitalize()
         editing_user.role_id = Role.query.filter_by(name=edit_user_form.role.data).first().id
+        editing_user.department_id = Department.query.filter_by(name=edit_user_form.department.data).first().id
 
         db.session.commit()
 
@@ -126,6 +141,7 @@ def edit_user(user_id):
     edit_user_form.first_name.default = editing_user.first_name
     edit_user_form.last_name.default = editing_user.last_name
     edit_user_form.role.default = editing_user.role.name
+    edit_user_form.department.default = editing_user.department.name
     edit_user_form.process() # need to call this to actually set new default values
     
     return render_template(
