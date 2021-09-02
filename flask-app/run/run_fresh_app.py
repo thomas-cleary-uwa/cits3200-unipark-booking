@@ -114,7 +114,8 @@ def add_admin():
             password = app.config['ADMIN_PASSWORD'],
             first_name = 'uni',
             last_name = 'park',
-            role_id = Role.query.filter_by(name='admin').first().id
+            role_id = Role.query.filter_by(name='admin').first().id,
+            department_id = Department.query.filter_by(name="UniPark").first().id
         )
 
         db.session.add(admin_user)
@@ -134,7 +135,8 @@ def add_user():
             password = "user1234",
             first_name = 'test',
             last_name = 'user',
-            role_id = Role.query.filter_by(name='user').first().id
+            role_id = Role.query.filter_by(name='user').first().id,
+            department_id = Department.query.all.first().id
         )
 
         db.session.add(new_user)
