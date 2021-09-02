@@ -18,7 +18,7 @@ from app import create_app, db
 # import models
 from app.models.parking_lot import ParkingLot
 from app.models.car_bay import CarBay
-from app.models.user import Role, User, Permission
+from app.models.user import Role, User, Permission, Department
 
 
 
@@ -27,7 +27,7 @@ from app.models.user import Role, User, Permission
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 
 # add migration engine to app (/migrations created with 'flask db init')
-migrate = Migrate(app, db)
+migrate = Migrate(app, db, render_as_batch=True)
 
 
 @app.shell_context_processor
@@ -40,7 +40,8 @@ def make_shell_context():
     return dict(
         db=db,
         ParkingLot=ParkingLot, CarBay=CarBay,
-        Role=Role, User=User, Permission=Permission
+        Role=Role, User=User, Permission=Permission,
+        Department=Department
     )
 
 

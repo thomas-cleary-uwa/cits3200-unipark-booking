@@ -98,6 +98,21 @@ class Role(db.Model):
 
 
 
+class Department(db.Model):
+    """ Represents a Department of UWA """
+    __tablename__ = "Department"
+
+    # Primary Key
+    id = db.Column(db.Integer, primary_key=True)
+
+    # Attributes
+    name = db.Column(db.String(64), unique=True)
+
+    # Relationships
+    users = db.relationship("User", backref="department", lazy="dynamic")
+
+
+
 class User(UserMixin, db.Model):
     """ Represents a user of the application
 
@@ -121,6 +136,7 @@ class User(UserMixin, db.Model):
 
     # Foreign Keys
     role_id = db.Column(db.Integer, db.ForeignKey('Role.id'))
+    department_id = db.Column(db.Integer, db.ForeignKey('Department.id'))
 
 
     # Relationships

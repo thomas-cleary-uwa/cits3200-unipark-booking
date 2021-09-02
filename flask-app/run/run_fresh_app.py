@@ -19,7 +19,7 @@ sys.path.append("../flask-app")
 from app import db, create_app
 from app.models.parking_lot import ParkingLot
 from app.models.car_bay import CarBay
-from app.models.user import Role, User
+from app.models.user import Role, User, Department
 
 
 class bColours:
@@ -78,6 +78,28 @@ def make_fresh_db():
             ))
 
     print("\n{}- Roles added to db.{}\n".format(
+        bColours.OKGREEN, bColours.ENDC
+    ))
+
+
+
+def add_departments():
+    """ add departments from departments.txt """
+    departments_file = "./run/departments.txt"
+
+    with open(departments_file, "r") as dep_file:
+        departments = [line.strip() for line in dep_file]
+
+    with create_app("development").app_context():
+        for dep in departments:
+            new_dep = Department(
+                name = dep
+            )
+            db.session.add(new_dep)
+        
+        db.session.commit()
+
+    print("{}- Departments added.{}\n".format(
         bColours.OKGREEN, bColours.ENDC
     ))
 
@@ -201,6 +223,7 @@ def main():
     - create new db.dev.sqlite
 
     - add Roles to db
+    - add Departments to db
     - add Admin account to db
     - add Parking Lots and Car Bays to db
 
@@ -212,6 +235,7 @@ def main():
     parser.parse_args()
 
     make_fresh_db()
+    add_departments()
     add_admin()
     add_parking_lots_bays()
 
