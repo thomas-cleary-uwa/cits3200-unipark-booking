@@ -12,6 +12,9 @@ import sys
 import subprocess
 import argparse
 
+from hashlib import md5
+from datetime import datetime, date
+
 # add flask-app to sys path to allow for app package import
 sys.path.append("../flask-app")
 
@@ -137,7 +140,7 @@ def add_user():
             first_name = 'test',
             last_name = 'user',
             role_id = Role.query.filter_by(name='user').first().id,
-            department_id = Department.query.all.first().id
+            department_id = Department.query.all()[0].id
         )
 
         db.session.add(new_user)
@@ -146,6 +149,37 @@ def add_user():
             bColours.OKGREEN, bColours.ENDC
         ))
 
+
+def add_user_booking():
+    """ add a booking for the test user """
+
+    with create_app("development").app_context():
+
+        user_email = "test.user@uwa.edu.au"
+        datetime_placed = datetime.now()
+
+        booking_code = md5((str(datetime_placed) + user_email).encode()). \
+                       hexdigest()[:10]
+
+
+        new_booking = Booking(
+            booking_code    = booking_code,
+            datetime_placed = datetime_placed,
+            date_booked     = date.today(),
+            timeslot_start  = 1,
+            timeslot_end    = 8,
+            guest_name      = "Jesus",
+            vehicle_rego    = "666-666",
+            bay_id          = 1,
+            user_id         = User.query.filter_by(first_name="test").first().id
+        )
+
+        db.session.add(new_booking)
+        db.session.commit()
+    
+        print("{}- Test user booking added.{}\n".format(
+            bColours.OKGREEN, bColours.ENDC
+        ))
 
 
 def add_parking_lots_bays():
@@ -234,7 +268,8 @@ def main():
     """
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--add-user", help="start with a test user", action="store_true")
+    parser.add_argument("-u", "--add-user", help="start with a test user", action="store_true")
+    parser.add_argument("-b", "--booking", help="generate a booking for the test user", action="store_true")
     parser.parse_args()
 
     make_fresh_db()
@@ -246,6 +281,11 @@ def main():
 
     if args.add_user:
         add_user()
+        if args.booking:
+            add_user_booking()
+    else:
+        if args.booking:
+            parser.error("--booking can only be used with --add-user")
 
     subprocess.run('flask run --host 0.0.0.0'.split(), check=False)
 
