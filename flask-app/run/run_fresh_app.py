@@ -272,20 +272,19 @@ def main():
     parser.add_argument("-b", "--booking", help="generate a booking for the test user", action="store_true")
     parser.parse_args()
 
+    args = parser.parse_args()
+    if args.booking and not args.add_user:
+        parser.error("--booking can only be used with --add-user")
+
     make_fresh_db()
     add_departments()
     add_admin()
     add_parking_lots_bays()
 
-    args = parser.parse_args()
-
     if args.add_user:
         add_user()
         if args.booking:
             add_user_booking()
-    else:
-        if args.booking:
-            parser.error("--booking can only be used with --add-user")
 
     subprocess.run('flask run --host 0.0.0.0'.split(), check=False)
 
