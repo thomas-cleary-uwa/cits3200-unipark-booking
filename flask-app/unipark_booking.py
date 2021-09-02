@@ -19,6 +19,7 @@ from app import create_app, db
 from app.models.parking_lot import ParkingLot
 from app.models.car_bay import CarBay
 from app.models.user import Role, User, Permission, Department
+from app.models.booking import Booking
 
 
 
@@ -41,7 +42,7 @@ def make_shell_context():
         db=db,
         ParkingLot=ParkingLot, CarBay=CarBay,
         Role=Role, User=User, Permission=Permission,
-        Department=Department
+        Department=Department, Booking=Booking
     )
 
 

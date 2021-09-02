@@ -28,6 +28,7 @@ class CarBay(db.Model):
     parking_lot_id = db.Column(db.Integer, db.ForeignKey('ParkingLot.id'))
 
     # Relationships
+    bookings = db.relationship('Booking', backref="bay", lazy="dynamic")
 
 
     def __repr__(self):

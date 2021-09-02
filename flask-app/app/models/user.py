@@ -134,7 +134,6 @@ class User(UserMixin, db.Model):
     email         = db.Column(db.String(128), unique=True, index=True)
     password_hash = db.Column(db.String(64), unique=True, index=True)
 
-
     # Profile Attributes
     first_name = db.Column(db.String(64), index=True)
     last_name  = db.Column(db.String(64), index=True)
@@ -143,9 +142,9 @@ class User(UserMixin, db.Model):
     role_id = db.Column(db.Integer, db.ForeignKey('Role.id'))
     department_id = db.Column(db.Integer, db.ForeignKey('Department.id'))
 
-
     # Relationships
-    # (bookings)
+    bookings = db.relationship('Booking', backref="user", lazy="dynamic")
+
 
     @property
     def password(self):
