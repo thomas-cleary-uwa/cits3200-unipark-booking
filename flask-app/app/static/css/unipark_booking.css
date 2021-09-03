@@ -206,6 +206,7 @@ body {
 
 .uwa-btn:hover {
   background-color: var(--uwa-yellow);
+  color: var(--uwa-blue);
 }
 
 .uwa-btn .material-icons.md-24 { 
