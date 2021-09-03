@@ -1,6 +1,6 @@
 """ forms for user authentication 
 
-Authors: Thomas Cleary, Nur 'Iffah
+Authors: Thomas Cleary,
 """
 
 from flask_wtf import FlaskForm

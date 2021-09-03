@@ -1,6 +1,6 @@
 """" forms for admin blueprint
 
-Authors: Thomas Cleary, Nur 'Iffah
+Authors: Thomas Cleary,
 """
 
 import os
@@ -29,12 +29,12 @@ class AddUserForm(FlaskForm):
 
     password = PasswordField('Password: ', validators=[
         DataRequired(),
-        Length(8, 64)
+        Length(8, 64),
+        EqualTo('password2', message="Passwords entered must match.")
     ])
 
     password2 = PasswordField('Cofirm Password: ', validators=[
-        DataRequired(), 
-        EqualTo('password', message="Passwords entered must match.")
+        DataRequired()
     ])
 
     # department added as dynamic attribute
@@ -52,7 +52,7 @@ class AddUserForm(FlaskForm):
             raise ValidationError('Email already registered.')
 
 
-            
+
 class EditUserForm(FlaskForm):
     """ Form for an admin user to edit a user's details """
     email = StringField('Email: ', validators=[
@@ -82,3 +82,4 @@ class EditUserForm(FlaskForm):
 
     # department added as dynamic attribute
     # role added as dyanmic attribute 
+    # (when using this form us setattr() to add a SelectField attribute to this class)
