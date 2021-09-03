@@ -1,0 +1,55 @@
+{% extends 'base/base.html' %}
+
+
+{% block title %}
+  Admin - View Users
+{% endblock %}
+
+{% block pageBanner %}
+  Departments
+{% endblock %}
+
+{% block content %}
+
+  <table class="table table-hover table-responsive-md">
+    <thead>
+      <th>Department</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </thead>
+    {% for department in departments %}
+    <tr>
+      <td>{{ department.name }}</td>
+      <td>
+        <a href="{{ url_for('admin.edit_department', department_id=department.id) }}">
+          <span class="material-icons md-24 uwa-link">
+            edit
+          </span>
+        </a>
+      </td>
+      <td>
+        <a onclick='return confirmDelete("this department")' href="{{ url_for('admin.delete_department', department_id=department.id) }}">
+          <span class="material-icons md-24 uwa-link">
+            delete
+          </span>
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <div class="row pb-4">
+    <a class="btn uwa-btn" href="{{ url_for('admin.add_department') }}">
+      <span class="material-icons md-24">
+        add
+      </span>
+      Add Department
+    </a>
+  </div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/onclicks.js') }}"></script>
+{% endblock %}

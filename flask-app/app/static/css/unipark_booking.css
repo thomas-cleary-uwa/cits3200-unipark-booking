@@ -195,6 +195,7 @@ body {
   color: var(--uwa-blue);
   border-radius: 0;
   padding: 0.05em 0.1em, 0.05em 0.1em;
+  margin-right: 0.5em;
 }
 
 .uwa-submit {
@@ -205,11 +206,11 @@ body {
 
 .uwa-btn:hover {
   background-color: var(--uwa-yellow);
-  color: var(--uwa-blue);
+  color: var(--uwa-yellow);
 }
 
 .uwa-btn .material-icons.md-24 { 
-  padding-left: 0.5em;
+  padding-right: 0.5em;
 }
 
 

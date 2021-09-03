@@ -10,7 +10,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SelectField, SubmitField
 from wtforms.validators import DataRequired, Length, Email, Regexp, EqualTo, ValidationError
 
-from ..models.user import User, Role
+from ..models.user import User, Role, Department
 from .. import create_app
 
 
@@ -48,7 +48,7 @@ class AddUserForm(FlaskForm):
     # defined validators for <field-name>
     def validate_email(self, field):
         """ Raises an error if a user with field.data email already exists """
-        if User.query.filter_by(email=field.data).first():
+        if User.query.filter_by(email=field.data.strip()).first():
             raise ValidationError('Email already registered.')
 
 
@@ -75,7 +75,7 @@ class EditUserForm(FlaskForm):
     last_name = StringField("Last Name: ", validators=[
         DataRequired(),
         Regexp(
-            r'^\s*[A-Za-z]+\s*$',
+            r'^\s*[A-Z\sa-z]+\s*$',
             message="Name must only contain letters."
         )
     ])
@@ -83,3 +83,44 @@ class EditUserForm(FlaskForm):
     # department added as dynamic attribute
     # role added as dyanmic attribute 
     # (when using this form us setattr() to add a SelectField attribute to this class)
+
+    submit = SubmitField('Edit User')
+
+
+
+class AddDepartmentForm(FlaskForm):
+    """ form to add a department """
+
+    name = StringField("Name: ", validators=[
+        DataRequired(),
+        Length(1, 64),
+        Regexp(
+            r'^\s*[A-Z\sa-z]+\s*$',
+            message="Department name must only contain [A-Za-z]"
+        )
+
+    ])
+
+    submit = SubmitField('Add Department')
+
+    def validate_name(self, field):
+        """ report error if department with name already exists """
+        if Department.query.filter_by(name=field.data.strip()).first():
+            raise ValidationError("Department already exists")
+
+
+
+class EditDepartmentForm(FlaskForm):
+    """ Form to change department name """
+
+    name = StringField("Name: ", validators=[
+        DataRequired(),
+        Length(1, 64),
+        Regexp(
+            r'^\s*[A-Z\sa-z]+\s*$',
+            message="Department name must only contain [A-Za-z]"
+        )
+
+    ])
+
+    submit = SubmitField('Edit Department')
