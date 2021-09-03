@@ -39,6 +39,12 @@
 /*
 *** Google Material Icon Classes **********************************************
 */
+
+.material-icons.md-12 { 
+  font-size: 12px; 
+  vertical-align: middle;
+}
+
 .material-icons.md-24 { 
   font-size: 24px; 
   vertical-align: middle;
@@ -76,6 +82,24 @@ body {
   margin-bottom: auto;
 }
 
+
+.dropdown-menu {
+  font-family: uwaSlab, SourceSansPro, Arial, Helvetica, sans-serif;
+  font-size: 0.75em;
+  background-color: var(--uwa-light-grey);
+  border-color: var(--uwa-yellow);
+}
+
+.dropdown-menu .dropdown-item {
+  padding-left: 0.5em;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  color: var(--uwa-blue);
+  background-color: var(--uwa-dark-grey);
+}
+
+
 #uwa-navbar {
   background-color: var(--uwa-blue);
 
@@ -89,17 +113,20 @@ body {
   font-size: xx-large;
 }
 
-#uwa-navbar a, #uwa-navbar span{
-  color : rgb(255, 255, 255);
+
+#uwa-navbar .uwa-nav-btn{
+  color : white;
   padding : 0.5em;
 }
 
-#logout-link:hover span {
+#uwa-navbar .uwa-nav-btn:hover {
   color : var(--uwa-yellow);
+  background-color: var(--uwa-darker-blue);
+  border-radius: 10%;
 }
 
 #uwa-nav-logo {
-  padding-left: 0;
+  padding: 0.5em;
 }
 
 #uwa-nav-logo:hover, #logout-link:hover {
@@ -224,9 +251,9 @@ body {
 
 
 /* 
-*** /index route **************************************************************
+*** /bookings/parking-lots route **************************************************************
 */
-.map {
+#parking-lot-map {
   width : 100%;
   height : auto;
 

@@ -14,7 +14,10 @@ class LoginForm(FlaskForm):
     email = StringField('Staff Email:', validators=[
         DataRequired(),
         Length(1, 64),
-        Email()
+        Regexp(
+            r'^\s*[A-Za-z]+\.[A-Za-z]+@uwa\.edu\.au\s*$',
+            message='Email must be an firstname.lastname@uwa.edu.au address'
+        )
     ])
 
     password = PasswordField('Password:', validators=[

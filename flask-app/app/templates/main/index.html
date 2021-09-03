@@ -8,24 +8,11 @@
 
 {% block content %}
 
-  <h1>Reservable UniPark Car Bays</h1>
-
-  <div class="row">
-    <div class="col-sm">
-      {% for lot in lots %}
-        <h3>Car Park {{ lot.lot_number }}</h3>
-        <ul>
-          {% for bay in lot.bays %}
-            <li>Bay {{ bay.bay_number }}</li>
-          {% endfor %}
-        </ul>
-        {% endfor %}
-      </div>
-    
-    <div class="col-sm">
-      <img class="map" src="{{ url_for('static', filename='media/images/carpark-map.jpg') }}">
-    </div>
-    
-  </div>
+  <h1 class="uwa-heading-large">
+    Hello, {{ current_user.first_name }} {{current_user.last_name}}
+  </h1>
+  <p>
+    Add user info / summary here (number of bookings? next booking?)
+  </p>
 
 {% endblock %}

@@ -44,7 +44,7 @@ class Role(db.Model):
 
 
     @staticmethod
-    def get_role_names():
+    def get_names():
         """ return a list of role names """
         return [role.name for role in Role.query.all()]
 
@@ -98,6 +98,26 @@ class Role(db.Model):
 
 
 
+class Department(db.Model):
+    """ Represents a Department of UWA """
+    __tablename__ = "Department"
+
+    # Primary Key
+    id = db.Column(db.Integer, primary_key=True)
+
+    # Attributes
+    name = db.Column(db.String(64), unique=True)
+
+    # Relationships
+    users = db.relationship("User", backref="department", lazy="dynamic")
+
+    @staticmethod
+    def get_names():
+        """ return a list of department names """
+        return [department.name for department in Department.query.all()]
+
+
+
 class User(UserMixin, db.Model):
     """ Represents a user of the application
 
@@ -114,17 +134,17 @@ class User(UserMixin, db.Model):
     email         = db.Column(db.String(128), unique=True, index=True)
     password_hash = db.Column(db.String(64), unique=True, index=True)
 
-
     # Profile Attributes
     first_name = db.Column(db.String(64), index=True)
     last_name  = db.Column(db.String(64), index=True)
 
     # Foreign Keys
     role_id = db.Column(db.Integer, db.ForeignKey('Role.id'))
-
+    department_id = db.Column(db.Integer, db.ForeignKey('Department.id'))
 
     # Relationships
-    # (bookings)
+    bookings = db.relationship('Booking', backref="user", lazy="dynamic")
+
 
     @property
     def password(self):

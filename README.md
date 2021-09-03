@@ -83,7 +83,22 @@ To automatically run the above commands and start the application simply run fro
 
 **NOTE: This script also calls `flask run`**
 
-`$ python run/run_fresh_app.py`
+There are options being added to the run_fresh_app.py script so use 
+
+`$ python run/run_fresh_app.py --help`
+
+or
+
+`$ python run/run_fresh_app.py --h`
+
+to see options
+
+For example, 
+
+`$ python run/run_fresh_app.py --add-user`
+
+will run a _fresh_ version of the app with a regular user inserted already.
+
 
 
 ### 6. Finally
