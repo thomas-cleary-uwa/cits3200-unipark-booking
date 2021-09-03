@@ -26,21 +26,21 @@
       </thead>
       {% for user in admin_users %}
       <tr>
-        <td>{{ user.department.name }}</td>
+        <td>{% if user.department %} {{ user.department.name }} {% else %} NO DEPARTMENT ASSIGNED {% endif %}</td>
         <td>{{ user.first_name }}</td>
         <td>{{ user.last_name }}</td>
         <td>{{ user.email }}</td>
         <td>{{ user.role.name }}</td>
         <td>
           <a href="{{ url_for('admin.edit_user', user_id=user.id) }}">
-            <span class="material-icons md-24 uwa-heading">
+            <span class="material-icons md-24 uwa-link">
               edit
             </span>
           </a>
         </td>
         <td>
-          <a onclick="return confirmUserDelete()" href="{{ url_for('admin.delete_user', user_id=user.id) }}">
-            <span class="material-icons md-24 uwa-heading">
+          <a onclick='return confirmDelete("this user")' href="{{ url_for('admin.delete_user', user_id=user.id) }}">
+            <span class="material-icons md-24 uwa-link">
               delete
             </span>
           </a>
@@ -65,21 +65,21 @@
       </thead>
       {% for user in normal_users %}
       <tr>
-        <td>{{ user.department.name }}</td>
+        <td>{% if user.department %} {{ user.department.name }} {% else %} NO DEPARTMENT ASSIGNED {% endif %}</td>
         <td>{{ user.first_name }}</td>
         <td>{{ user.last_name }}</td>
         <td>{{ user.email }}</td>
         <td>{{ user.role.name }}</td>
         <td>
           <a href="{{ url_for('admin.edit_user', user_id=user.id) }}">
-            <span class="material-icons md-24 uwa-heading">
+            <span class="material-icons md-24 uwa-link">
               edit
             </span>
           </a>
         </td>
         <td>
-          <a onclick="return confirmUserDelete()" href="{{ url_for('admin.delete_user', user_id=user.id) }}">
-            <span class="material-icons md-24 uwa-heading">
+          <a onclick='return confirmDelete("this user")' href="{{ url_for('admin.delete_user', user_id=user.id) }}">
+            <span class="material-icons md-24 uwa-link">
               delete
             </span>
           </a>
@@ -104,20 +104,20 @@
       </thead>
       {% for user in disabled_users %}
       <tr>
-        <td>{{ user.department.name }}</td>
+        <td>{% if user.department %} {{ user.department.name }} {% else %} NO DEPARTMENT ASSIGNED {% endif %}</td>
         <td>{{ user.first_name }}</td>
         <td>{{ user.last_name }}</td>
         <td>{{ user.email }}</td>
         <td>{{ user.role.name }}</td>
         <td>
           <a href="{{ url_for('admin.edit_user', user_id=user.id) }}">
-            <span class="material-icons md-24 uwa-heading">
+            <span class="material-icons md-24 uwa-link">
               edit
             </span>
           </a>
         </td>
         <td>
-          <a onclick="return confirmUserDelete()" href="{{ url_for('admin.delete_user', user_id=user.id) }}">
+          <a onclick='confirmDelete("this user")' href="{{ url_for('admin.delete_user', user_id=user.id) }}">
             <span class="material-icons md-24 uwa-heading">
               delete
             </span>
@@ -129,18 +129,24 @@
   </div>
 
   <div class="row pb-4">
+
     <a class="btn uwa-btn" href="{{ url_for('admin.add_user') }}">
-      Add User
       <span class="material-icons md-24">
         person_add
       </span>
+      Add User
+    </a>
+
+    <a class="btn uwa-btn" href="{{ url_for('admin.departments') }}">
+      <span class="material-icons md-24">
+        room_preferences
+      </span>
+      Manage Departments
     </a>
   </div>
 
+{% endblock %}
 
-  {% block scripts %}
-    <script type="text/javascript" src="{{ url_for('static', filename='js/onclicks.js') }}"></script>
-  {% endblock %}
-
-
+{% block scripts %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/onclicks.js') }}"></script>
 {% endblock %}

@@ -12,7 +12,7 @@ from app import db
 from ..helpers.decorators import admin_required
 from ..models.user import User, Role, Department
 from . import admin
-from .forms import AddUserForm, EditUserForm
+from .forms import AddUserForm, EditUserForm, AddDepartmentForm, EditDepartmentForm
 
 
 
@@ -24,6 +24,9 @@ def index():
     return render_template("admin/index.html")
 
 
+##############################################################################
+# User Routes ################################################################
+##############################################################################
 @admin.route("/users")
 @login_required
 @admin_required
@@ -141,7 +144,10 @@ def edit_user(user_id):
     edit_user_form.first_name.default = editing_user.first_name
     edit_user_form.last_name.default = editing_user.last_name
     edit_user_form.role.default = editing_user.role.name
-    edit_user_form.department.default = editing_user.department.name
+
+    if editing_user.department is not None:
+        edit_user_form.department.default = editing_user.department.name
+
     edit_user_form.process() # need to call this to actually set new default values
     
     return render_template(
@@ -180,3 +186,87 @@ def delete_user(user_id):
             flash("User <{}> was successfully deleted.".format(user_to_delete.email))
 
     return redirect(url_for("admin.users"))
+
+
+###############################################################################
+# Department Routes ###########################################################
+###############################################################################
+@admin.route("/departments")
+@login_required
+@admin_required
+def departments():
+    """ route to display all departments """
+    # get list of departments sorted alphabetically
+    all_deps = sorted(Department.query.all(), key=lambda x: x.name.lower())
+
+    return render_template("admin/departments.html", departments=all_deps)
+
+
+@admin.route("/add-department", methods=['GET', 'POST'])
+@login_required
+@admin_required
+def add_department():
+    form = AddDepartmentForm()
+
+    if form.validate_on_submit():
+
+        new_department = Department(
+            name = form.name.data.strip()
+        )
+        db.session.add(new_department)
+        db.session.commit()
+
+        flash("Department Successfully Added")
+        return redirect(url_for("admin.departments"))
+
+    return render_template("admin/add_department.html", form=form)
+
+
+@admin.route("/edit-department/<int:department_id>", methods=['GET', 'POST'])
+@login_required
+@admin_required
+def edit_department(department_id):
+    form = EditDepartmentForm()
+
+    editing_dep = Department.query.get(department_id)
+    if editing_dep is None:
+        flash("Something went wront: Could not find this department")
+        return redirect(url_for("admin.departments"))
+
+    if form.validate_on_submit():
+        new_name = form.name.data.strip()
+        if new_name == editing_dep.name:
+            flash("No changes made to this department")
+            return redirect(url_for("admin.departments"))
+
+        if Department.query.filter_by(name=new_name).first() is not None:
+            flash("This department already exists")
+            return redirect(url_for("admin.edit_department", department_id=department_id))
+
+        editing_dep.name = new_name
+        db.session.commit()
+
+        flash("Department details successfully updated.")
+        return redirect(url_for("admin.departments"))
+
+    form.name.default = editing_dep.name
+    form.process()
+
+    return render_template("admin/edit_department.html", form=form, editing_dep=editing_dep)
+
+
+@admin.route("/delete-department/<int:department_id>")
+@login_required
+@admin_required
+def delete_department(department_id):
+
+    dep_to_delete = Department.query.get(department_id)
+    if dep_to_delete is None:
+        flash("Something went wrong: could not find the department to delete.")
+
+    else:
+        db.session.delete(dep_to_delete)
+        db.session.commit()
+        flash("Department successfully deleted")
+
+    return redirect(url_for("admin.departments"))
