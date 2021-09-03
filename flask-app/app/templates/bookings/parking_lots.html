@@ -11,44 +11,72 @@
 
 
 {% block content %}
+<div class="row">
+  <div class="col-md-12">
 
-  <div class="row">
+    <div class="panel panel-default">
+
+      <div class="panel-heading uwa-dark-panel mb-1">
+            <a class="uwa-link uwa-heading" href="#" data-toggle="collapse" data-target="#lotMap" aria-expanded="true" class="">
+              <span class="material-icons md-36">
+                map
+              </span>
+              Map (Available Parking Lots)
+            </a>
+      </div>
+
+      <div id="lotMap" class="panel-collapse collapse in" aria-expanded="true">
+        <img class="pb-4" id="parking-lot-map" src="{{ url_for('static', filename='media/images/carpark-map.jpg') }}">
+      </div>
     
-    <div class="col-lg-5">
-      <h1 class="uwa-heading-large">Select a Parking Lot</h1>
-      <table class="table table-hover table-responsive-md">
-        <thead>
-          <th>Lot Number</th>
-          <th># of Car Bays</th>
-          <th>Google Maps</th>
-        </thead>
-        {% for lot in parking_lots %}
-          <tr class="text-center">
-            <td>
-              <a class="uwa-link" href="{{ url_for('bookings.bays', lot_number=lot.lot_number) }}">
+    </div>
+
+  
+    {% for lot in parking_lots %}
+      <div class="panel panel-default">
+
+        <div class="panel-heading uwa-dark-panel mb-1">
+              <a class="uwa-link uwa-heading" href="#" data-toggle="collapse" data-target="#lot{{ lot.lot_number }}" aria-expanded="true" class="">
                 <span class="material-icons md-36">
                   local_parking
                 </span>
-                {{ lot.lot_number }}
+                Lot {{ lot.lot_number }}
               </a>
-            </td>
-            <td>{{ lot.bays|length }}</td>
-            <td>
-              <a class="uwa-link" target="_blank" href="https://maps.google.com/?q={{ lot.latitude }},{{ lot.longitude }}">
-                <span class="material-icons md-24 uwa-link">
-                  place
-                </span>
-              </a>
-            </td>
-          </tr>
-        {% endfor %}
-      </table>
-    </div>
+        </div>
 
-    <div class="col-lg-5 offset-md-2">
-      <img class="pb-4" id="parking-lot-map" src="{{ url_for('static', filename='media/images/carpark-map.jpg') }}">
-    </div>
+        <div id="lot{{ lot.lot_number }}" class="panel-collapse collapse in" aria-expanded="true">
+          <table class="table table-hover">
+            <thead>
+              <th>Bay Number</th>
+              <th>Google Maps</th>
+            </thead>
+            {% for bay in lot.bays %}
+              <tr class="text-center">
+                <td>
+                  <a class="uwa-link" href="#">
+                    <span class="material-icons md-36">
+                      car_repair
+                    </span>
+                    {{ bay.bay_number }}
+                  </a>
+                </td>
+                <td>
+                  <a class="uwa-link" target="_blank" href="https://maps.google.com/?q={{ bay.latitude }},{{ bay.longitude }}">
+                    <span class="material-icons md-24 uwa-link">
+                      place
+                    </span>
+                  </a>
+                </td>
+              </tr>
+            {% endfor %}
+          </table>
+        </div>
+        
+      </div>
+    {% endfor %}
 
   </div>
+
+</div>
 
 {% endblock %}
