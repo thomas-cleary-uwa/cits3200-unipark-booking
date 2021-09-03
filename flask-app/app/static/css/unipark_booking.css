@@ -222,7 +222,6 @@ body {
 }
 
 
-
 /*
 *** /login route **************************************************************
 */
@@ -262,5 +261,21 @@ body {
 
 
 /*
-*** Next Category *************************************************************
+*** add_user form *************************************************************
 */
+div.add_user_form
+{
+    display: block;
+    text-align: center;
+    padding : 20px; 
+    width : 75%; 
+    margin : 0 auto; 
+}
+
+form
+{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
