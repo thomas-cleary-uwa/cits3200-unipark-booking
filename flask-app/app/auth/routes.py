@@ -23,6 +23,10 @@ def login():
     if login_form.validate_on_submit():
         user = User.query.filter_by(email=login_form.email.data.strip()).first()
 
+        if user.role.name == "disabled":
+            flash("Your account is currently disabled")
+            return redirect(url_for("auth.login"))
+
         if user is not None and user.verify_password(login_form.password.data):
             login_user(user)
             next_route = request.args.get('next')
