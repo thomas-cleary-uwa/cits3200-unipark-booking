@@ -46,46 +46,48 @@
         </div>
 
         <div id="lot{{ lot.lot_number }}" class="panel-collapse collapse in" aria-expanded="true">
-          <table class="table table-hover table-responsive table-bordered">
-            <thead>
-              <th>Bay Number</th>
-              <th>Google Maps</th>
-              {% for slot in lot_bookings[lot.bays[0].bay_number] %}
-              <th>{{ loop.index }}</th>
-              {% endfor %}
-            </thead>
-            {% for bay in lot.bays %}
-              {% set bay_bookings = lot_bookings[bay.bay_number] %}
-              <tr>
-                <td>
-                  <a class="uwa-link" href="#">
-                    <span class="material-icons md-36">
-                      car_repair
-                    </span>
-                    {{ bay.bay_number }}
-                  </a>
-                </td>
-                <td>
-                  <a class="uwa-link" target="_blank" href="https://maps.google.com/?q={{ bay.latitude }},{{ bay.longitude }}">
-                    <span class="material-icons md-24 uwa-link">
-                      place
-                    </span>
-                  </a>
-                </td>
-                {% for booked in bay_bookings %}
-                  {% if booked %}
-                  <td style="background-color: red;">
-                    {{ booked }}
-                  </td>
-                  {% else %}
-                  <td style="background-color: green;">
-                    {{ booked }}
-                  </td>
-                  {% endif %}
+          <div class="table-responsive">
+            <table class="table table-bordered timetable">
+              <thead>
+                <th class="stickyCol">Bay Number</th>
+                <th>Google Maps</th>
+                {% for slot in lot_bookings[lot.bays[0].bay_number] %}
+                <th>{{ loop.index }}</th>
                 {% endfor %}
-              </tr>
-            {% endfor %}
-          </table>
+              </thead>
+              {% for bay in lot.bays %}
+                {% set bay_bookings = lot_bookings[bay.bay_number] %}
+                <tr>
+                  <td class="stickyCol">
+                    <a class="uwa-link" href="#">
+                      <span class="material-icons md-36">
+                        car_repair
+                      </span>
+                      {{ bay.bay_number }}
+                    </a>
+                  </td>
+                  <td>
+                    <a class="uwa-link" target="_blank" href="https://maps.google.com/?q={{ bay.latitude }},{{ bay.longitude }}">
+                      <span class="material-icons md-24 uwa-link">
+                        place
+                      </span>
+                    </a>
+                  </td>
+                  {% for booked in bay_bookings %}
+                    {% if booked %}
+                    <td style="background-color: red;">
+                      {{ booked }}
+                    </td>
+                    {% else %}
+                    <td style="background-color: green;">
+                      {{ booked }}
+                    </td>
+                    {% endif %}
+                  {% endfor %}
+                </tr>
+              {% endfor %}
+            </table>
+          </div>
         </div>
         
       </div>

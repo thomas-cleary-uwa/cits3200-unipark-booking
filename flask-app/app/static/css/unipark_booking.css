@@ -258,6 +258,39 @@ body {
 /* 
 *** /bookings/parking-lots route **************************************************************
 */
+.timetable th:first-child,
+.timetable td:first-child {
+  position: sticky;
+  white-space: nowrap;
+  border-width: thick !important;
+  border-color: var(--uwa-darker-yellow);
+  left: 0;
+  background-color: var(--uwa-dark-grey);
+}
+
+.timetable td:first-child,
+.timetable td:nth-child(2) {
+  padding-right: 0;
+  padding-left: 0;
+  text-align: center !important; 
+}
+
+.timetable thead th,
+.timetable td {
+  border-width: thin !important;
+  border-color: var(--uwa-darker-yellow) !important;
+}
+
+.timetable {
+  border-collapse: separate;
+  border-width: thick;
+  border-color: var(--uwa-darker-yellow);
+}
+
+.timetable thead > * {
+  color: var(--uwa-blue)
+}
+
 #parking-lot-map {
   width : 100%;
   height : auto;
