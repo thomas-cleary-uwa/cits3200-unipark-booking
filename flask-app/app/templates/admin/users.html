@@ -26,7 +26,7 @@
       </thead>
       {% for user in admin_users %}
       <tr>
-        <td>{{ user.department.name }}</td>
+        <td>{% if user.department %} {{ user.department.name }} {% else %} NO DEPARTMENT ASSIGNED {% endif %}</td>
         <td>{{ user.first_name }}</td>
         <td>{{ user.last_name }}</td>
         <td>{{ user.email }}</td>
@@ -65,7 +65,7 @@
       </thead>
       {% for user in normal_users %}
       <tr>
-        <td>{{ user.department.name }}</td>
+        <td>{% if user.department %} {{ user.department.name }} {% else %} NO DEPARTMENT ASSIGNED {% endif %}</td>
         <td>{{ user.first_name }}</td>
         <td>{{ user.last_name }}</td>
         <td>{{ user.email }}</td>
@@ -104,7 +104,7 @@
       </thead>
       {% for user in disabled_users %}
       <tr>
-        <td>{{ user.department.name }}</td>
+        <td>{% if user.department %} {{ user.department.name }} {% else %} NO DEPARTMENT ASSIGNED {% endif %}</td>
         <td>{{ user.first_name }}</td>
         <td>{{ user.last_name }}</td>
         <td>{{ user.email }}</td>

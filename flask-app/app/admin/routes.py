@@ -144,7 +144,10 @@ def edit_user(user_id):
     edit_user_form.first_name.default = editing_user.first_name
     edit_user_form.last_name.default = editing_user.last_name
     edit_user_form.role.default = editing_user.role.name
-    edit_user_form.department.default = editing_user.department.name
+
+    if editing_user.department is not None:
+        edit_user_form.department.default = editing_user.department.name
+
     edit_user_form.process() # need to call this to actually set new default values
     
     return render_template(
@@ -256,6 +259,14 @@ def edit_department(department_id):
 @login_required
 @admin_required
 def delete_department(department_id):
-    flash("Department not deleted: need to implement department deletion functionality")
-    return redirect(url_for("admin.departments"))
 
+    dep_to_delete = Department.query.get(department_id)
+    if dep_to_delete is None:
+        flash("Something went wrong: could not find the department to delete.")
+
+    else:
+        db.session.delete(dep_to_delete)
+        db.session.commit()
+        flash("Department successfully deleted")
+
+    return redirect(url_for("admin.departments"))
