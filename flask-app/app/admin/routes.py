@@ -3,6 +3,8 @@
 Authors: Thomas Cleary,
 """
 
+from datetime import date
+
 from flask import redirect, render_template, url_for, flash
 from flask_login import current_user, login_required
 from wtforms import SelectField
@@ -16,12 +18,20 @@ from .forms import AddUserForm, EditUserForm, AddDepartmentForm, EditDepartmentF
 
 
 
-@admin.route("/admin")
+@admin.route("/index")
+@admin.route("/")
 @login_required
 @admin_required
 def index():
     """ home route for admin users """
-    return render_template("admin/index.html")
+    today = date.today()
+    return redirect(
+        url_for(
+            "bookings.parking_lots",
+            year=today.year, 
+            month=today.month,
+            day=today.day
+        ))
 
 
 ##############################################################################
