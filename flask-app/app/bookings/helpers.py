@@ -19,7 +19,7 @@ def get_lot_bookings(parking_lots, date_obj):
     the value of the bay key is the timeslots that are booked for the given day
     """
 
-    bookings = {lot.lot_number : {bay.bay_number : [] for bay in lot.bays} for lot in parking_lots}
+    bookings = {lot.lot_number : {bay.bay_number : [False] * 32 for bay in lot.bays} for lot in parking_lots}
     
     for lot in parking_lots:
         for bay in lot.bays:
@@ -27,12 +27,9 @@ def get_lot_bookings(parking_lots, date_obj):
             today_bookings = Booking.query.filter_by(
                 date_booked=date_obj, bay_id=bay.id).all()
 
-            timeslots_booked = set([])
             for booking in today_bookings:
                 for timeslot in range(booking.timeslot_start, booking.timeslot_end+1):
-                    timeslots_booked.add(timeslot)
-
-            bookings[lot.lot_number][bay.bay_number] = list(timeslots_booked)
+                    bookings[lot.lot_number][bay.bay_number][timeslot-1] = True
 
     return bookings
 

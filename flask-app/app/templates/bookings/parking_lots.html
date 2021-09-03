@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block pageBanner %}
-  Bookings - Parking Lot Availabilities
+  Bookings - Availabilities ({{ day }}/{{ month }}/{{ year }})
 {% endblock %}
 
 
@@ -33,6 +33,7 @@
 
   
     {% for lot in parking_lots %}
+      {% set lot_bookings = bookings[lot.lot_number] %}
       <div class="panel panel-default">
 
         <div class="panel-heading uwa-dark-panel mb-1">
@@ -45,13 +46,17 @@
         </div>
 
         <div id="lot{{ lot.lot_number }}" class="panel-collapse collapse in" aria-expanded="true">
-          <table class="table table-hover">
+          <table class="table table-hover table-responsive table-bordered">
             <thead>
               <th>Bay Number</th>
               <th>Google Maps</th>
+              {% for slot in lot_bookings[lot.bays[0].bay_number] %}
+              <th>{{ loop.index }}</th>
+              {% endfor %}
             </thead>
             {% for bay in lot.bays %}
-              <tr class="text-center">
+              {% set bay_bookings = lot_bookings[bay.bay_number] %}
+              <tr>
                 <td>
                   <a class="uwa-link" href="#">
                     <span class="material-icons md-36">
@@ -67,6 +72,17 @@
                     </span>
                   </a>
                 </td>
+                {% for booked in bay_bookings %}
+                  {% if booked %}
+                  <td style="background-color: red;">
+                    {{ booked }}
+                  </td>
+                  {% else %}
+                  <td style="background-color: green;">
+                    {{ booked }}
+                  </td>
+                  {% endif %}
+                {% endfor %}
               </tr>
             {% endfor %}
           </table>

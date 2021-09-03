@@ -28,7 +28,10 @@ def parking_lots(day=date.today().day, month=date.today().month, year=date.today
     return render_template(
         "bookings/parking_lots.html",
         parking_lots=parking_lots,
-        bookings=bookings
+        bookings=bookings,
+        day=day,
+        month=month,
+        year=year
     )
 
 
