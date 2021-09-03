@@ -134,6 +134,11 @@ body {
   border-radius: 10%;
 }
 
+#page-banner {
+  padding : 1em 1em 1em 1em;
+  font-family: uwaSlab;
+}
+
 #uwa-flash-msg {
   border-color: var(--uwa-yellow);
   margin-bottom: 3em; /* Create separation between flash message and login panel */
@@ -241,11 +246,6 @@ body {
 #login-form .uwa-btn.material-icons.md-24 {
   padding-left: 1em;
   padding-right: 0;
-}
-
-#welcome-banner {
-  padding : 1em 1em 1em 1em;
-  font-family: uwaSlab;
 }
 
 

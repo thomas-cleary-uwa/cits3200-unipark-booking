@@ -5,8 +5,11 @@
   Admin - Add User
 {% endblock %}
 
+{% block pageBanner %}
+  Add User
+{% endblock %}
+
 {% block content %}
-  <h1 class="uwa-heading-large">Add User</h1>
 
   <form action="" method="POST" novalidate>
     {{ add_user_form.hidden_tag() }}

@@ -5,13 +5,14 @@
   Bookings - Lot {{ lot.lot_number }} Bays
 {% endblock %}
 
+{% block pageBanner %}
+  Bookings - Lot {{lot.lot_number}} Bays
+{% endblock %}
+
 {% block content %}
 
 <div class="row">
   <div class="col-sm-12">
-    <h1 class="uwa-heading-large">
-      Lot {{ lot.lot_number }} Bays
-    </h1>
 
     <table class="table table-hover table-responsive-md">
       <thead>

@@ -31,6 +31,11 @@
   <!-- Top Navbar -->
   {% include 'base/uwa_navbar.html' %}
 
+  <!-- Page Banner-->
+  <div class="uwa-dark-panel uwa-heading" id="page-banner">
+    <h1>{% block pageBanner %}{% endblock %}</h1>
+  </div>
+
   <div class="container" id="content-container">
 
   <!-- Flashed messages -->

@@ -5,11 +5,14 @@
   Admin - Edit User
 {% endblock %}
 
+{% block pageBanner %}
+  Edit User
+{% endblock %}
+
 {% block content %}
-  <h1 class="uwa-heading-large">Edit User</h1>
-  <h2 class="uwa-heading">
+  <h1 class="uwa-heading-large">
     {{ editing_user.first_name }} {{ editing_user.last_name }}
-  </h2>
+  </h1>
 
   <form action="" method="POST" novalidate>
     {{ edit_user_form.hidden_tag() }}
