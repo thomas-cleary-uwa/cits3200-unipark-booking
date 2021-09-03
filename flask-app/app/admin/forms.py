@@ -21,10 +21,9 @@ class AddUserForm(FlaskForm):
     email = StringField('Email: ', validators=[
         DataRequired(),
         Length(1, 64),
-        Email(),
         Regexp(
-            r'^[A-Za-z]+\.[A-Za-z]+@uwa\.edu\.au$',
-            message='Username must be an firstname.lastname@uwa.edu.au address'
+            r'^\s*[A-Za-z]+\.[A-Za-z]+@uwa\.edu\.au\s*$',
+            message='Email must be an firstname.lastname@uwa.edu.au address'
         )
     ])
 
@@ -38,6 +37,7 @@ class AddUserForm(FlaskForm):
         EqualTo('password', message="Passwords entered must match.")
     ])
 
+    # department added as dynamic attribute
     # role added as dyanmic attribute 
     # (when using this form us setattr() to add a SelectField attribute to this class)
 
@@ -50,4 +50,35 @@ class AddUserForm(FlaskForm):
         """ Raises an error if a user with field.data email already exists """
         if User.query.filter_by(email=field.data).first():
             raise ValidationError('Email already registered.')
-    
+
+
+            
+class EditUserForm(FlaskForm):
+    """ Form for an admin user to edit a user's details """
+    email = StringField('Email: ', validators=[
+        DataRequired(),
+        Length(1, 64),
+        Regexp(
+            r'^\s*[A-Za-z]+\.[A-Za-z]+@uwa\.edu\.au\s*$',
+            message='Username must be an firstname.lastname@uwa.edu.au address'
+        )
+    ])
+
+    first_name = StringField("First Name: ", validators=[
+        DataRequired(),
+        Regexp(
+            r'^\s*[A-Za-z]+\s*$',
+            message="Name must only contain letters."
+        )
+    ])
+
+    last_name = StringField("Last Name: ", validators=[
+        DataRequired(),
+        Regexp(
+            r'^\s*[A-Za-z]+\s*$',
+            message="Name must only contain letters."
+        )
+    ])
+
+    # department added as dynamic attribute
+    # role added as dyanmic attribute 

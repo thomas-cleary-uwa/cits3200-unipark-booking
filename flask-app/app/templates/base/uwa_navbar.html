@@ -1,12 +1,12 @@
  <div class="flex-nav"> 
-  <nav class="navbar navbar-expand-lg" id="uwa-navbar">
+  <nav class="navbar navbar-expand-xl" id="uwa-navbar">
 
     <a class="navbar-brand" id="uwa-nav-logo" href="https://www.uwa.edu.au/">
       <img src="{{ url_for('static', filename='media/logos/uwacrest-white.svg') }}" id="uwa-nav-logo">
     </a>
 
     {% if current_user.is_authenticated %}
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler uwa-nav-btn" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="material-icons md-48">
           menu
         </span>
@@ -17,9 +17,9 @@
         <ul class="navbar-nav" id="left-navbar">
           <li class="nav-item">
             {% if current_user.is_administrator() %}
-            <a class="nav-link" href="{{ url_for('admin.index') }}">
+            <a class="nav-link uwa-nav-btn" href="{{ url_for('admin.index') }}">
             {% else %}
-            <a class="nav-link" href="{{ url_for('main.index') }}">
+            <a class="nav-link uwa-nav-btn" href="{{ url_for('main.index') }}">
             {% endif %}
               <span class="material-icons md-36">
                 home
@@ -27,23 +27,59 @@
               Home
             </a>
           </li>
-          {% if current_user.is_administrator() %}
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('admin.users') }}">
+
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle uwa-nav-btn" href="#" role="button", data-toggle="dropdown">
               <span class="material-icons md-36">
-                manage_accounts
+                book_online
               </span>
-              Edit Users
+              Bookings
+            </a>
+            <div class="dropdown-menu w-100">
+              <a class="dropdown-item" href="{{ url_for('bookings.parking_lots') }}">
+                <span class="material-icons md-24">
+                  add
+                </span>
+                New Booking
+              </a>
+              <a class="dropdown-item" href="#">
+                <span class="material-icons md-24">
+                  settings
+                </span>
+                Manage Bookings
+              </a>
+            </div>
+
+          <!-- Admin links -->
+          {% if current_user.is_administrator() %}
+          </li>
+          <li class="nav-item">
+            <a class="nav-link uwa-nav-btn" href="#">
+              <span class="material-icons md-36">
+                car_repair
+              </span>
+              Bays
             </a>
           </li>
 
+          <li class="nav-item">
+            <a class="nav-link uwa-nav-btn" href="{{ url_for('admin.users') }}">
+              <span class="material-icons md-36">
+                manage_accounts
+              </span>
+              Users
+            </a>
+          </li>
+
+          <!-- User links-->
           {% else %}
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link uwa-nav-btn" href="#">
               <span class="material-icons md-36">
-                report_problem
+                manage_accounts
               </span>
-              Nothing Here Yet
+              My Account
             </a>
           </li>
 
@@ -52,7 +88,7 @@
 
         <ul class="navbar-nav ml-auto" id="right-navbar">
           <li class="nav-item">
-            <a class="nav-link" id="logout-link" href="{{ url_for('auth.logout') }}">
+            <a class="nav-link uwa-nav-btn" href="{{ url_for('auth.logout') }}">
               <span class="material-icons md-36">
                 logout
               </span>

@@ -2,7 +2,6 @@
 Basic test cases for the Flask app
 
 Authors: Thomas Cleary,
-
 """
 
 import unittest
