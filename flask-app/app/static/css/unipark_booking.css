@@ -99,6 +99,10 @@ body {
   background-color: var(--uwa-dark-grey);
 }
 
+.dropdown-item:hover span {
+  color: var(--uwa-darker-yellow);
+}
+
 
 #uwa-navbar {
   background-color: var(--uwa-blue);
