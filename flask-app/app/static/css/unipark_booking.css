@@ -92,10 +92,10 @@ body {
 
 .dropdown-menu .dropdown-item {
   padding-left: 0.5em;
+  color: var(--uwa-blue);
 }
 
 .dropdown-menu .dropdown-item:hover {
-  color: var(--uwa-blue);
   background-color: var(--uwa-dark-grey);
 }
 
@@ -206,6 +206,7 @@ body {
 
 .uwa-btn:hover {
   background-color: var(--uwa-yellow);
+  color: var(--uwa-blue);
 }
 
 .uwa-btn .material-icons.md-24 { 
