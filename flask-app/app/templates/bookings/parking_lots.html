@@ -49,16 +49,16 @@
           <div class="table-responsive">
             <table class="table table-bordered timetable">
               <thead>
-                <th class="stickyCol">Bay Number</th>
+                <th>Bay Number</th>
                 <th>Google Maps</th>
                 {% for slot in lot_bookings[lot.bays[0].bay_number] %}
-                <th>{{ loop.index }}</th>
+                <th class="timeslot">{{ loop.index }}</th>
                 {% endfor %}
               </thead>
               {% for bay in lot.bays %}
                 {% set bay_bookings = lot_bookings[bay.bay_number] %}
                 <tr>
-                  <td class="stickyCol">
+                  <td>
                     <a class="uwa-link" href="#">
                       <span class="material-icons md-36">
                         car_repair
@@ -75,12 +75,10 @@
                   </td>
                   {% for booked in bay_bookings %}
                     {% if booked %}
-                    <td style="background-color: red;">
-                      {{ booked }}
+                    <td class="timeslot-red">
                     </td>
                     {% else %}
-                    <td style="background-color: green;">
-                      {{ booked }}
+                    <td class="timeslot-green">
                     </td>
                     {% endif %}
                   {% endfor %}

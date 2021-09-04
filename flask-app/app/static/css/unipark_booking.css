@@ -31,6 +31,10 @@
   --uwa-yellow : rgb(248, 211, 75);
   --uwa-darker-yellow : rgb(219, 183, 61);
 
+  --uwa-green: rgb(83, 177, 52);
+  --uwa-red: rgb(177, 52, 83);
+
+
   --uwa-form-separator-colour : rgb(219, 219, 219);
 }
 
@@ -281,6 +285,8 @@ body {
 .timetable td {
   border-width: thick !important;
   border-color: var(--uwa-dark-grey);
+  min-width: 70px;
+  max-height: 70px;
 }
 
 .timetable {
@@ -289,6 +295,14 @@ body {
 
 .timetable thead > * {
   color: var(--uwa-blue)
+}
+
+.timeslot-red {
+  background-color: var(--uwa-red);
+}
+
+.timeslot-green {
+  background-color: var(--uwa-green);
 }
 
 #parking-lot-map {
