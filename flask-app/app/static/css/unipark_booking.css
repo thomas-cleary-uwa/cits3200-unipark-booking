@@ -261,11 +261,9 @@ body {
 .timetable th:first-child,
 .timetable td:first-child {
   position: sticky;
-  white-space: nowrap;
   border-width: thick !important;
-  border-color: var(--uwa-darker-yellow);
   left: 0;
-  background-color: var(--uwa-dark-grey);
+  background-color: var(--uwa-light-grey);
 }
 
 .timetable td:first-child,
@@ -275,16 +273,18 @@ body {
   text-align: center !important; 
 }
 
+.timetable td:first-child, .timetable thead th {
+  background-color: var(--uwa-light-grey);
+}
+
 .timetable thead th,
 .timetable td {
-  border-width: thin !important;
-  border-color: var(--uwa-darker-yellow) !important;
+  border-width: thick !important;
+  border-color: var(--uwa-dark-grey);
 }
 
 .timetable {
   border-collapse: separate;
-  border-width: thick;
-  border-color: var(--uwa-darker-yellow);
 }
 
 .timetable thead > * {
