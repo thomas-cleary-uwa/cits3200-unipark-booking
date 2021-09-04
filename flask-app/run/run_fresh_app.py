@@ -11,9 +11,10 @@ import csv
 import sys
 import subprocess
 import argparse
+import random
 
 from hashlib import md5
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 
 # add flask-app to sys path to allow for app package import
 sys.path.append("../flask-app")
@@ -156,28 +157,53 @@ def add_user_bookings(num_bookings):
     with create_app("development").app_context():
 
         user_email = "test.user@uwa.edu.au"
-        datetime_placed = datetime.now()
 
-        booking_code = md5((str(datetime_placed) + user_email).encode()). \
-                       hexdigest()[:10]
+        bookings_made = set([])
 
+        booked = 0
 
-        new_booking = Booking(
-            booking_code    = booking_code,
-            datetime_placed = datetime_placed,
-            date_booked     = date.today(),
-            timeslot_start  = 1,
-            timeslot_end    = 8,
-            guest_name      = "Jesus",
-            vehicle_rego    = "666-666",
-            bay_id          = 1,
-            user_id         = User.query.filter_by(first_name="test").first().id
-        )
+        while booked < num_bookings:
+            datetime_placed = datetime.now()
 
-        db.session.add(new_booking)
+            booking_code = md5((str(datetime_placed) + user_email + str(random.randint(1, 10))).encode()). \
+                        hexdigest()[:10]
+
+            all_bays = CarBay.query.all()
+            choice = random.randint(0, len(all_bays)-1)
+            
+            # get bay id
+            bay_id = all_bays[choice].id
+
+            # get timeslots
+            start = random.randint(1, 31)
+            end   = random.randint(start+1, 32)
+
+            # get date booked
+            date_booked = datetime.today() + timedelta(days=random.randint(0, 6))
+
+            booking = tuple([bay_id, start, end, date_booked.day, date_booked.month, date_booked.year])
+            if booking in bookings_made:
+                continue
+            bookings_made.add(booking)
+
+            new_booking = Booking(
+                booking_code    = booking_code,
+                datetime_placed = datetime_placed,
+                date_booked     = date_booked,
+                timeslot_start  = start,
+                timeslot_end    = end,
+                guest_name      = "Jesus",
+                vehicle_rego    = "666-666",
+                bay_id          = bay_id,
+                user_id         = User.query.filter_by(first_name="test").first().id
+            )
+
+            db.session.add(new_booking)
+            booked += 1
+
         db.session.commit()
     
-        print("{}- Test user booking added.{}\n".format(
+        print("{}- Test user bookings added.{}\n".format(
             bColours.OKGREEN, bColours.ENDC
         ))
 
