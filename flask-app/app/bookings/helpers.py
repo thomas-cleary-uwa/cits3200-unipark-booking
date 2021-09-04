@@ -3,7 +3,13 @@
 Authors: Thomas Cleary,
 """
 
+from datetime import date, timedelta
+
+from flask import flash
+from sqlalchemy import and_
+
 from ..models.parking_lot import ParkingLot
+from ..models.car_bay     import CarBay
 from ..models.booking     import Booking
 
 
@@ -56,3 +62,35 @@ def get_times(num_slots=32):
         times.append(time)
 
     return times
+
+
+def get_date(day, month, year):
+    try:
+        return date(year, month, day)
+    except ValueError:
+        flash("Invalid Date Requested")
+        return None
+
+
+def get_bay_bookings(bay_id, view_date):
+    """ return bay, a dict of bay availabilities for the week, end date
+
+    availabilities {day : [TRUE/FALSE] * 32}
+    """
+    bay = CarBay.query.get(bay_id)
+    if bay is None:
+        return (False, False, False)
+    
+    dates = [view_date + timedelta(days=x) for x in range(0, 7)]
+
+    bookings = Booking.query. \
+        filter_by(bay_id=bay.id). \
+        filter(and_(dates[0] <= Booking.date_booked, Booking.date_booked <= dates[-1]))
+   
+    availabilities  = {date : [False] * 32 for date in dates}
+
+    for booking in bookings:
+        for timeslot in range(booking.timeslot_start, booking.timeslot_end+1):
+            availabilities[booking.date_booked][timeslot-1] = True  
+
+    return (bay, availabilities, dates[-1])

@@ -6,11 +6,14 @@
 {% endblock %}
 
 {% block pageBanner %}
-  Bookings - {{ view_date.strftime("%A, %-d %B %Y") }}
+  Bookings - Parking Lots
 {% endblock %}
 
 
 {% block content %}
+
+<h1 class="uwa-heading-large">{{ view_date.strftime("%a, %-d %b %Y") }}</h1>
+
 <div class="row">
   <div class="col-md-12">
 
@@ -59,7 +62,7 @@
                 {% set bay_bookings = lot_bookings[bay.bay_number] %}
                 <tr>
                   <td>
-                    <a class="uwa-link" href="#">
+                    <a class="uwa-link" href="{{ url_for('bookings.bay', bay_id=bay.id) }}">
                       <span class="material-icons md-36">
                         car_repair
                       </span>

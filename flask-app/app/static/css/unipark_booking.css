@@ -286,7 +286,8 @@ body {
   border-width: thick !important;
   border-color: var(--uwa-dark-grey);
   min-width: 70px;
-  max-height: 70px;
+  min-height: 70px;
+  color: var(--uwa-blue);
 }
 
 .timetable {

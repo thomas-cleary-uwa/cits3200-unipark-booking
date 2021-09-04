@@ -1,0 +1,48 @@
+{% extends 'base/base.html' %}
+
+
+{% block title %}
+  Bookings - Parking Lots
+{% endblock %}
+
+{% block pageBanner %}
+  Bookings - Lot {{ bay.lot.lot_number }} Bay {{ bay.bay_number }}
+{% endblock %}
+
+
+{% block content %}
+
+<h1 class="uwa-heading-large">{{ start_date.strftime("%a, %-d %b %Y") }} ... {{ end_date.strftime("%a, %-d %b %Y") }}</h1>
+
+<div class="table-responsive">
+  <table class="table table-bordered timetable">
+    <thead>
+      <th>Date</th>
+      {% for time in times %}
+      <th>{{ time }}</th>
+      {% endfor %}
+    </thead>
+
+    {% for date in availabilities %}
+      {% set timeslots = availabilities[date] %}
+      <tr>
+        <td>
+          {{ date.strftime("%-d %b") }}
+        </td>
+
+        {% for booked in timeslots %}
+          {% if booked %}
+          <td class="timeslot-red">
+          </td>
+          {% else %}
+          <td class="timeslot-green">
+          </td>
+          {% endif %}
+        {% endfor %}
+      </tr>
+
+    {% endfor %}
+  </table>
+</div>
+
+{% endblock %}
