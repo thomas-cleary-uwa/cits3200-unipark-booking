@@ -33,3 +33,30 @@ def get_lot_bookings(parking_lots, date_obj):
 
     return bookings
 
+
+def get_times(num_slots=32):
+    """ return a list of times from 9am-5pm divided by num_slots """
+    hour = 9
+    minutes = 0
+
+    times = []
+
+    for i in range(num_slots):
+        if minutes == 0:
+            minutes = "00"
+        time = str(hour) + ":" + str(minutes)
+        if hour < 12:
+            time += " AM"
+        else:
+            time += " PM"
+
+        minutes = int(minutes)
+
+        minutes += 15
+        if minutes == 60:
+            minutes = 0
+            hour += 1
+
+        times.append(time)
+
+    return times

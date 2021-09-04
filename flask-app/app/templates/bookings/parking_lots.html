@@ -51,8 +51,8 @@
               <thead>
                 <th>Bay Number</th>
                 <th>Google Maps</th>
-                {% for slot in lot_bookings[lot.bays[0].bay_number] %}
-                <th class="timeslot">{{ loop.index }}</th>
+                {% for time in times %}
+                <th>{{ time }}</th>
                 {% endfor %}
               </thead>
               {% for bay in lot.bays %}
