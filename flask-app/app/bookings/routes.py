@@ -3,7 +3,7 @@
 Authors: Thomas Cleary,
 """
 
-from datetime import date
+from datetime import date, timedelta
 
 from flask import render_template, redirect, flash, url_for
 from flask_login import login_required
@@ -35,6 +35,19 @@ def parking_lots(day=date.today().day, month=date.today().month, year=date.today
     )
 
 
+@bookings.route("/parking-lots/next/<direction>/<int:day>/<int:month>/<int:year>")
+@login_required
+def parking_lots_next(direction, day, month, year):
+    direction = int(direction)
+
+    next_date = date(year, month, day) + timedelta(days=direction)
+    return redirect(url_for("bookings.parking_lots",
+        day=next_date.day,
+        month=next_date.month,
+        year=next_date.year
+    ))
+
+
 @bookings.route("/bay/<int:bay_id>/today")
 @bookings.route("/bay/<int:bay_id>/<int:day>/<int:month>/<int:year>")
 @login_required
@@ -53,8 +66,6 @@ def bay(bay_id, day=date.today().day, month=date.today().month, year=date.today(
 
     times = get_times()
 
-    print(availabilities)
-
     return render_template(
         "bookings/bay.html",
         bay=bay,
@@ -63,3 +74,17 @@ def bay(bay_id, day=date.today().day, month=date.today().month, year=date.today(
         start_date=view_date,
         end_date=end_date
     )
+
+
+@bookings.route("/bay/<int:bay_id>/next/<direction>/<int:day>/<int:month>/<int:year>")
+@login_required
+def bay_next(direction, bay_id, day, month, year):
+    direction = int(direction)
+
+    next_date = date(year, month, day) + timedelta(days=direction * 7)
+    return redirect(url_for("bookings.bay",
+        bay_id=bay_id,
+        day=next_date.day,
+        month=next_date.month,
+        year=next_date.year
+    ))
