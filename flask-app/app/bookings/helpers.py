@@ -3,21 +3,17 @@
 Authors: Thomas Cleary,
 """
 
-from datetime import date
-
-from app import db
-
 from ..models.parking_lot import ParkingLot
-from ..models.car_bay     import CarBay
 from ..models.booking     import Booking
 
 
-def get_lot_bookings(parking_lots, date_obj):
+def get_lot_bookings(date_obj):
     """ return a dict with {parkinglot : {carbay : [1,2,3]}}
 
     a dict of dicts, one for each parking lot and one for each bay in the lot,
     the value of the bay key is the timeslots that are booked for the given day
     """
+    parking_lots = ParkingLot.query.all()
 
     bookings = {lot.lot_number : {bay.bay_number : [False] * 32 for bay in lot.bays} for lot in parking_lots}
     
@@ -31,7 +27,7 @@ def get_lot_bookings(parking_lots, date_obj):
                 for timeslot in range(booking.timeslot_start, booking.timeslot_end+1):
                     bookings[lot.lot_number][bay.bay_number][timeslot-1] = True
 
-    return bookings
+    return (parking_lots, bookings)
 
 
 def get_times(num_slots=32):
