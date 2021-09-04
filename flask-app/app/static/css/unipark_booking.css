@@ -31,6 +31,10 @@
   --uwa-yellow : rgb(248, 211, 75);
   --uwa-darker-yellow : rgb(219, 183, 61);
 
+  --uwa-green: rgb(83, 177, 52);
+  --uwa-red: rgb(177, 52, 83);
+
+
   --uwa-form-separator-colour : rgb(219, 219, 219);
 }
 
@@ -200,6 +204,7 @@ body {
   border-radius: 0;
   padding: 0.05em 0.1em, 0.05em 0.1em;
   margin-right: 0.5em;
+
 }
 
 .uwa-submit {
@@ -258,6 +263,50 @@ body {
 /* 
 *** /bookings/parking-lots route **************************************************************
 */
+.timetable th:first-child,
+.timetable td:first-child {
+  position: sticky;
+  border-width: thick !important;
+  left: 0;
+  background-color: var(--uwa-light-grey);
+}
+
+.timetable td:first-child,
+.timetable td:nth-child(2) {
+  padding-right: 0;
+  padding-left: 0;
+  text-align: center !important; 
+}
+
+.timetable td:first-child, .timetable thead th {
+  background-color: var(--uwa-light-grey);
+}
+
+.timetable thead th,
+.timetable td {
+  border-width: thick !important;
+  border-color: var(--uwa-dark-grey);
+  min-width: 70px;
+  min-height: 70px;
+  color: var(--uwa-blue);
+}
+
+.timetable {
+  border-collapse: separate;
+}
+
+.timetable thead > * {
+  color: var(--uwa-blue)
+}
+
+.timeslot-red {
+  background-color: var(--uwa-red);
+}
+
+.timeslot-green {
+  background-color: var(--uwa-green);
+}
+
 #parking-lot-map {
   width : 100%;
   height : auto;

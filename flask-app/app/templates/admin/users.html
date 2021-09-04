@@ -11,8 +11,8 @@
 
 {% block content %}
 
-  <div class="row pb-4">
-    <h1 class="uwa-heading-large">Admin Users</h1>
+  <div class="row pb-4 pl-3 pr-3">
+    <h1 class="uwa-heading-large">Admin</h1>
 
     <table class="table table-hover table-responsive-md">
       <thead>
@@ -50,8 +50,8 @@
     </table>
   </div>
 
-  <div class="row pb-4">
-    <h1 class="uwa-heading-large">Users</h1>
+  <div class="row pb-4 pl-3 pr-3">
+    <h1 class="uwa-heading-large">Active</h1>
 
     <table class="table table-hover table-responsive-md">
       <thead>
@@ -89,8 +89,8 @@
     </table>
   </div>
 
-  <div class="row pb-4">
-    <h1 class="uwa-heading-large">Users (disabled)</h1>
+  <div class="row pb-4 pl-3 pr-3">
+    <h1 class="uwa-heading-large">Disabled</h1>
 
     <table class="table table-hover table-responsive-md">
       <thead>
@@ -128,7 +128,7 @@
     </table>
   </div>
 
-  <div class="row pb-4">
+  <div class="row pb-4 pl-3 pr-3">
 
     <a class="btn uwa-btn" href="{{ url_for('admin.add_user') }}">
       <span class="material-icons md-24">
