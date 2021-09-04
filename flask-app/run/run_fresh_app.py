@@ -150,7 +150,7 @@ def add_user():
         ))
 
 
-def add_user_booking():
+def add_user_bookings(num_bookings):
     """ add a booking for the test user """
 
     with create_app("development").app_context():
@@ -269,7 +269,7 @@ def main():
 
     parser = argparse.ArgumentParser()
     parser.add_argument("-u", "--add-user", help="start with a test user", action="store_true")
-    parser.add_argument("-b", "--booking", help="generate a booking for the test user", action="store_true")
+    parser.add_argument("-b", "--booking", type=int, default=1, help="generate a booking for the test user")
     parser.parse_args()
 
     args = parser.parse_args()
@@ -284,7 +284,7 @@ def main():
     if args.add_user:
         add_user()
         if args.booking:
-            add_user_booking()
+            add_user_bookings(args.booking)
 
     subprocess.run('flask run --host 0.0.0.0'.split(), check=False)
 

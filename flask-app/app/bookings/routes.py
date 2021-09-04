@@ -39,8 +39,12 @@ def parking_lots(day=date.today().day, month=date.today().month, year=date.today
 @login_required
 def parking_lots_next(direction, day, month, year):
     direction = int(direction)
-
     next_date = date(year, month, day) + timedelta(days=direction)
+
+    if next_date < date.today():
+        next_date = date.today()
+        flash("Cannot view historical availabilities")
+
     return redirect(url_for("bookings.parking_lots",
         day=next_date.day,
         month=next_date.month,
@@ -82,6 +86,10 @@ def bay_next(direction, bay_id, day, month, year):
     direction = int(direction)
 
     next_date = date(year, month, day) + timedelta(days=direction * 7)
+    if next_date < date.today():
+        next_date = date.today()
+        flash("Cannot view historical availabilities")
+
     return redirect(url_for("bookings.bay",
         bay_id=bay_id,
         day=next_date.day,
