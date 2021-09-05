@@ -180,7 +180,7 @@ def add_user_bookings(num_bookings):
             end   = random.randint(start, 32)
 
             # get date booked
-            date_booked = date.today() # + timedelta(days=random.randint(0, 6))
+            date_booked = date.today() + timedelta(days=random.randint(0, 6))
 
             booking = tuple([bay_id, tuple([slot for slot in range(start, end+1)]), date_booked.day, date_booked.month, date_booked.year])
             
