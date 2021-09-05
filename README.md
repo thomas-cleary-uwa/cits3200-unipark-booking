@@ -2,6 +2,17 @@
 A car bay booking web application for UWA's UniPark office
 <br>
 
+## Branches
+
+#### main
+- Version of app, fully confident in. (Safe backup)
+
+#### dev
+- Version of app that has been tested / unit tested.
+
+#### dev-untested
+- Version of app with most current features, not all features tested.
+
 **NOTE: DO NOT DIRECTLY MERGE / PUSH TO MAIN OR DEV (PLEASE CREATE A PULL REQUEST)**
 <br><br>
 
