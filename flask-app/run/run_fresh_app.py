@@ -222,7 +222,7 @@ def add_user_bookings(num_bookings):
         db.session.commit()
     
         print("{}- Test user bookings added\nAttempted {} bookings\nBookings Placed: {}\nBookings Rejected: {}\nSuccess Rate: {}%{}\n".format(
-            bColours.OKGREEN, num_bookings, booked, overlaps, round((booked/overlaps) * 100, 1), bColours.ENDC
+            bColours.OKGREEN, num_bookings, booked, overlaps, round((booked/(overlaps + booked)) * 100, 1), bColours.ENDC
         ))
 
 
