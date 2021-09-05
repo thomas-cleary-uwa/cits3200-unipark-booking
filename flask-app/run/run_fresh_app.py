@@ -295,7 +295,7 @@ def main():
 
     parser = argparse.ArgumentParser()
     parser.add_argument("-u", "--add-user", help="start with a test user", action="store_true")
-    parser.add_argument("-b", "--booking", type=int, default=1, help="generate a booking for the test user")
+    parser.add_argument("-b", "--booking", type=int, help="generate a booking for the test user")
     parser.parse_args()
 
     args = parser.parse_args()
