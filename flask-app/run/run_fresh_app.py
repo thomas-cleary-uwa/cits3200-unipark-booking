@@ -175,8 +175,8 @@ def add_user_bookings(num_bookings):
             bay_id = all_bays[choice].id
 
             # get timeslots
-            start = random.randint(1, 31)
-            end   = random.randint(start+1, 32)
+            start = random.randint(1, 32)
+            end   = random.randint(start, 32)
 
             # get date booked
             date_booked = datetime.today() + timedelta(days=random.randint(0, 6))
@@ -185,6 +185,7 @@ def add_user_bookings(num_bookings):
             if booking in bookings_made:
                 continue
             bookings_made.add(booking)
+            booked += 1
 
             new_booking = Booking(
                 booking_code    = booking_code,
@@ -199,7 +200,6 @@ def add_user_bookings(num_bookings):
             )
 
             db.session.add(new_booking)
-            booked += 1
 
         db.session.commit()
     
