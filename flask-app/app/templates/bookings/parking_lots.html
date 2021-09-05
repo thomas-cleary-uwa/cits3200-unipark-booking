@@ -41,7 +41,7 @@
             </a>
       </div>
 
-      <div id="lotMap" class="panel-collapse collapse in" aria-expanded="true">
+      <div id="lotMap" class="panel-collapse collapse" aria-expanded="true">
         <img class="pb-4" id="parking-lot-map" src="{{ url_for('static', filename='media/images/carpark-map.jpg') }}">
       </div>
     
@@ -61,7 +61,7 @@
               </a>
         </div>
 
-        <div id="lot{{ lot.lot_number }}" class="panel-collapse collapse in" aria-expanded="true">
+        <div id="lot{{ lot.lot_number }}" class="panel-collapse collapse show" aria-expanded="true">
           <div class="table-responsive">
             <table class="table table-bordered timetable">
               <thead>
