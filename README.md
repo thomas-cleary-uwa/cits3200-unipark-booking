@@ -12,8 +12,9 @@ A car bay booking web application for UWA's UniPark office
 
 #### dev-untested
 - Version of app with most current features, not all features tested.
+- Pull requests for new features sent to this branch.
 
-**NOTE: DO NOT DIRECTLY MERGE / PUSH TO MAIN OR DEV (PLEASE CREATE A PULL REQUEST)**
+**NOTE: DO NOT DIRECTLY MERGE / PUSH TO ONE OF THESE BRANCHES (PLEASE CREATE A PULL REQUEST)**
 <br><br>
 
 ## Linting
