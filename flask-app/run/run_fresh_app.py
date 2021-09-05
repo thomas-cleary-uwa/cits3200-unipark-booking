@@ -161,8 +161,9 @@ def add_user_bookings(num_bookings):
         bookings_made = set([])
 
         booked = 0
+        overlaps = 0
 
-        while booked < num_bookings:
+        while booked + overlaps < num_bookings:
             datetime_placed = datetime.now()
 
             booking_code = md5((str(datetime_placed) + user_email + str(random.randint(1, 10))).encode()). \
@@ -179,11 +180,28 @@ def add_user_bookings(num_bookings):
             end   = random.randint(start, 32)
 
             # get date booked
-            date_booked = datetime.today() + timedelta(days=random.randint(0, 6))
+            date_booked = date.today() # + timedelta(days=random.randint(0, 6))
 
-            booking = tuple([bay_id, start, end, date_booked.day, date_booked.month, date_booked.year])
+            booking = tuple([bay_id, tuple([slot for slot in range(start, end+1)]), date_booked.day, date_booked.month, date_booked.year])
+            
+            overlap = False
+            # continue if exact booking made
             if booking in bookings_made:
+                overlap = True
+            
+            if not overlap:
+                # continue if booking overlaps with other booking
+                for made in bookings_made:
+                    if bay_id == made[0] and date_booked == date(made[-1], made[-2], made[-3]):
+                        slots = made[1]
+                        if start in slots or end in slots:
+                            overlap = True
+                            continue
+            
+            if overlap:
+                overlaps += 1
                 continue
+
             bookings_made.add(booking)
             booked += 1
 
@@ -203,8 +221,8 @@ def add_user_bookings(num_bookings):
 
         db.session.commit()
     
-        print("{}- Test user bookings added.{}\n".format(
-            bColours.OKGREEN, bColours.ENDC
+        print("{}- Test user bookings added\nAttempted {} bookings\nBookings Placed: {}\nBookings Rejected: {}\nSuccess Rate: {}%{}\n".format(
+            bColours.OKGREEN, num_bookings, booked, overlaps, round((booked/overlaps) * 100, 1), bColours.ENDC
         ))
 
 
