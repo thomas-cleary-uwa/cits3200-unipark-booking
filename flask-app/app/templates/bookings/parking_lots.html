@@ -19,7 +19,7 @@
     </span>
     Prev
   </a>
-  <h1 class="uwa-heading-large pr-5 pl-5">{{ view_date.strftime("%a, %-d %b %Y") }}</h1>
+  <h1 id="date-{{ view_date.day }}/{{ view_date.month }}/{{ view_date.year }}" class="uwa-heading-large pr-5 pl-5">{{ view_date.strftime("%a, %-d %b %Y") }}</h1>
   <a class="btn uwa-btn d-flex align-items-center" href="{{ url_for('bookings.parking_lots_next', direction=1, day=view_date.day, month=view_date.month, year=view_date.year) }}">    Next
     <span class="material-icons md-24">
       skip_next
@@ -73,7 +73,7 @@
               </thead>
               {% for bay in lot.bays %}
                 {% set bay_bookings = lot_bookings[bay.bay_number] %}
-                <tr>
+                <tr id="lot{{ lot.lot_number }}-bay{{ bay.bay_number }}">
                   <td>
                     <a class="uwa-link" href="{{ url_for('bookings.bay', bay_id=bay.id, day=view_date.day, month=view_date.month, year=view_date.year) }}">
                       <span class="material-icons md-36">
@@ -91,10 +91,10 @@
                   </td>
                   {% for booked in bay_bookings %}
                     {% if booked %}
-                    <td class="timeslot-red">
+                    <td id="lot{{ lot.lot_number }}-bay{{ bay.bay_number }}-slot{{ loop.index }}" class="timeslot-red">
                     </td>
                     {% else %}
-                    <td class="timeslot-green">
+                    <td onclick='selectTimeslot("lot{{ lot.lot_number }}-bay{{ bay.bay_number }}-slot{{ loop.index }}")' id="lot{{ lot.lot_number }}-bay{{ bay.bay_number }}-slot{{ loop.index }}"class="timeslot-green">
                     </td>
                     {% endif %}
                   {% endfor %}
@@ -111,4 +111,8 @@
 
 </div>
 
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/onclicks.js') }}"></script>
 {% endblock %}
