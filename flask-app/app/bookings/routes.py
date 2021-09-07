@@ -9,7 +9,11 @@ from flask import render_template, redirect, flash, url_for
 from flask_login import login_required
 
 from . import bookings
-from .helpers import get_lot_bookings, get_times, get_date, get_bay_bookings
+from .forms import ConfirmBookingForm
+from .helpers import (
+    get_lot_bookings, get_times, get_date, get_bay_bookings,
+    is_valid_bay, is_valid_date, attempt_booking
+) 
 
 
 @bookings.route("/parking-lots/<int:day>/<int:month>/<int:year>")
@@ -22,14 +26,14 @@ def parking_lots(day=date.today().day, month=date.today().month, year=date.today
     if view_date is None:
         return redirect(url_for("admin.parking_lots"))
 
-    all_lots, bookings = get_lot_bookings(view_date)
+    all_lots, lot_bookings = get_lot_bookings(view_date)
 
     times = get_times()
 
     return render_template(
         "bookings/parking_lots.html",
         parking_lots=all_lots,
-        bookings=bookings,
+        bookings=lot_bookings,
         times=times,
         view_date=view_date,
     )
@@ -96,3 +100,56 @@ def bay_next(direction, bay_id, day, month, year):
         month=next_date.month,
         year=next_date.year
     ))
+
+
+# this is really long
+# if we implement this as an api endpoint using Javascript requests we do not need such a long URI
+@bookings.route("/confirm/<int:lot_num>/<int:bay_num>/<int:day>/<int:month>/<int:year>/<int:start>/<int:end>", methods=['GET', 'POST'])
+@login_required
+def confirm_booking(lot_num, bay_num, day, month, year, start, end):
+    confirm_form = ConfirmBookingForm()
+
+    valid_bay, bay = is_valid_bay(lot_num, bay_num)
+    if not valid_bay:
+        flash("Booking failed. Bay is invalid.")
+        return redirect(url_for("bookings.parking_lots"))
+
+    valid_date, booking_date = is_valid_date(day, month, year)
+    if not valid_date:
+        flash("Booking failed. Date invalid.")
+        return redirect(url_for("bookings.parking_lots"))
+
+    if confirm_form.validate_on_submit():
+
+        if not confirm_form.ts_and_cs.data:
+            flash("You need to accept the terms and conditions")
+            return redirect(url_for(
+                "bookings.confirm_booking",
+                lot_num=lot_num, bay_num=bay_num,
+                day=day, month=month, year=year, 
+                start=start, end=end
+            ))
+
+        booked = attempt_booking(confirm_form, bay, booking_date, start, end)
+
+        if not booked: 
+            flash("Booking failed. Invalid booking times")
+        else:
+            flash("Booking succeeded")
+
+        return redirect(url_for("bookings.parking_lots"))
+
+    return render_template("bookings/confirm_booking.html", 
+        form=confirm_form,
+        date=booking_date,
+        lot_num=lot_num,
+        bay_num=bay_num,
+        start=start,
+        end=end
+    )
+
+    
+        
+        
+
+        

@@ -1,0 +1,72 @@
+{% extends 'base/base.html' %}
+
+
+{% block title %}
+  Bookings - Confirm Booking
+{% endblock %}
+
+{% block pageBanner %}
+  Confirm Booking
+{% endblock %}
+
+{% block content %}
+
+  <h1 class="uwa-heading-large">
+    Your Booking
+  </h1>
+
+  <p>
+    {{ date.strftime("%a %-d %b %y") }}
+  </p>
+
+  <form action="" method="POST" novalidate>
+    {{ form.hidden_tag() }}
+
+    <div class="form-group">
+      {{ form.title.label() }}<br>
+      {{ form.title() }}<br>
+      {% for error in form.title.errors %}
+        <span style="color:red;">[{{ error }}]</span>
+      {% endfor %}
+    </div>
+
+    <div class="form-group">
+      {{ form.guest_first_name.label }}<br>
+      {{ form.guest_first_name(size=32) }}<br>
+      {% for error in form.guest_first_name.errors %}
+      <span style="color:red;">[{{ error }}]</span>
+      {% endfor %}
+    </div>
+
+    <div class="form-group">
+      {{ form.guest_last_name.label }}<br>
+      {{ form.guest_last_name(size=32) }}<br>
+      {% for error in form.guest_last_name.errors %}
+      <span style="color:red;">[{{ error }}]</span>
+      {% endfor %}
+    </div>
+
+    <div class="form-group">
+      {{ form.vehicle_rego.label }}<br>
+      {{ form.vehicle_rego(size=32) }}<br>
+      {% for error in form.vehicle_rego.errors %}
+      <span style="color:red;">[{{ error }}]</span>
+      {% endfor %}
+    </div>
+
+    <div class="form-group">
+      {{ form.ts_and_cs }} {{ form.ts_and_cs.label }}<br>
+      {% for error in form.ts_and_cs.errors %}
+      <span style="color:red;">[{{ error }}]</span>
+      {% endfor %}
+    </div>
+
+    <button class="btn uwa-btn uwa-heading" type="submit">
+      <span class="material-icons md-24 uwa-heading">
+        check
+      </span>
+      Confirm Booking
+    </button>
+  </form>
+
+{% endblock %}
