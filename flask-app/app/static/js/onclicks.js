@@ -7,5 +7,14 @@ function confirmDelete(toDelete) {
 
 
 function selectTimeslot(cellID) {
-  console.log(cellID)
+  console.log(cellID);
+  clickedCell = document.getElementById(cellID);
+  if (clickedCell.classList.contains("timeslot-green")) {
+    clickedCell.classList.remove("timeslot-green");
+    clickedCell.classList.add("timeslot-yellow");
+  }
+  else {
+    clickedCell.classList.remove("timeslot-yellow");
+    clickedCell.classList.add("timeslot-green");
+  }
 }

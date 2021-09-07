@@ -307,6 +307,10 @@ body {
   background-color: var(--uwa-green);
 }
 
+.timeslot-yellow {
+  background-color: var(--uwa-darker-yellow);
+}
+
 #parking-lot-map {
   width : 100%;
   height : auto;
