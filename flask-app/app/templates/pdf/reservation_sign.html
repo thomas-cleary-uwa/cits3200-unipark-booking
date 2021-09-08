@@ -8,17 +8,17 @@
     <h2 class="uwa-heading-large">RESERVED</h2>
 
     <h2 class="uwa-heading">
-      Lot {{ booking.bay.lot.lot_number }} - Bay {{ booking.bay.bay_number }}
+      Lot {{ lot_num }} - Bay {{ bay_num }}
     </h2>
 
-    <p class="reservation-sign-text">Guest Name: {{ booking.guest_name }}</p>
+    <p class="reservation-sign-text"><span>Guest Name:</span> {{ booking.guest_name }}</p>
 
-    <p class="reservation-sign-text">Date: {{ booking.date_booked.strftime("%a, %-d %b %Y") }}</p>
+    <p class="reservation-sign-text"><span>Date:</span> {{ booking.date_booked.strftime("%a, %-d %b %Y") }}</p>
 
-    <p class="reservation-sign-text">Time: {{ booking.start_time }} - {{ booking.end_time }}</p>
+    <p class="reservation-sign-text"><span>Time:</span> {{ booking.start_time }} - {{ booking.end_time }}</p>
 
     <p class="reservation-sign-text">
-      Registration: 
+      <span>Registration #:</span>
       {% if booking.vehicle_rego %} {{ booking.vehicle_rego }}
       {% else %} NOT GIVEN
       {% endif %}

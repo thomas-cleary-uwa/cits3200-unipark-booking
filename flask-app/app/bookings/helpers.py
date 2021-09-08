@@ -8,8 +8,9 @@ import pdfkit
 
 from datetime import date, datetime, timedelta
 from hashlib import md5
+from threading import Thread
 
-from flask import flash, render_template, url_for
+from flask import flash, render_template, url_for, current_app
 from flask_login import current_user
 from sqlalchemy import and_
 
@@ -180,27 +181,48 @@ def attempt_booking(form, bay, date, start, end):
     db.session.add(new_booking)
     db.session.commit()
 
-    generate_reservation_sign(new_booking)
+    # use seperate thread to generate pdf
+
+    bay = new_booking.bay
+
+    lot_num = bay.lot.lot_number
+    bay_num = bay.bay_number
+    
+    thr = Thread(target=generate_reservation_sign, args=[
+        current_app._get_current_object(),
+        new_booking,
+        bay_num,
+        lot_num
+    ])
+    thr.start()
 
     return True
 
 
-def generate_reservation_sign(booking):
-    html = render_template("pdf/reservation_sign.html", booking=booking)
+def generate_reservation_sign(app, booking, bay_num, lot_num):
+    with app.app_context():
+        html = render_template(
+            "pdf/reservation_sign.html",
+            booking=booking,
+            bay_num=bay_num,
+            lot_num=lot_num
+        )
 
-    options = {
-        "--orientation" : "landscape",
-        "--margin-bottom" : 20,
-        "--margin-left" : 25,
-        "--margin-right" : 30,
-        "--margin-top" : 20
-    }
+        options = {
+            "--orientation" : "landscape",
+            "--margin-bottom" : 20,
+            "--margin-left" : 25,
+            "--margin-right" : 30,
+            "--margin-top" : 20
+        }
 
-    pdfkit.from_string(
-        html,
-        "./app/static/pdf/reservations/{}.pdf".format(booking.booking_code),
-        css="./app/static/css/reservation_sign.css",
-        options=options
-    )
+        pdfkit.from_string(
+            html,
+            "./app/static/pdf/reservations/{}.pdf".format(booking.booking_code),
+            css="./app/static/css/reservation_sign.css",
+            options=options
+        )
+
+
 
     
