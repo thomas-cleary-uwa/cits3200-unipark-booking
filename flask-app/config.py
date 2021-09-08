@@ -47,6 +47,8 @@ class DevelopmentConfig(Config):
 class SetupConfig(DevelopmentConfig):
     """ config used during run_fresh_app """
     WTF_CSRF_ENABLED = False
+    TEST_USER_EMAIL  = os.environ.get('TEST_USER_EMAIL') or "test.user@uwa.edu.au"
+    TEST_USER_PASSWORD = os.environ.get('TEST_USER_PASSWORD') or "user1234"
 
 
 

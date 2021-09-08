@@ -139,12 +139,12 @@ def add_admin():
 
 def add_user():
     """ add a user to the application """
-    app = create_app('development')
+    app = create_app('setup')
 
     with app.app_context():
         new_user = User(
-            email = "test.user@uwa.edu.au",
-            password = "user1234",
+            email = app.config["TEST_USER_EMAIL"],
+            password = app.config["TEST_USER_PASSWORD"],
             first_name = 'test',
             last_name = 'user',
             role_id = Role.query.filter_by(name='user').first().id,
@@ -164,8 +164,8 @@ def add_user_bookings(num_bookings):
     app = create_app("setup")
     with app.app_context():
 
-        user_email = "test.user@uwa.edu.au"
-        user_password = "user1234"
+        user_email = app.config["TEST_USER_EMAIL"]
+        user_password = app.config["TEST_USER_PASSWORD"]
 
         with app.test_client() as test_client:
             # log the admin user in
