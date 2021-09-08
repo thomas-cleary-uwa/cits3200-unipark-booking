@@ -19,6 +19,9 @@ from app import db
 from ..models.parking_lot import ParkingLot
 from ..models.car_bay     import CarBay
 from ..models.booking     import Booking
+from ..models.user        import User
+
+from ..helpers.email import send_email
 
 
 def get_lot_bookings(date_obj):
@@ -192,14 +195,15 @@ def attempt_booking(form, bay, date, start, end):
         current_app._get_current_object(),
         new_booking,
         bay_num,
-        lot_num
+        lot_num,
+        User.query.get(current_user.id)
     ])
     thr.start()
 
     return True
 
 
-def generate_reservation_sign(app, booking, bay_num, lot_num):
+def generate_reservation_sign(app, booking, bay_num, lot_num, user):
     with app.app_context():
         html = render_template(
             "pdf/reservation_sign.html",
@@ -222,6 +226,24 @@ def generate_reservation_sign(app, booking, bay_num, lot_num):
             css="./app/static/css/reservation_sign.css",
             options=options
         )
+
+        attachments = {
+            "application/pdf" : [
+                "static/reservation_signs/{}.pdf".format(booking.booking_code)
+            ]
+        }
+
+        send_email(
+            user.email,
+            'Booking Confirmed',
+            'email/confirm_booking',
+            booking=booking,
+            lot_num=lot_num,
+            bay_num=bay_num,
+            user_first_name=user.first_name,
+            user_last_name=user.last_name,
+            attachments=attachments
+    )
 
 
 
