@@ -17,6 +17,7 @@ lazy-object-proxy==1.6.0
 Mako==1.1.4
 MarkupSafe==2.0.1
 mccabe==0.6.1
+pdfkit==0.6.1
 pylint==2.9.6
 pylint-flask-sqlalchemy==0.2.0
 python-dateutil==2.8.2
