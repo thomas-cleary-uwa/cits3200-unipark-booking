@@ -8,6 +8,10 @@
   src : url("https://static.weboffice.uwa.edu.au/visualid/fonts/source-sans-pro/SourceSansPro-Regular.ttf");
 }
 
+b {
+  color : rgb(42, 53, 134)
+}
+
 .reservation-sign {
   margin: auto;
   width: 50%;

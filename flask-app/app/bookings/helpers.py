@@ -198,7 +198,7 @@ def generate_reservation_sign(booking):
 
     pdfkit.from_string(
         html,
-        "./app/static/pdf/{}.pdf".format(booking.booking_code),
+        "./app/static/pdf/reservations/{}.pdf".format(booking.booking_code),
         css="./app/static/css/reservation_sign.css",
         options=options
     )
