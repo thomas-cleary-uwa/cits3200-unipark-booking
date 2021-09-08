@@ -30,8 +30,7 @@ class ConfirmBookingForm(FlaskForm):
     ])
 
     vehicle_rego = StringField("Vehicle Registration: ", validators=[
-        DataRequired(),
-        Length(1, 16),
+        Length(0, 16),
     ])
 
     ts_and_cs = BooleanField("I have read, and accept the terms and conditions.")

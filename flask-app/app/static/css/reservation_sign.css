@@ -1,0 +1,35 @@
+@font-face {
+  font-family: uwaSlab;
+  src : url("https://static.weboffice.uwa.edu.au/visualid/fonts/uwa/uwa-slab-regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: SourceSansPro;
+  src : url("https://static.weboffice.uwa.edu.au/visualid/fonts/source-sans-pro/SourceSansPro-Regular.ttf");
+}
+
+.reservation-sign {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+}
+
+.uwa-heading-large, .uwa-heading {
+  font-family: uwaSlab, SourceSansPro, Arial, Helvetica, sans-serif;
+  color : rgb(42, 53, 134);
+}
+
+.uwa-heading-large {
+  font-size: 900%;
+}
+
+.uwa-heading {
+ font-size: 500%;
+ padding-top: 0;
+ margin-top: 0;
+}
+
+.reservation-sign-text {
+  font-family: SourceSansPro, Arial, Helvetica, sans-serif;;
+  font-size: 200%;
+}

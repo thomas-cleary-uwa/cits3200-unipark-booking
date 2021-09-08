@@ -22,6 +22,8 @@ class Booking(db.Model):
     date_booked     = db.Column(db.Date, nullable=False)
     timeslot_start  = db.Column(db.Integer, nullable=False)
     timeslot_end    = db.Column(db.Integer, nullable=False)
+    start_time      = db.Column(db.String(16), nullable=False)
+    end_time        = db.Column(db.String(16), nullable=False)
 
     guest_name      = db.Column(db.String(64), nullable=False)
     vehicle_rego    = db.Column(db.String(16), nullable=True)

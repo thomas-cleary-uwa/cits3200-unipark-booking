@@ -4,11 +4,12 @@ Authors: Thomas Cleary,
 """
 
 import random
+import pdfkit
 
 from datetime import date, datetime, timedelta
 from hashlib import md5
 
-from flask import flash
+from flask import flash, render_template, url_for
 from flask_login import current_user
 from sqlalchemy import and_
 
@@ -150,12 +151,16 @@ def attempt_booking(form, bay, date, start, end):
                         hexdigest()[:10]
 
     guest_name = "{} {} {}".format(
-        form.title,
+        form.title.data,
         form.guest_first_name.data.strip().capitalize(),
         form.guest_last_name.data.strip().capitalize()
     )
 
     vehicle_rego = form.vehicle_rego.data.strip().upper()
+
+    times = get_times()
+    start_time = times[start-1]
+    end_time   = times[end-1]
 
 
     new_booking = Booking(
@@ -164,6 +169,8 @@ def attempt_booking(form, bay, date, start, end):
         date_booked     = date,
         timeslot_start  = start,
         timeslot_end    = end,
+        start_time      = start_time,
+        end_time        = end_time,
         guest_name      = guest_name,
         vehicle_rego    = vehicle_rego,
         bay_id          = bay.id,
@@ -173,10 +180,27 @@ def attempt_booking(form, bay, date, start, end):
     db.session.add(new_booking)
     db.session.commit()
 
+    generate_reservation_sign(new_booking)
+
     return True
 
 
+def generate_reservation_sign(booking):
+    html = render_template("pdf/reservation_sign.html", booking=booking)
 
+    options = {
+        "--orientation" : "landscape",
+        "--margin-bottom" : 20,
+        "--margin-left" : 25,
+        "--margin-right" : 30,
+        "--margin-top" : 20
+    }
 
+    pdfkit.from_string(
+        html,
+        "./app/static/pdf/{}.pdf".format(booking.booking_code),
+        css="./app/static/css/reservation_sign.css",
+        options=options
+    )
 
     
