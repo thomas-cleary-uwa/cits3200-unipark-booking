@@ -59,7 +59,7 @@ def make_fresh_db():
     if os.path.exists(db_path):
         os.remove(db_path)
 
-    pdf_path = "./app/static/pdf/reservations/"
+    pdf_path = "./app/static/reservation_signs/"
     if os.path.exists(pdf_path):
         for f in os.listdir(pdf_path):
             if re.search(r'^.*\.pdf$', f):
