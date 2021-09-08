@@ -54,6 +54,10 @@ NOTE: On windows
 
 NOTE: Your system may have pip aliased as something other than `pip`
 
+### 3.b Install wkhtmltopdf
+Install this program to be able to use *pdfkit* to generate reservation signs
+https://wkhtmltopdf.org/
+
 ### 4. Add .env File
 `$ touch .env` - and then edit .env in a text editor (Command only on linux / macOS)<br>
 or<br>
