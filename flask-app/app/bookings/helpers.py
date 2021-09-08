@@ -159,9 +159,9 @@ def attempt_booking(form, bay, date, start, end):
 
     vehicle_rego = form.vehicle_rego.data.strip().upper()
 
-    times = get_times()
+    times = get_times(num_slots=33)
     start_time = times[start-1]
-    end_time   = times[end-1]
+    end_time   = times[end]
 
 
     new_booking = Booking(

@@ -44,6 +44,11 @@ class DevelopmentConfig(Config):
                               'sqlite:///' + os.path.join(basedir, 'db-dev.sqlite')
 
 
+class SetupConfig(DevelopmentConfig):
+    """ config used during run_fresh_app """
+    WTF_CSRF_ENABLED = False
+
+
 
 class TestingConfig(Config):
     """ Configuration to be used when testing the application """
@@ -73,6 +78,7 @@ configs = {
     'development': DevelopmentConfig,
     'testing'    : TestingConfig,
     'production' : ProductionConfig,
+    'setup'      : SetupConfig,
 
     'default'    : DevelopmentConfig
 }

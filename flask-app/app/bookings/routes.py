@@ -120,7 +120,6 @@ def confirm_booking(lot_num, bay_num, day, month, year, start, end):
         return redirect(url_for("bookings.parking_lots"))
 
     if confirm_form.validate_on_submit():
-
         if not confirm_form.ts_and_cs.data:
             flash("You need to accept the terms and conditions")
             return redirect(url_for(
