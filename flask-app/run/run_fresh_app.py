@@ -145,8 +145,8 @@ def add_user():
         new_user = User(
             email = app.config["TEST_USER_EMAIL"],
             password = app.config["TEST_USER_PASSWORD"],
-            first_name = 'test',
-            last_name = 'user',
+            first_name = 'Test',
+            last_name = 'User',
             role_id = Role.query.filter_by(name='user').first().id,
             department_id = Department.query.all()[0].id
         )
