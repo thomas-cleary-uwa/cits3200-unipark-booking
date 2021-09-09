@@ -5,7 +5,7 @@ Authors: Thomas Cleary,
 
 from datetime import date, timedelta
 
-from flask import render_template, redirect, flash, url_for
+from flask import render_template, redirect, flash, url_for, request
 from flask_login import login_required
 
 from . import bookings
@@ -104,10 +104,23 @@ def bay_next(direction, bay_id, day, month, year):
 
 # this is really long
 # if we implement this as an api endpoint using Javascript requests we do not need such a long URI
-@bookings.route("/confirm/<int:lot_num>/<int:bay_num>/<int:day>/<int:month>/<int:year>/<int:start>/<int:end>", methods=['GET', 'POST'])
+@bookings.route("/confirm", methods=['GET', 'POST'])
 @login_required
-def confirm_booking(lot_num, bay_num, day, month, year, start, end):
+def confirm_booking():
     confirm_form = ConfirmBookingForm()
+
+    try:
+        lot_num = int(request.args['lot_num'])
+        bay_num = int(request.args['bay_num'])
+        day     = int(request.args['day'])
+        month   = int(request.args['month'])
+        year    = int(request.args['year'])
+        start   = int(request.args['start'])
+        end     = int(request.args['end'])
+
+    except ValueError:
+        flash("Booking failed. Invalid booking request.")
+        return redirect(url_for("bookings.parking_lots"))
 
     valid_bay, bay = is_valid_bay(lot_num, bay_num)
     if not valid_bay:
