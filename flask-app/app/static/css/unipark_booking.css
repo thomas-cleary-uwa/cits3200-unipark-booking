@@ -64,6 +64,12 @@
   vertical-align: middle;
 }
 
+/*
+*** General Classes **********************************************************
+*/
+.hidden {
+  visibility: hidden;
+}
 
 
 /*

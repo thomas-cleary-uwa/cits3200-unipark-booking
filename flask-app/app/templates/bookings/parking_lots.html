@@ -10,7 +10,7 @@
   <span id="selected-booking">
     None Selected
   </span>
-  <a class="btn uwa-btn" href="#">
+  <a class="btn uwa-btn hidden" id="confirm-button" href="#">
     <span class="material-icons md-24">
       check
     </span>
@@ -100,10 +100,10 @@
                     </td>
                     {% for booked in bay_bookings %}
                       {% if booked %}
-                      <td id="lot{{ lot.lot_number }}-bay{{ bay.bay_number }}-slot{{ loop.index }}" class="timeslot-red">
+                      <td id="lot{{ lot.lot_number }}-bay{{ bay.bay_number }}-slot{{ loop.index }}" class="timeslot-red timeslot">
                       </td>
                       {% else %}
-                      <td onclick='selectTimeslot("lot{{ lot.lot_number }}-bay{{ bay.bay_number }}-slot{{ loop.index }}")' id="lot{{ lot.lot_number }}-bay{{ bay.bay_number }}-slot{{ loop.index }}"class="timeslot-green">
+                      <td onclick='selectTimeslot("lot{{ lot.lot_number }}-bay{{ bay.bay_number }}-slot{{ loop.index }}")' id="lot{{ lot.lot_number }}-bay{{ bay.bay_number }}-slot{{ loop.index }}"class="timeslot-green timeslot">
                       </td>
                       {% endif %}
                     {% endfor %}
@@ -124,5 +124,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script type="text/javascript" src="{{ url_for('static', filename='js/onclicks.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/booking.js') }}"></script>
 {% endblock %}
