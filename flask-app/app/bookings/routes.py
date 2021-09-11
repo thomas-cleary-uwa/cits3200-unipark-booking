@@ -165,9 +165,4 @@ def confirm_booking():
         end=end,
         end_time=end_time
     )
-
-    
-        
-        
-
         

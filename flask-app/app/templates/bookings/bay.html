@@ -6,7 +6,16 @@
 {% endblock %}
 
 {% block pageBanner %}
-  Bookings - Lot {{ bay.lot.lot_number }} Bay {{ bay.bay_number }}
+  Booking: Lot {{ bay.lot.lot_number }} Bay {{ bay.bay_number }} -
+  <span id="selected-booking">
+    No Booking Selected
+  </span>
+  <a class="btn uwa-btn hidden" id="confirm-button" href="#">
+    <span class="material-icons md-24">
+      check
+    </span>
+    Confirm
+  </a>
 {% endblock %}
 
 
@@ -28,7 +37,7 @@
 </div>
 
 <div class="table-responsive">
-  <table class="table table-bordered timetable">
+  <table id="lot{{ bay.lot.lot_number }}-bay{{ bay.bay_number }}" class="table table-bordered timetable">
     <thead>
       <th>Date</th>
       {% for time in times %}
@@ -38,7 +47,7 @@
 
     {% for date in availabilities %}
       {% set timeslots = availabilities[date] %}
-      <tr>
+      <tr id="date-{{ date.day }}/{{ date.month }}/{{ date.year }}">
         <td>
           {{ date.strftime("%-d %b") }}
         </td>
@@ -48,7 +57,7 @@
           <td class="timeslot-red">
           </td>
           {% else %}
-          <td class="timeslot-green">
+          <td onclick='selectTimeslot(this.id);' class="timeslot-green timeslot" id="{{ date.day }}/{{ date.month }}/{{ date.year }}-slot{{ loop.index }}">
           </td>
           {% endif %}
         {% endfor %}
@@ -58,4 +67,8 @@
   </table>
 </div>
 
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/bookingBay.js') }}"></script>
 {% endblock %}

@@ -109,9 +109,11 @@ def get_bay_bookings(bay_id, view_date):
 
 def is_valid_bay(lot_num, bay_num):
     lot = ParkingLot.query.filter_by(lot_number=lot_num).first()
-    bay = CarBay.query.filter_by(bay_number=bay_num, parking_lot_id=lot.id).first()
+    if lot is None:
+        return (False, None)
 
-    if lot is None or bay is None:
+    bay = CarBay.query.filter_by(bay_number=bay_num, parking_lot_id=lot.id).first()
+    if bay is None:
         return (False, None)
     
     return (True, bay)

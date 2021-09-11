@@ -103,7 +103,7 @@
                       <td id="lot{{ lot.lot_number }}-bay{{ bay.bay_number }}-slot{{ loop.index }}" class="timeslot-red timeslot">
                       </td>
                       {% else %}
-                      <td onclick='selectTimeslot("lot{{ lot.lot_number }}-bay{{ bay.bay_number }}-slot{{ loop.index }}")' id="lot{{ lot.lot_number }}-bay{{ bay.bay_number }}-slot{{ loop.index }}"class="timeslot-green timeslot">
+                      <td onclick='selectTimeslot(this.id);' id="lot{{ lot.lot_number }}-bay{{ bay.bay_number }}-slot{{ loop.index }}"class="timeslot-green timeslot">
                       </td>
                       {% endif %}
                     {% endfor %}
@@ -124,5 +124,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script type="text/javascript" src="{{ url_for('static', filename='js/booking.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/bookingLot.js') }}"></script>
 {% endblock %}
