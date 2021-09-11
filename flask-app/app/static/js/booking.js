@@ -32,6 +32,8 @@ function selectTimeslot(cellID) {
   else {
     updateClickedRow(clickedCell);
   }
+
+  updatePageBanner(clickedCell);
 }
 
 
@@ -133,4 +135,33 @@ function updateClickedRow(clickedCell) {
   }
   turnCellOff(clickedCell);
 
+}
+
+
+function updatePageBanner(clickedCell) {
+  let clickedRow = clickedCell.parentElement;
+
+  let confirmBookingBtn = document.getElementById("confirm-button");
+  let isTimeslotOn = checkTimeSlots()
+
+  if (isTimeslotOn) {
+    confirmBookingBtn.style.visibility = "visible";
+  }
+  else {
+    confirmBookingBtn.style.visibility = "hidden";
+  }
+}
+
+
+function checkTimeSlots() {
+  let timetables = document.getElementsByClassName("timetable");
+
+  for (let table of timetables) {
+    for (let cell of table.getElementsByTagName("td")) {
+      if (cell.classList.contains("timeslot-yellow")) {
+        return true;
+      }
+    }
+  }
+  return false;
 }
