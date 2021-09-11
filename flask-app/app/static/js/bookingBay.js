@@ -3,6 +3,36 @@
 Authors: Thomas Cleary,
 */
 
+function addBuffers() {
+  let timetables = document.getElementsByClassName("timetable");
+
+  for (let table of timetables) {
+    let rows = table.getElementsByTagName('tr');
+    for (let row of rows) {
+      let cells = row.getElementsByClassName("timeslot");
+      for (let i = 0; i < cells.length; i++) {
+        let cell = cells[i];
+        if (cell.classList.contains("timeslot-green")) {
+          if (i > 0) {
+            if (cells[i-1].classList.contains("timeslot-red")) {
+              cell.classList.remove("timeslot-green");
+              cell.classList.add("timeslot-orange");
+            }
+          }
+          if (i < cells.length-1) {
+            console.log(cells[i+1].id);
+            if (cells[i+1].classList.contains("timeslot-red")) {
+              cell.classList.remove("timeslot-green");
+              cell.classList.add("timeslot-orange");
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
 function turnCellOn(cell) {
   cell.classList.remove("timeslot-green");
   cell.classList.add("timeslot-yellow");
