@@ -194,10 +194,8 @@ def add_user_bookings(num_bookings):
                 date_booked = date.today() + timedelta(days=random.randint(0, 6))
 
                 test_client.post(
-                    "bookings/confirm/{}/{}/{}/{}/{}/{}/{}".format(
-                        lot_num, bay_num, 
-                        date_booked.day, date_booked.month, date_booked.year,
-                        start, end
+                    "bookings/confirm?lot_num={}&bay_num={}&day={}&month={}&year={}&start={}&end={}&no_email=True".format(
+                        lot_num, bay_num, date_booked.day, date_booked.month, date_booked.year, start, end
                     ),
                     data=dict(
                         title="Mr.",

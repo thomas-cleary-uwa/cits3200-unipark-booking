@@ -118,9 +118,19 @@ def confirm_booking():
         start   = int(request.args['start'])
         end     = int(request.args['end'])
 
-    except ValueError:
+    except ValueError as error:
         flash("Booking failed. Invalid booking request.")
         return redirect(url_for("bookings.parking_lots"))
+    except KeyError as error:
+        flash("Invalid booking url.")
+        return redirect(url_for("bookings.parking_lot"))
+
+    
+    # for setting up fresh app and adding in fake bookings
+    try:
+        no_email = bool(request.args['no_email'])
+    except (KeyError, ValueError) as error:
+        no_email = False
 
     valid_bay, bay = is_valid_bay(lot_num, bay_num)
     if not valid_bay:
@@ -142,7 +152,7 @@ def confirm_booking():
                 start=start, end=end
             ))
 
-        booked = attempt_booking(confirm_form, bay, booking_date, start, end)
+        booked = attempt_booking(confirm_form, bay, booking_date, start, end, no_email)
 
         if not booked: 
             flash("Booking failed. Invalid booking times")

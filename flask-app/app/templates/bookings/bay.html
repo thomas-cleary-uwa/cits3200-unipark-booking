@@ -54,7 +54,7 @@
 
         {% for booked in timeslots %}
           {% if booked %}
-          <td class="timeslot-red">
+          <td class="timeslot-red timeslot">
           </td>
           {% else %}
           <td onclick='selectTimeslot(this.id);' class="timeslot-green timeslot" id="{{ date.day }}/{{ date.month }}/{{ date.year }}-slot{{ loop.index }}">
@@ -71,4 +71,8 @@
 
 {% block scripts %}
 <script type="text/javascript" src="{{ url_for('static', filename='js/bookingBay.js') }}"></script>
+
+<script type="text/javascript">
+  window.onload = addBuffers;
+</script>
 {% endblock %}

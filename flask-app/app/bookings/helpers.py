@@ -126,7 +126,7 @@ def is_valid_date(day, month, year):
         return (False, None)
 
 
-def attempt_booking(form, bay, date, start, end):
+def attempt_booking(form, bay, date, start, end, no_email=False):
     # get all bookings for the bay with bay_num in lot with lot_num on date
     current_bookings = Booking.query.filter_by(
         date_booked=date, bay_id=bay.id
@@ -186,21 +186,21 @@ def attempt_booking(form, bay, date, start, end):
     db.session.add(new_booking)
     db.session.commit()
 
-    # use seperate thread to generate pdf
+    if not no_email:
+        # use seperate thread to generate pdf
+        bay = new_booking.bay
 
-    bay = new_booking.bay
-
-    lot_num = bay.lot.lot_number
-    bay_num = bay.bay_number
-    
-    thr = Thread(target=generate_reservation_sign, args=[
-        current_app._get_current_object(),
-        new_booking,
-        bay_num,
-        lot_num,
-        User.query.get(current_user.id)
-    ])
-    thr.start()
+        lot_num = bay.lot.lot_number
+        bay_num = bay.bay_number
+        
+        thr = Thread(target=generate_reservation_sign, args=[
+            current_app._get_current_object(),
+            new_booking,
+            bay_num,
+            lot_num,
+            User.query.get(current_user.id)
+        ])
+        thr.start()
 
     return True
 
