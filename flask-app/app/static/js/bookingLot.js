@@ -20,7 +20,6 @@ function addBuffers() {
             }
           }
           if (i < cells.length-1) {
-            console.log(cells[i+1].id);
             if (cells[i+1].classList.contains("timeslot-red")) {
               cell.classList.remove("timeslot-green");
               cell.classList.add("timeslot-orange");
