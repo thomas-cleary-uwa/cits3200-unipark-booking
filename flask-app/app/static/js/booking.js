@@ -216,7 +216,7 @@ function getBookingTitle(queryArgs) {
 
   // change timeslots to actual time
   params[5] = getTime(params[5]);
-  params[6] = getTime(params[6]);
+  params[6] = getTime(parseInt(params[6]) + 1);
 
   return formatString(titleTemplate, params);
 }
@@ -231,14 +231,14 @@ function formatString(str, params) {
 
 
 function getTime(timeslot) {
-  let times = getTimes(32);
-  return times[timeslot-1];
+  let times = getTimes(34);
+  return times[timeslot];
 }
 
 
 function getTimes(numSlots) {
-  let hour = 9;
-  let minutes = 15;
+  let hour = 8;
+  let minutes = 45;
 
   let times = [];
 
