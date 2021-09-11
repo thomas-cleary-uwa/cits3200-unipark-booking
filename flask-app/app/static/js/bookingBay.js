@@ -20,7 +20,6 @@ function addBuffers() {
             }
           }
           if (i < cells.length-1) {
-            console.log(cells[i+1].id);
             if (cells[i+1].classList.contains("timeslot-red")) {
               cell.classList.remove("timeslot-green");
               cell.classList.add("timeslot-orange");
@@ -51,7 +50,6 @@ function isCellOn(cell) {
 
 
 function selectTimeslot(cellID) {
-  console.log(cellID);
   let clickedCell = document.getElementById(cellID);
 
   // turn the cell on
@@ -187,7 +185,6 @@ function updatePageBanner(clickedCell) {
     confirmBookingBtn.style.visibility = "visible";
   }
   else {
-    console.log("no selection");
     bookingTitleSpan.innerHTML = "No Booking Selected";
     confirmBookingBtn.style.visibility = "hidden";
   }
@@ -213,7 +210,6 @@ function getQueryArgs(clickedRow, onCells) {
   let bayNum = bayInfo.id.split("-")[1].replace(/^\D+/g, '');
 
   let date = clickedRow.id.split("-")[1].split("/");
-  console.log(onCells[0].id);
   let start = onCells[0].id.split("-")[1].replace(/^\D+/g, '');
   let end   = onCells[onCells.length-1].id.split("-")[1].replace(/^\D+/g, '');
 
