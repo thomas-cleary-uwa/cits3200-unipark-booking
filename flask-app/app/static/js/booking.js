@@ -141,27 +141,130 @@ function updateClickedRow(clickedCell) {
 function updatePageBanner(clickedCell) {
   let clickedRow = clickedCell.parentElement;
 
+  let bookingTitleSpan = document.getElementById("selected-booking");
   let confirmBookingBtn = document.getElementById("confirm-button");
-  let isTimeslotOn = checkTimeSlots()
+  let onCells = getOnCells(clickedRow);
 
-  if (isTimeslotOn) {
+  if (onCells.length > 0) {
+    let queryArgs = getQueryArgs(clickedRow, onCells);
+    let confirmURL = buildConfirmURL(queryArgs);
+    let bookingTitle = getBookingTitle(queryArgs);
+
+    bookingTitleSpan.innerHTML = bookingTitle;
+    confirmBookingBtn.href = confirmURL;
+
     confirmBookingBtn.style.visibility = "visible";
   }
   else {
+    bookingTitleSpan.innerHTML = "No Booking Selected";
     confirmBookingBtn.style.visibility = "hidden";
   }
 }
 
 
-function checkTimeSlots() {
-  let timetables = document.getElementsByClassName("timetable");
+function getOnCells(clickedRow) {
+  let cells = clickedRow.getElementsByClassName("timeslot");
 
-  for (let table of timetables) {
-    for (let cell of table.getElementsByTagName("td")) {
-      if (cell.classList.contains("timeslot-yellow")) {
-        return true;
-      }
+  let onCells = [];
+  for (let cell of cells) {
+    if (cell.classList.contains("timeslot-yellow")) {
+      onCells.push(cell);
     }
   }
-  return false;
+  return onCells;
+}
+
+
+function getQueryArgs(clickedRow, onCells) {
+  let bayInfo = clickedRow.id.split("-");
+  let lotNum = bayInfo[0].replace( /^\D+/g, '');
+  let bayNum = bayInfo[1].replace( /^\D+/g, '');
+
+  let date = document.querySelector('[id^="date-"]').id.split("-")[1].split("/");
+
+  let start = onCells[0].id.split("-")[2].replace(/^\D+/g, '');
+  let end   = onCells[onCells.length-1].id.split("-")[2].replace(/^\D+/g, '');
+
+  return {
+    "lot_num" : lotNum,
+    "bay_num" : bayNum,
+    "day"    : date[0],
+    "month"  : date[1],
+    "year"   : date[2],
+    "start"  : start,
+    "end"    : end
+  };
+}
+
+
+function buildConfirmURL(queryArgs) {
+  let url = new URL("/bookings/confirm", document.location);
+  for (let key in queryArgs) {
+    url.searchParams.append(key, queryArgs[key]);
+  }
+  return url.toString();
+}
+
+
+function getBookingTitle(queryArgs) {
+  let titleTemplate = "Lot {0} Bay {1}  -  {2}/{3}/{4}  -  {5} to {6}  ";
+
+  let params = [];
+  for (key in queryArgs) {
+    params.push(queryArgs[key]);
+  }
+
+  // change timeslots to actual time
+  params[5] = getTime(params[5]);
+  params[6] = getTime(params[6]);
+
+  return formatString(titleTemplate, params);
+}
+
+function formatString(str, params) {
+  for (let i = 0; i < params.length; i++) {
+      var reg = new RegExp("\\{" + i + "\\}", "gm");
+      str = str.replace(reg, params[i]);
+  }
+  return str;
+}
+
+
+function getTime(timeslot) {
+  let times = getTimes(32);
+  return times[timeslot-1];
+}
+
+
+function getTimes(numSlots) {
+  let hour = 9;
+  let minutes = 15;
+
+  let times = [];
+
+  for (let i = 0; i < numSlots; i++) {
+    if (minutes === 0) {
+      minutes = "00";
+    }
+
+    let time = hour + ":" + minutes;
+    
+    if (hour < 12) {
+      time += " AM";
+    }
+    else {
+      time += " PM";
+    }
+
+    minutes = parseInt(minutes);
+    minutes += 15;
+    if (minutes === 60) {
+      minutes = 0;
+      hour += 1;
+    }
+
+    times.push(time);
+  }
+
+  return times;
 }
