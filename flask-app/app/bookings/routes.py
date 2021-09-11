@@ -151,13 +151,19 @@ def confirm_booking():
 
         return redirect(url_for("bookings.parking_lots"))
 
+    times = get_times(num_slots=33)
+    start_time = times[start-1]
+    end_time   = times[end]
+
     return render_template("bookings/confirm_booking.html", 
         form=confirm_form,
         date=booking_date,
         lot_num=lot_num,
         bay_num=bay_num,
         start=start,
-        end=end
+        start_time=start_time,
+        end=end,
+        end_time=end_time
     )
 
     
