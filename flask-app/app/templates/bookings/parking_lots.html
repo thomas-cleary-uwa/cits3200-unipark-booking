@@ -6,110 +6,120 @@
 {% endblock %}
 
 {% block pageBanner %}
-  Bookings - Parking Lots
+  Booking -       
+  <span id="selected-booking">
+    None Selected
+  </span>
+  <a class="btn uwa-btn" href="#">
+    <span class="material-icons md-24">
+      check
+    </span>
+    Confirm
+  </a>
 {% endblock %}
 
 
 {% block content %}
 
-<div class="row pb-4 justify-content-center">
-  <a class="btn uwa-btn d-flex align-items-center" href="{{ url_for('bookings.parking_lots_next', direction=-1, day=view_date.day, month=view_date.month, year=view_date.year) }}">
-    <span class="material-icons md-24">
-      skip_previous
-    </span>
-    Prev
-  </a>
-  <h1 id="date-{{ view_date.day }}/{{ view_date.month }}/{{ view_date.year }}" class="uwa-heading-large pr-5 pl-5">{{ view_date.strftime("%a, %-d %b %Y") }}</h1>
-  <a class="btn uwa-btn d-flex align-items-center" href="{{ url_for('bookings.parking_lots_next', direction=1, day=view_date.day, month=view_date.month, year=view_date.year) }}">    Next
-    <span class="material-icons md-24">
-      skip_next
-    </span>
-  </a>
-</div>
+  <div class="row pb-4 justify-content-center">
+    <a class="btn uwa-btn d-flex align-items-center" href="{{ url_for('bookings.parking_lots_next', direction=-1, day=view_date.day, month=view_date.month, year=view_date.year) }}">
+      <span class="material-icons md-24">
+        skip_previous
+      </span>
+      Prev
+    </a>
+    <h1 id="date-{{ view_date.day }}/{{ view_date.month }}/{{ view_date.year }}" class="uwa-heading-large pr-5 pl-5">{{ view_date.strftime("%a, %-d %b %Y") }}</h1>
+    <a class="btn uwa-btn d-flex align-items-center" href="{{ url_for('bookings.parking_lots_next', direction=1, day=view_date.day, month=view_date.month, year=view_date.year) }}">    Next
+      <span class="material-icons md-24">
+        skip_next
+      </span>
+    </a>
+  </div>
 
-<div class="row">
-  <div class="col-md-12">
+  <div class="row">
+    <div class="col-md-12">
 
-    <div class="panel panel-default">
-
-      <div class="panel-heading uwa-dark-panel mb-1">
-            <a class="uwa-link uwa-heading" href="#" data-toggle="collapse" data-target="#lotMap" aria-expanded="true" class="">
-              <span class="material-icons md-36">
-                map
-              </span>
-              Map (Available Parking Lots)
-            </a>
-      </div>
-
-      <div id="lotMap" class="panel-collapse collapse" aria-expanded="true">
-        <img class="pb-4" id="parking-lot-map" src="{{ url_for('static', filename='media/images/carpark-map.jpg') }}">
-      </div>
-    
-    </div>
-
-  
-    {% for lot in parking_lots %}
-      {% set lot_bookings = bookings[lot.lot_number] %}
       <div class="panel panel-default">
 
         <div class="panel-heading uwa-dark-panel mb-1">
-              <a class="uwa-link uwa-heading" href="#" data-toggle="collapse" data-target="#lot{{ lot.lot_number }}" aria-expanded="true" class="">
+              <a class="uwa-link uwa-heading" href="#" data-toggle="collapse" data-target="#lotMap" aria-expanded="true" class="">
                 <span class="material-icons md-36">
-                  local_parking
+                  map
                 </span>
-                Lot {{ lot.lot_number }}
+                Map (Available Parking Lots)
               </a>
         </div>
 
-        <div id="lot{{ lot.lot_number }}" class="panel-collapse collapse show" aria-expanded="true">
-          <div class="table-responsive">
-            <table class="table table-bordered timetable">
-              <thead>
-                <th>Bay Number</th>
-                <th>Google Maps</th>
-                {% for time in times %}
-                <th>{{ time }}</th>
-                {% endfor %}
-              </thead>
-              {% for bay in lot.bays %}
-                {% set bay_bookings = lot_bookings[bay.bay_number] %}
-                <tr id="lot{{ lot.lot_number }}-bay{{ bay.bay_number }}">
-                  <td>
-                    <a class="uwa-link" href="{{ url_for('bookings.bay', bay_id=bay.id, day=view_date.day, month=view_date.month, year=view_date.year) }}">
-                      <span class="material-icons md-36">
-                        car_repair
-                      </span>
-                      {{ bay.bay_number }}
-                    </a>
-                  </td>
-                  <td>
-                    <a class="uwa-link" target="_blank" href="https://maps.google.com/?q={{ bay.latitude }},{{ bay.longitude }}">
-                      <span class="material-icons md-24 uwa-link">
-                        place
-                      </span>
-                    </a>
-                  </td>
-                  {% for booked in bay_bookings %}
-                    {% if booked %}
-                    <td id="lot{{ lot.lot_number }}-bay{{ bay.bay_number }}-slot{{ loop.index }}" class="timeslot-red">
-                    </td>
-                    {% else %}
-                    <td onclick='selectTimeslot("lot{{ lot.lot_number }}-bay{{ bay.bay_number }}-slot{{ loop.index }}")' id="lot{{ lot.lot_number }}-bay{{ bay.bay_number }}-slot{{ loop.index }}"class="timeslot-green">
-                    </td>
-                    {% endif %}
-                  {% endfor %}
-                </tr>
-              {% endfor %}
-            </table>
-          </div>
+        <div id="lotMap" class="panel-collapse collapse" aria-expanded="true">
+          <img class="pb-4" id="parking-lot-map" src="{{ url_for('static', filename='media/images/carpark-map.jpg') }}">
         </div>
-        
+      
       </div>
-    {% endfor %}
+
+    
+      {% for lot in parking_lots %}
+        {% set lot_bookings = bookings[lot.lot_number] %}
+        <div class="panel panel-default">
+
+          <div class="panel-heading uwa-dark-panel mb-1">
+                <a class="uwa-link uwa-heading" href="#" data-toggle="collapse" data-target="#lot{{ lot.lot_number }}" aria-expanded="true" class="">
+                  <span class="material-icons md-36">
+                    local_parking
+                  </span>
+                  Lot {{ lot.lot_number }}
+                </a>
+          </div>
+
+          <div id="lot{{ lot.lot_number }}" class="panel-collapse collapse show" aria-expanded="true">
+            <div class="table-responsive">
+              <table class="table table-bordered timetable">
+                <thead>
+                  <th>Bay Number</th>
+                  <th>Google Maps</th>
+                  {% for time in times %}
+                  <th>{{ time }}</th>
+                  {% endfor %}
+                </thead>
+                {% for bay in lot.bays %}
+                  {% set bay_bookings = lot_bookings[bay.bay_number] %}
+                  <tr id="lot{{ lot.lot_number }}-bay{{ bay.bay_number }}">
+                    <td>
+                      <a class="uwa-link" href="{{ url_for('bookings.bay', bay_id=bay.id, day=view_date.day, month=view_date.month, year=view_date.year) }}">
+                        <span class="material-icons md-36">
+                          car_repair
+                        </span>
+                        {{ bay.bay_number }}
+                      </a>
+                    </td>
+                    <td>
+                      <a class="uwa-link" target="_blank" href="https://maps.google.com/?q={{ bay.latitude }},{{ bay.longitude }}">
+                        <span class="material-icons md-24 uwa-link">
+                          place
+                        </span>
+                      </a>
+                    </td>
+                    {% for booked in bay_bookings %}
+                      {% if booked %}
+                      <td id="lot{{ lot.lot_number }}-bay{{ bay.bay_number }}-slot{{ loop.index }}" class="timeslot-red">
+                      </td>
+                      {% else %}
+                      <td onclick='selectTimeslot("lot{{ lot.lot_number }}-bay{{ bay.bay_number }}-slot{{ loop.index }}")' id="lot{{ lot.lot_number }}-bay{{ bay.bay_number }}-slot{{ loop.index }}"class="timeslot-green">
+                      </td>
+                      {% endif %}
+                    {% endfor %}
+                  </tr>
+                {% endfor %}
+              </table>
+            </div>
+          </div>
+          
+        </div>
+      {% endfor %}
+
+    </div>
 
   </div>
 
-</div>
 
 {% endblock %}
 

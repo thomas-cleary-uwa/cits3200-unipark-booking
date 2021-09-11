@@ -92,6 +92,7 @@ body {
   font-size: 0.75em;
   background-color: var(--uwa-light-grey);
   border-color: var(--uwa-yellow);
+  z-index: 2;
 }
 
 .dropdown-menu .dropdown-item {
@@ -145,6 +146,7 @@ body {
 #page-banner {
   padding : 1em 1em 1em 1em;
   font-family: uwaSlab;
+  z-index: 1;
 }
 
 #uwa-flash-msg {
