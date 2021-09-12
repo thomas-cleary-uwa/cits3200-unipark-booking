@@ -10,59 +10,135 @@
 {% endblock %}
 
 {% block content %}
-  <h1 class="uwa-heading-large">
-    {{ editing_user.first_name }} {{ editing_user.last_name }}
-  </h1>
 
-  <form action="" method="POST" novalidate>
-    {{ edit_user_form.hidden_tag() }}
+<div class="row justify-content-center">
+  <div class="col-md-8 uwa-light-panel mb-5" id="login-form">
 
-    <div class="form-group">
-      {{ edit_user_form.email.label() }}<br>
-      {{ edit_user_form.email(size=32) }}<br>
-      {% for error in edit_user_form.email.errors %}
-        <span style="color:red;">[{{ error }}]</span>
-      {% endfor %}
+    <div class="row uwa-dark-panel">
+      <div class="col-md-4">
+        <p class="panel-banner uwa-heading">
+          Edit User
+        </p>
+      </div>
+      <div class="col-md-8">
+        <p class="panel-banner uwa-heading">{{ editing_user.first_name }} {{ editing_user.last_name }} - {{ editing_user.email }}</p>
+      </div>
     </div>
 
-    <div class="form-group">
-      {{ edit_user_form.first_name.label() }}<br>
-      {{ edit_user_form.first_name(size=32) }}<br>
-      {% for error in edit_user_form.first_name.errors %}
-        <span style="color:red;">[{{ error }}]</span>
-      {% endfor %}
-    </div>
+    <form action="" method="POST" novalidate>
+      {{ edit_user_form.hidden_tag() }}
 
-    <div class="form-group">
-      {{ edit_user_form.last_name.label() }}<br>
-      {{ edit_user_form.last_name(size=32) }}<br>
-      {% for error in edit_user_form.last_name.errors %}
-        <span style="color:red;">[{{ error }}]</span>
-      {% endfor %}
-    </div>
+      <div class="form-group">
+        <div class="row login-visible">
+          <div class="col-md-4">
+            {{ edit_user_form.email.label() }}<br>
+          </div>
+          <div class="col-md-8">
+            {{ edit_user_form.email(size=32) }}<br>
+          </div>
+        </div>
 
-    <div class="form-group">
-      {{ edit_user_form.role.label }}<br>
-      {{ edit_user_form.role }}<br>
-      {% for error in edit_user_form.role.errors %}
-      <span style="color:red;">[{{ error }}]</span>
-      {% endfor %}
-    </div>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-8">
+          {% for error in edit_user_form.email.errors %}
+            <span style="color:red;">[{{ error }}]</span>
+          {% endfor %}
+        </div>
+      </div>
 
-    <div class="form-group">
-      {{ edit_user_form.department.label }}<br>
-      {{ edit_user_form.department }}<br>
-      {% for error in edit_user_form.department.errors %}
-      <span style="color:red;">[{{ error }}]</span>
-      {% endfor %}
-    </div>
 
-    <button class="btn uwa-btn uwa-heading mb-4" type="submit">
-      <span class="material-icons md-24 uwa-heading">
-        how_to_reg
-      </span>
-      Update User
-    </button>
-  </form>
+      <div class="row login-visible">
+        <div class="col-md-4">
+          {{ edit_user_form.first_name.label() }}<br>
+        </div>
+        <div class="col-md-8">
+          {{ edit_user_form.first_name(size=32) }}<br>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-8">
+          {% for error in edit_user_form.first_name.errors %}
+            <span style="color:red;">[{{ error }}]</span>
+          {% endfor %}
+        </div>
+      </div>
+
+
+      <div class="row login-visible">
+        <div class="col-md-4">
+          {{ edit_user_form.last_name.label() }}<br>
+        </div>
+        <div class="col-md-8">
+          {{ edit_user_form.last_name(size=32) }}<br>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-8">
+          {% for error in edit_user_form.last_name.errors %}
+            <span style="color:red;">[{{ error }}]</span>
+          {% endfor %}
+        </div>
+      </div>
+
+
+      <div class="row login-visible">
+        <div class="col-md-4">
+          {{ edit_user_form.role.label }}<br>
+        </div>
+        <div class="col-md-8">
+          {{ edit_user_form.role() }}<br>
+        </div>
+      </div>
+
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-8">
+            {% for error in edit_user_form.role.errors %}
+              <span style="color:red;">[{{ error }}]</span>
+            {% endfor %}
+          </div>
+        </div>
+
+
+        <div class="row login-visible">
+          <div class="col-md-4">
+            {{ edit_user_form.department.label }}<br>
+          </div>
+          <div class="col-md-8">
+            {{ edit_user_form.department() }}<br>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-8">
+            {% for error in edit_user_form.department.errors %}
+              <span style="color:red;">[{{ error }}]</span>
+            {% endfor %}
+          </div>
+        </div>
+
+
+        <div class="row login-visible">
+          <div class="col-md-8 offset-md-4 pt-3 uwa-submit">
+            <button class="btn uwa-btn" type="submit">
+              <span class="material-icons md-24">
+                how_to_reg
+              </span>
+              Update User
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>
+
 
 {% endblock %}
