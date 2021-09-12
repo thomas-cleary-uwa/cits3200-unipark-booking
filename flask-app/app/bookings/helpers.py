@@ -5,6 +5,7 @@ Authors: Thomas Cleary,
 
 import random
 import pdfkit
+import os
 
 from datetime import date, datetime, timedelta
 from hashlib import md5
@@ -24,10 +25,17 @@ from ..models.user        import User
 from ..helpers.email import send_email
 
 
-def check_user(booking_code):
+def check_user(booking_code, check_sign=False):
     booking = Booking.query.filter_by(booking_code=booking_code).first()
     if booking is None:
+        print("booking none")
         return False
+
+    if check_sign:
+        # check if reservation sign exists
+        if not os.path.exists("./app/static/reservation_signs/{}.pdf".format(booking_code)):
+            print("file not found {}".format("./static/reservation_signs/{}.pdf".format(booking_code)))
+            return False
     
     if current_user.is_administrator():
         return True

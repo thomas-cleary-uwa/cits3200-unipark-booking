@@ -34,15 +34,16 @@
               <div class="table-responsive">
                 <table class="table table-hover">
                   <thead class="uwa-heading">
-                    <th style="width: 12%;">Booking Code</th>
-                    <th style="width: 13%;">When Confirmed</th>
-                    <th style="width: 13%;">Guest Name</th>
-                    <th style="width: 12%;">Vehicle Rego</th>
+                    <th style="width: 11%;">Booking Code</th>
+                    <th style="width: 12%;">When Confirmed</th>
+                    <th style="width: 12%;">Guest Name</th>
+                    <th style="width: 11%;">Vehicle Rego</th>
                     <th style="width: 5%;">Lot</th>
                     <th style="width: 5%;">Bay</th>
                     <th style="width: 12%;">Date Booked</th>
                     <th style="width: 10%;">Start Time</th>
                     <th style="width: 10%;">End Time</th>
+                    <th style="width: 5%;">PDF Sign</th>
                     <th style="width: 5%">Delete</th>
                   </thead>
 
@@ -59,8 +60,15 @@
                         <td>{{ booking.start_time }}</td>
                         <td>{{ booking.end_time }}</td>
                         <td>
+                          <a target="_blank" href="{{ url_for('bookings.reservation_sign', booking_code=booking.booking_code) }}">
+                            <span class="material-icons md-24 uwa-heading uwa-link">
+                              picture_as_pdf
+                            </span>
+                          </a>
+                        </td>
+                        <td>
                           <a onclick='confirmDelete("this booking")' href="{{ url_for('bookings.delete', booking_code=booking.booking_code) }}">
-                            <span class="material-icons md-24 uwa-heading">
+                            <span class="material-icons md-24 uwa-heading uwa-link">
                               delete
                             </span>
                           </a>

@@ -5,7 +5,7 @@ Authors: Thomas Cleary,
 
 from datetime import date, timedelta
 
-from flask import render_template, redirect, flash, url_for, request
+from flask import render_template, redirect, flash, url_for, request, current_app
 from flask_login import login_required, current_user
 
 from . import bookings
@@ -13,7 +13,7 @@ from .forms import ConfirmBookingForm
 from .helpers import (
     get_lot_bookings, get_times, get_date, get_bay_bookings,
     is_valid_bay, is_valid_date, attempt_booking, get_user_bookings,
-    check_user, delete_booking
+    check_user, delete_booking 
 )  
 
 ##############################################################################
@@ -212,3 +212,14 @@ def delete(booking_code):
             flash("Booking Deleted Successfully")
 
     return redirect(url_for("bookings.manage"))
+
+
+@bookings.route("reservation-sign/<booking_code>")
+@login_required
+def reservation_sign(booking_code):
+    valid_booking = check_user(booking_code, check_sign=True)
+    if not valid_booking:
+        flash("Cannot find reservation sign for this booking")
+        return redirect(url_for("bookings.manage"))
+    
+    return current_app.send_static_file("reservation_signs/{}.pdf".format(booking_code))
