@@ -24,6 +24,55 @@ from ..models.user        import User
 from ..helpers.email import send_email
 
 
+def check_user(booking_code):
+    booking = Booking.query.filter_by(booking_code=booking_code).first()
+    if booking is None:
+        return False
+    
+    if current_user.is_administrator():
+        return True
+
+    if booking.user.id == current_user.id:
+        return True
+
+    return False
+
+
+def delete_booking(booking_code):
+    to_delete = Booking.query.filter_by(booking_code=booking_code).first()
+    if to_delete is None:
+        return False
+
+    db.session.delete(to_delete)
+    db.session.commit()
+    return True
+
+
+def get_user_bookings(curr_user):
+    """ return bookings for curr_user (all users if current user is admin) """
+    if curr_user.is_administrator():
+        bookings = Booking.query.all()
+
+    else:
+        bookings = Booking.query.filter_by(user_id=curr_user.id).all()
+
+    # organise bookings by user
+    users_with_booking = set([booking.user.id for booking in bookings])
+    users = {}
+    for user_id in users_with_booking:
+        users[user_id] = User.query.get(user_id)
+
+
+    user_bookings = {user_id : [] for user_id in users_with_booking}
+
+    for booking in bookings:
+        user_bookings[booking.user.id].append(booking)
+    
+    return (user_bookings, users)
+
+
+
+
 def get_lot_bookings(date_obj):
     """ return a dict with {parkinglot : {carbay : [1,2,3]}}
 

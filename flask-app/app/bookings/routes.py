@@ -6,16 +6,19 @@ Authors: Thomas Cleary,
 from datetime import date, timedelta
 
 from flask import render_template, redirect, flash, url_for, request
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 from . import bookings
 from .forms import ConfirmBookingForm
 from .helpers import (
     get_lot_bookings, get_times, get_date, get_bay_bookings,
-    is_valid_bay, is_valid_date, attempt_booking
-) 
+    is_valid_bay, is_valid_date, attempt_booking, get_user_bookings,
+    check_user, delete_booking
+)  
 
-
+##############################################################################
+# New Booking Routes #########################################################
+##############################################################################
 @bookings.route("/parking-lots/<int:day>/<int:month>/<int:year>")
 @bookings.route("/parking-lots/today")
 @login_required
@@ -102,8 +105,6 @@ def bay_next(direction, bay_id, day, month, year):
     ))
 
 
-# this is really long
-# if we implement this as an api endpoint using Javascript requests we do not need such a long URI
 @bookings.route("/confirm", methods=['GET', 'POST'])
 @login_required
 def confirm_booking():
@@ -176,3 +177,38 @@ def confirm_booking():
         end_time=end_time
     )
         
+
+##############################################################################
+# Manage Bookings Routes #####################################################
+##############################################################################
+
+@bookings.route("manage")
+@login_required
+def manage():
+    """ route for user to manage their bookings (all users if admin) """
+    # all users if admin, else just current user's bookings
+    user_bookings, users = get_user_bookings(current_user)
+
+    print(user_bookings)
+
+    return render_template("bookings/manage.html", bookings=user_bookings, users=users)
+
+
+@bookings.route("delete/<booking_code>")
+@login_required
+def delete(booking_code):
+    # check that booking code matches current user or user is admin
+    valid_delete = check_user(booking_code)
+
+    if not valid_delete:
+        flash("You do not have permission to delete this booking")
+
+    else:
+        booking_deleted = delete_booking(booking_code)
+
+        if not booking_deleted:
+            flash("Something went wrong: Unable to delete booking")
+        else:
+            flash("Booking Deleted Successfully")
+
+    return redirect(url_for("bookings.manage"))
