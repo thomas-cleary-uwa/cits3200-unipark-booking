@@ -42,7 +42,9 @@
             <div class="col-md-4"></div>
             <div class="col-md-8">
               {% for error in form.title.errors %}
-                <span style="color:red;">[{{ error }}]</span>
+                <div class="alert alert-danger fade show" role="alert">
+                  <strong>{{ error }}</strong>
+                </div>
               {% endfor %}
             </div>
           </div>
@@ -60,7 +62,9 @@
             <div class="col-md-4"></div>
             <div class="col-md-8">
               {% for error in form.guest_first_name.errors %}
-                <span style="color:red;">[{{ error }}]</span>
+                <div class="alert alert-danger fade show" role="alert">
+                  <strong>{{ error }}</strong>
+                </div>
               {% endfor %}
             </div>
           </div>
@@ -78,7 +82,9 @@
             <div class="col-md-4"></div>
             <div class="col-md-8">
               {% for error in form.guest_last_name.errors %}
-                <span style="color:red;">[{{ error }}]</span>
+                <div class="alert alert-danger fade show" role="alert">
+                  <strong>{{ error }}</strong>
+                </div>
               {% endfor %}
             </div>
           </div>
@@ -96,7 +102,9 @@
             <div class="col-md-4"></div>
             <div class="col-md-8">
               {% for error in form.vehicle_rego.errors %}
-                <span style="color:red;">[{{ error }}]</span>
+                <div class="alert alert-danger fade show" role="alert">
+                  <strong>{{ error }}</strong>
+                </div>
               {% endfor %}
             </div>
           </div>
@@ -114,7 +122,9 @@
             <div class="col-md-4"></div>
             <div class="col-md-8">
               {% for error in form.ts_and_cs.errors %}
-                <span style="color:red;">[{{ error }}]</span>
+                <div class="alert alert-danger fade show" role="alert">
+                  <strong>{{ error }}</strong>
+                </div>
               {% endfor %}
             </div>
           </div>

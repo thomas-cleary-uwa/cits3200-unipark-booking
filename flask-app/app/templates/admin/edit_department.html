@@ -44,7 +44,9 @@
           <div class="col-md-4"></div>
           <div class="col-md-8">
             {% for error in form.name.errors %}
-              <span style="color:red;">[{{ error }}]</span>
+              <div class="alert alert-danger fade show" role="alert">
+                <strong>{{ error }}</strong>
+              </div>
             {% endfor %}
           </div>
         </div>
