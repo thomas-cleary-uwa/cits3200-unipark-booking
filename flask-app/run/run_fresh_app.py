@@ -12,6 +12,7 @@ import sys
 import subprocess
 import argparse
 import random
+import re
 
 from hashlib import md5
 from datetime import datetime, date, timedelta
@@ -57,6 +58,12 @@ def make_fresh_db():
     db_path = './db-dev.sqlite'
     if os.path.exists(db_path):
         os.remove(db_path)
+
+    pdf_path = "./app/static/reservation_signs/"
+    if os.path.exists(pdf_path):
+        for f in os.listdir(pdf_path):
+            if re.search(r'^.*\.pdf$', f):
+                os.remove(os.path.join(pdf_path, f))
 
     for cmd in commands:
         # try and run the command
@@ -132,14 +139,14 @@ def add_admin():
 
 def add_user():
     """ add a user to the application """
-    app = create_app('development')
+    app = create_app('setup')
 
     with app.app_context():
         new_user = User(
-            email = "test.user@uwa.edu.au",
-            password = "user1234",
-            first_name = 'test',
-            last_name = 'user',
+            email = app.config["TEST_USER_EMAIL"],
+            password = app.config["TEST_USER_PASSWORD"],
+            first_name = 'Test',
+            last_name = 'User',
             role_id = Role.query.filter_by(name='user').first().id,
             department_id = Department.query.all()[0].id
         )
@@ -154,75 +161,54 @@ def add_user():
 def add_user_bookings(num_bookings):
     """ add a booking for the test user """
 
-    with create_app("development").app_context():
+    app = create_app("setup")
+    with app.app_context():
 
-        user_email = "test.user@uwa.edu.au"
+        user_email = app.config["TEST_USER_EMAIL"]
+        user_password = app.config["TEST_USER_PASSWORD"]
 
-        bookings_made = set([])
-
-        booked = 0
-        overlaps = 0
-
-        while booked + overlaps < num_bookings:
-            datetime_placed = datetime.now()
-
-            booking_code = md5((str(datetime_placed) + user_email + str(random.randint(1, 10))).encode()). \
-                        hexdigest()[:10]
-
-            all_bays = CarBay.query.all()
-            choice = random.randint(0, len(all_bays)-1)
-            
-            # get bay id
-            bay_id = all_bays[choice].id
-
-            # get timeslots
-            start = random.randint(1, 32)
-            end   = random.randint(start, 32)
-
-            # get date booked
-            date_booked = date.today() + timedelta(days=random.randint(0, 6))
-
-            booking = tuple([bay_id, tuple([slot for slot in range(start, end+1)]), date_booked.day, date_booked.month, date_booked.year])
-            
-            overlap = False
-            # continue if exact booking made
-            if booking in bookings_made:
-                overlap = True
-            
-            if not overlap:
-                # continue if booking overlaps with other booking
-                for made in bookings_made:
-                    if bay_id == made[0] and date_booked == date(made[-1], made[-2], made[-3]):
-                        slots = made[1]
-                        if start in slots or end in slots:
-                            overlap = True
-                            continue
-            
-            if overlap:
-                overlaps += 1
-                continue
-
-            bookings_made.add(booking)
-            booked += 1
-
-            new_booking = Booking(
-                booking_code    = booking_code,
-                datetime_placed = datetime_placed,
-                date_booked     = date_booked,
-                timeslot_start  = start,
-                timeslot_end    = end,
-                guest_name      = "Jesus",
-                vehicle_rego    = "666-666",
-                bay_id          = bay_id,
-                user_id         = User.query.filter_by(first_name="test").first().id
+        with app.test_client() as test_client:
+            # log the admin user in
+            test_client.post(
+                'auth/login',
+                data=dict(email=user_email, password=user_password), 
+                follow_redirects=True
             )
 
-            db.session.add(new_booking)
+            for _ in range(num_bookings):
+                datetime_placed = datetime.now()
 
-        db.session.commit()
+                all_bays = CarBay.query.all()
+                choice = random.randint(0, len(all_bays)-1)
+                
+                # get bay id
+                bay = all_bays[choice]
+                bay_num = bay.bay_number
+                lot_num = bay.lot.lot_number
+
+                # get timeslots
+                start = random.randint(1, 32)
+                end   = random.randint(start, 32)
+
+                # get date booked
+                date_booked = date.today() + timedelta(days=random.randint(0, 6))
+
+                test_client.post(
+                    "bookings/confirm?lot_num={}&bay_num={}&day={}&month={}&year={}&start={}&end={}&no_email=True".format(
+                        lot_num, bay_num, date_booked.day, date_booked.month, date_booked.year, start, end
+                    ),
+                    data=dict(
+                        title="Mr.",
+                        guest_first_name="Test",
+                        guest_last_name="User",
+                        vehicle_rego="T3STU53R",
+                        ts_and_cs=True
+                    )
+                )
+
     
-        print("{}- Test user bookings added\nAttempted {} bookings\nBookings Placed: {}\nBookings Rejected: {}\nSuccess Rate: {}%{}\n".format(
-            bColours.OKGREEN, num_bookings, booked, overlaps, round((booked/(overlaps + booked)) * 100, 1), bColours.ENDC
+        print("{}- Test user bookings added ({} attempted)\n{}\n".format(
+            bColours.OKGREEN, num_bookings, bColours.ENDC
         ))
 
 

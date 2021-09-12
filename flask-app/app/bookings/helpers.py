@@ -3,14 +3,25 @@
 Authors: Thomas Cleary,
 """
 
-from datetime import date, timedelta
+import random
+import pdfkit
 
-from flask import flash
+from datetime import date, datetime, timedelta
+from hashlib import md5
+from threading import Thread
+
+from flask import flash, render_template, url_for, current_app
+from flask_login import current_user
 from sqlalchemy import and_
+
+from app import db
 
 from ..models.parking_lot import ParkingLot
 from ..models.car_bay     import CarBay
 from ..models.booking     import Booking
+from ..models.user        import User
+
+from ..helpers.email import send_email
 
 
 def get_lot_bookings(date_obj):
@@ -94,3 +105,148 @@ def get_bay_bookings(bay_id, view_date):
             availabilities[booking.date_booked][timeslot-1] = True  
 
     return (bay, availabilities, dates[-1])
+
+
+def is_valid_bay(lot_num, bay_num):
+    lot = ParkingLot.query.filter_by(lot_number=lot_num).first()
+    if lot is None:
+        return (False, None)
+
+    bay = CarBay.query.filter_by(bay_number=bay_num, parking_lot_id=lot.id).first()
+    if bay is None:
+        return (False, None)
+    
+    return (True, bay)
+
+
+def is_valid_date(day, month, year):
+    try:
+        return (True, date(year, month, day))
+    except ValueError:
+        return (False, None)
+
+
+def attempt_booking(form, bay, date, start, end, no_email=False):
+    # get all bookings for the bay with bay_num in lot with lot_num on date
+    current_bookings = Booking.query.filter_by(
+        date_booked=date, bay_id=bay.id
+    ).all()
+
+    booked_times = set()
+
+    for booking in current_bookings:
+        times_booked = list(range(booking.timeslot_start, booking.timeslot_end+1))
+
+        for time in times_booked:
+            booked_times.add(time)
+
+    # check if new booking overlaps with previously made bookings
+    new_booking_times = range(start, end+1)
+
+    if start in booked_times or end in booked_times:
+        return False
+
+    for time in new_booking_times:
+        if time in booked_times:
+            return False
+
+    # if we didnt find an overlap, add this new booking to the db
+    time_placed = datetime.now()
+
+    booking_code = md5((str(time_placed) + current_user.email + str(random.randint(1, 10))).encode()). \
+                        hexdigest()[:10]
+
+    guest_name = "{} {} {}".format(
+        form.title.data,
+        form.guest_first_name.data.strip().capitalize(),
+        form.guest_last_name.data.strip().capitalize()
+    )
+
+    vehicle_rego = form.vehicle_rego.data.strip().upper()
+
+    times = get_times(num_slots=33)
+    start_time = times[start-1]
+    end_time   = times[end]
+
+
+    new_booking = Booking(
+        booking_code    = booking_code,
+        datetime_placed = time_placed,
+        date_booked     = date,
+        timeslot_start  = start,
+        timeslot_end    = end,
+        start_time      = start_time,
+        end_time        = end_time,
+        guest_name      = guest_name,
+        vehicle_rego    = vehicle_rego,
+        bay_id          = bay.id,
+        user_id         = current_user.id
+    )
+
+    db.session.add(new_booking)
+    db.session.commit()
+
+    if not no_email:
+        # use seperate thread to generate pdf
+        bay = new_booking.bay
+
+        lot_num = bay.lot.lot_number
+        bay_num = bay.bay_number
+        
+        thr = Thread(target=generate_reservation_sign, args=[
+            current_app._get_current_object(),
+            new_booking,
+            bay_num,
+            lot_num,
+            User.query.get(current_user.id)
+        ])
+        thr.start()
+
+    return True
+
+
+def generate_reservation_sign(app, booking, bay_num, lot_num, user):
+    with app.app_context():
+        html = render_template(
+            "pdf/reservation_sign.html",
+            booking=booking,
+            bay_num=bay_num,
+            lot_num=lot_num
+        )
+
+        options = {
+            "--orientation" : "landscape",
+            "--margin-bottom" : 20,
+            "--margin-left" : 25,
+            "--margin-right" : 30,
+            "--margin-top" : 20
+        }
+
+        pdfkit.from_string(
+            html,
+            "./app/static/reservation_signs/{}.pdf".format(booking.booking_code),
+            css="./app/static/css/reservation_sign.css",
+            options=options
+        )
+
+        attachments = {
+            "application/pdf" : [
+                "static/reservation_signs/{}.pdf".format(booking.booking_code)
+            ]
+        }
+
+        send_email(
+            user.email,
+            'Booking Confirmed',
+            'email/confirm_booking',
+            booking=booking,
+            lot_num=lot_num,
+            bay_num=bay_num,
+            user_first_name=user.first_name,
+            user_last_name=user.last_name,
+            attachments=attachments
+    )
+
+
+
+    

@@ -33,6 +33,7 @@
 
   --uwa-green: rgb(83, 177, 52);
   --uwa-red: rgb(177, 52, 83);
+  --uwa-orange: rgb(197, 116, 71);
 
 
   --uwa-form-separator-colour : rgb(219, 219, 219);
@@ -64,6 +65,12 @@
   vertical-align: middle;
 }
 
+/*
+*** General Classes **********************************************************
+*/
+.hidden {
+  visibility: hidden;
+}
 
 
 /*
@@ -92,6 +99,7 @@ body {
   font-size: 0.75em;
   background-color: var(--uwa-light-grey);
   border-color: var(--uwa-yellow);
+  z-index: 2;
 }
 
 .dropdown-menu .dropdown-item {
@@ -145,6 +153,7 @@ body {
 #page-banner {
   padding : 1em 1em 1em 1em;
   font-family: uwaSlab;
+  z-index: 1;
 }
 
 #uwa-flash-msg {
@@ -305,6 +314,14 @@ body {
 
 .timeslot-green {
   background-color: var(--uwa-green);
+}
+
+.timeslot-yellow {
+  background-color: var(--uwa-darker-yellow);
+}
+
+.timeslot-orange {
+  background-color: var(--uwa-orange);
 }
 
 #parking-lot-map {

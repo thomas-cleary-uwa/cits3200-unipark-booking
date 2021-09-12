@@ -5,11 +5,15 @@ Authors: Thomas Cleary,
 
 from datetime import date, timedelta
 
-from flask import render_template, redirect, flash, url_for
+from flask import render_template, redirect, flash, url_for, request
 from flask_login import login_required
 
 from . import bookings
-from .helpers import get_lot_bookings, get_times, get_date, get_bay_bookings
+from .forms import ConfirmBookingForm
+from .helpers import (
+    get_lot_bookings, get_times, get_date, get_bay_bookings,
+    is_valid_bay, is_valid_date, attempt_booking
+) 
 
 
 @bookings.route("/parking-lots/<int:day>/<int:month>/<int:year>")
@@ -22,14 +26,14 @@ def parking_lots(day=date.today().day, month=date.today().month, year=date.today
     if view_date is None:
         return redirect(url_for("admin.parking_lots"))
 
-    all_lots, bookings = get_lot_bookings(view_date)
+    all_lots, lot_bookings = get_lot_bookings(view_date)
 
     times = get_times()
 
     return render_template(
         "bookings/parking_lots.html",
         parking_lots=all_lots,
-        bookings=bookings,
+        bookings=lot_bookings,
         times=times,
         view_date=view_date,
     )
@@ -96,3 +100,79 @@ def bay_next(direction, bay_id, day, month, year):
         month=next_date.month,
         year=next_date.year
     ))
+
+
+# this is really long
+# if we implement this as an api endpoint using Javascript requests we do not need such a long URI
+@bookings.route("/confirm", methods=['GET', 'POST'])
+@login_required
+def confirm_booking():
+    confirm_form = ConfirmBookingForm()
+
+    try:
+        lot_num = int(request.args['lot_num'])
+        bay_num = int(request.args['bay_num'])
+        day     = int(request.args['day'])
+        month   = int(request.args['month'])
+        year    = int(request.args['year'])
+        start   = int(request.args['start'])
+        end     = int(request.args['end'])
+
+    except ValueError as error:
+        flash("Booking failed. Invalid booking request.")
+        return redirect(url_for("bookings.parking_lots"))
+    except KeyError as error:
+        flash("Invalid booking url.")
+        return redirect(url_for("bookings.parking_lot"))
+
+    
+    # for setting up fresh app and adding in fake bookings
+    try:
+        no_email = bool(request.args['no_email'])
+    except (KeyError, ValueError) as error:
+        no_email = False
+
+    valid_bay, bay = is_valid_bay(lot_num, bay_num)
+    if not valid_bay:
+        flash("Booking failed. Bay is invalid.")
+        return redirect(url_for("bookings.parking_lots"))
+
+    valid_date, booking_date = is_valid_date(day, month, year)
+    if not valid_date:
+        flash("Booking failed. Date invalid.")
+        return redirect(url_for("bookings.parking_lots"))
+
+    if confirm_form.validate_on_submit():
+        if not confirm_form.ts_and_cs.data:
+            flash("You need to accept the terms and conditions")
+            return redirect(url_for(
+                "bookings.confirm_booking",
+                lot_num=lot_num, bay_num=bay_num,
+                day=day, month=month, year=year, 
+                start=start, end=end
+            ))
+
+        booked = attempt_booking(confirm_form, bay, booking_date, start, end, no_email)
+
+        if not booked: 
+            flash("Booking failed. Invalid booking times")
+        else:
+            flash("Booking succeeded")
+
+        return redirect(url_for("bookings.parking_lots"))
+
+    times = get_times(num_slots=33)
+    start_time = times[start-1]
+    end_time   = times[end]
+
+    return render_template("bookings/confirm_booking.html", 
+        form=confirm_form,
+        date=booking_date,
+        lot_num=lot_num,
+        bay_num=bay_num,
+        start=start,
+        start_time=start_time,
+        end=end,
+        end_time=end_time
+    )
+        

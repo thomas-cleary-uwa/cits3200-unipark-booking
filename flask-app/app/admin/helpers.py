@@ -185,3 +185,4 @@ def del_dep(dep_id):
         flash("Department successfully deleted")
     
     return redirect(url_for("admin.departments"))
+

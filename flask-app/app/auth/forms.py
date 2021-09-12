@@ -15,8 +15,8 @@ class LoginForm(FlaskForm):
         DataRequired(),
         Length(1, 64),
         Regexp(
-            r'^\s*[A-Za-z]+\.[A-Za-z]+@uwa\.edu\.au\s*$',
-            message='Email must be an firstname.lastname@uwa.edu.au address'
+            r'^\s*.*\s*$',
+            message="regexp not met, change this msg"
         )
     ])
 

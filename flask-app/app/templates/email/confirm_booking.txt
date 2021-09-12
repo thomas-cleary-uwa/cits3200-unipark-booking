@@ -1,0 +1,12 @@
+Dear {{ user_first_name }} {{ user_last_name }},
+
+Your booking has been confirmed. Please find details of this booking below.
+
+Lot {{ lot_num }} - Bay {{ bay_num }}
+Booking Reference: {{ booking.booking_code }}
+Guest Name: {{ booking.guest_name }}
+Date: {{ booking.date_booked.strftime("%a, %-d %b %Y") }}
+Time: {{ booking.start_time }} - {{ booking.end_time }}
+Registration #: {% if booking.vehicle_rego %} {{ booking.vehicle_rego }} {% else %} NOT GIVEN {% endif %}
+
+Note: replies to this email are not monitored
