@@ -20,51 +20,62 @@
 
 
 {% block content %}
+<div class="row">
 
-<div class="row pb-4 justify-content-center">
-  <a class="btn uwa-btn d-flex align-items-center" href="{{ url_for('bookings.bay_next', direction=-1, bay_id=bay.id, day=start_date.day, month=start_date.month, year=start_date.year) }}">
-    <span class="material-icons md-24">
-      skip_previous
-    </span>
-    Prev
-  </a>
-  <h1 class="uwa-heading-large pr-5 pl-5">{{ start_date.strftime("%a %-d %b %y") }} &rarr; {{ end_date.strftime("%a %-d %b %y") }}</h1>
-  <a class="btn uwa-btn d-flex align-items-center" href="{{ url_for('bookings.bay_next', direction=1, bay_id=bay.id, day=start_date.day, month=start_date.month, year=start_date.year) }}">    Next
-    <span class="material-icons md-24">
-      skip_next
-    </span>
-  </a>
-</div>
+  <div class="col-md-8">
+    <div class="row pb-4 justify-content-center">
+      <a class="btn uwa-btn d-flex align-items-center" href="{{ url_for('bookings.bay_next', direction=-1, bay_id=bay.id, day=start_date.day, month=start_date.month, year=start_date.year) }}">
+        <span class="material-icons md-24">
+          skip_previous
+        </span>
+        Prev
+      </a>
+      <h1 class="uwa-heading-large pr-5 pl-5">{{ start_date.strftime("%a %-d %b %y") }} &rarr; {{ end_date.strftime("%a %-d %b %y") }}</h1>
+      <a class="btn uwa-btn d-flex align-items-center" href="{{ url_for('bookings.bay_next', direction=1, bay_id=bay.id, day=start_date.day, month=start_date.month, year=start_date.year) }}">    Next
+        <span class="material-icons md-24">
+          skip_next
+        </span>
+      </a>
+    </div>
 
-<div class="table-responsive">
-  <table id="lot{{ bay.lot.lot_number }}-bay{{ bay.bay_number }}" class="table table-bordered timetable">
-    <thead>
-      <th>Date</th>
-      {% for time in times %}
-      <th>{{ time }}</th>
-      {% endfor %}
-    </thead>
+    <div class="table-responsive">
+      <table id="lot{{ bay.lot.lot_number }}-bay{{ bay.bay_number }}" class="table table-bordered timetable">
+        <thead>
+          <th>Date</th>
+          {% for time in times %}
+          <th>{{ time }}</th>
+          {% endfor %}
+        </thead>
 
-    {% for date in availabilities %}
-      {% set timeslots = availabilities[date] %}
-      <tr id="date-{{ date.day }}/{{ date.month }}/{{ date.year }}">
-        <td>
-          {{ date.strftime("%-d %b") }}
-        </td>
+        {% for date in availabilities %}
+          {% set timeslots = availabilities[date] %}
+          <tr id="date-{{ date.day }}/{{ date.month }}/{{ date.year }}">
+            <td>
+              {{ date.strftime("%-d %b") }}
+            </td>
 
-        {% for booked in timeslots %}
-          {% if booked %}
-          <td class="timeslot-red timeslot">
-          </td>
-          {% else %}
-          <td onclick='selectTimeslot(this.id);' class="timeslot-green timeslot" id="{{ date.day }}/{{ date.month }}/{{ date.year }}-slot{{ loop.index }}">
-          </td>
-          {% endif %}
+            {% for booked in timeslots %}
+              {% if booked %}
+              <td class="timeslot-red timeslot">
+              </td>
+              {% else %}
+              <td onclick='selectTimeslot(this.id);' class="timeslot-green timeslot" id="{{ date.day }}/{{ date.month }}/{{ date.year }}-slot{{ loop.index }}">
+              </td>
+              {% endif %}
+            {% endfor %}
+          </tr>
+
         {% endfor %}
-      </tr>
+      </table>
+    </div>
+  </div>
 
-    {% endfor %}
-  </table>
+  <div class="col-md-4">
+    <h1 class="uwa-heading-large">
+      ADD GOOGLE MAPS VIEW HERE
+    </h1>
+  </div>
+
 </div>
 
 {% endblock %}

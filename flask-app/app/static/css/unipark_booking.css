@@ -81,6 +81,12 @@ body {
   font-family: SourceSansPro, Arial, Helvetica, sans-serif;
 }
 
+.container-fluid {
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 4em;
+}
+
 .flex-nav {
   display: flex;
   flex-direction: column;
