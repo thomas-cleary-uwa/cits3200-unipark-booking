@@ -58,6 +58,26 @@ NOTE: Your system may have pip aliased as something other than `pip`
 Install this program to be able to use *pdfkit* to generate reservation signs
 https://wkhtmltopdf.org/
 
+If you want to disable pdf generation comment out this section of *bookings/helpers.py*
+
+```
+if not no_email:
+    bay = new_booking.bay
+
+    lot_num = bay.lot.lot_number
+    bay_num = bay.bay_number
+    
+    thr = Thread(target=generate_reservation_sign, args=[
+        current_app._get_current_object(),
+        new_booking,
+        bay_num,
+        lot_num,
+        User.query.get(current_user.id)
+    ])
+    thr.start()
+```
+
+
 ### 4. Add .env File
 `$ touch .env` - and then edit .env in a text editor (Command only on linux / macOS)<br>
 or<br>
