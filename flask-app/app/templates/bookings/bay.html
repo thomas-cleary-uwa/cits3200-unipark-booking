@@ -22,7 +22,7 @@
 {% block content %}
 <div class="row">
 
-  <div class="col-md-8">
+  <div class="col-md-10 offset-md-1">
     <div class="row pb-4 justify-content-center">
       <a class="btn uwa-btn d-flex align-items-center" href="{{ url_for('bookings.bay_next', direction=-1, bay_id=bay.id, day=start_date.day, month=start_date.month, year=start_date.year) }}">
         <span class="material-icons md-24">
@@ -69,8 +69,11 @@
       </table>
     </div>
   </div>
+</div>
 
-  <div class="col-md-4">
+<div class="row">
+
+  <div class="col-md-10 offset-md-1">
     <h1 class="uwa-heading-large">
       ADD GOOGLE MAPS VIEW HERE
     </h1>
