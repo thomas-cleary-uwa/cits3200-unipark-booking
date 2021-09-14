@@ -58,7 +58,8 @@ function selectTimeslot(cellID) {
     updateTimetables(clickedCell);
   }
   // turn the cell off
-  else {
+  else if (clickedCell.classList.contains("timeslot-yellow")) {
+    console.log("this happened");
     updateClickedRow(clickedCell);
   }
 
