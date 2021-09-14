@@ -58,7 +58,7 @@ NOTE: Your system may have pip aliased as something other than `pip`
 Install this program to be able to use *pdfkit* to generate reservation signs
 https://wkhtmltopdf.org/
 
-If you want to disable pdf generation comment out this section of *bookings/helpers.py*
+If you want to disable pdf generation and confirmaton emails, comment out this section of *bookings/helpers.py*
 
 ```
 if not no_email:
