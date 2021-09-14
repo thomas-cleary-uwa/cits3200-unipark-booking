@@ -72,8 +72,16 @@ Currently need values for:
 - FLASK_CONFIG=**(config name from config.py, eg. development)**
 - FLASK_ENV=**(development or production)**
 - SECRET_KEY=**(secret key used for encryption eg. youwillneverguessthis)**
-- ADMIN_EMAIL=**(eg. test@uwa.edu.au)**
+
+- ADMIN_EMAIL=**(eg. uni.park@uwa.edu.au)**
 - ADMIN_PASSWORD=**(atleast 8 characters, eg. admin1234)**
+
+- TEST_USER_EMAIL=**(your email address)** (used with run_fresh_app.py -u)
+- TEST_USER_PASSWORD=**(eg. user1234)**
+
+- MAIL_USERNAME=unipark.mailtest@gmail.com
+- MAIL_PASSWORD=uniparkt3st
+- MAIL_DEFAULT_SENDER=unipark.mailtest@gmail.com
 
 ### 5. Setup the Database and Run the Flask App
 To run the app you need a local instance of the database. 
