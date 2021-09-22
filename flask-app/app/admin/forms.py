@@ -22,7 +22,7 @@ class AddUserForm(FlaskForm):
         DataRequired(),
         Length(1, 64),
         Regexp(
-            r'^\s*[A-Za-z]+\.[A-Za-z]+@uwa\.edu\.au\s*$',
+            r'^\s*[A-Za-z0-9]+@[a-zA-z]+\s*$',
             message='Email must be an firstname.lastname@uwa.edu.au address'
         )],
         render_kw={"placeholder" : "firstname.lastname@uwa.edu.au"}
