@@ -1,9 +1,8 @@
-# cits3200-unipark-booking
-A car bay booking web application for UWA's UniPark office
+# README
+How to setup the UniPark Booking System.
 <br>
 
-**NOTE: DO NOT DIRECTLY MERGE / PUSH TO MAIN OR DEV (PLEASE CREATE A PULL REQUEST)**
-<br><br>
+[Go back to documentation](https://thomcleary.github.io/cits3200-unipark-booking/)
 
 ## Linting
 To avoid some incorrect linting when using ***pylint*** add this line to your _.vscode/settings.json_ file:
