@@ -1,5 +1,5 @@
 # How to make a booking
-A guide on how to place a booking on the behalf of a guest. 
+Guide on how to place a booking on the behalf of a guest. 
 
 [Go back to Admin Help Directory](https://thomcleary.github.io/cits3200-unipark-booking/admin_directory)
 
