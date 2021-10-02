@@ -3,7 +3,7 @@ A directory for all documentation for UWA's UniPark Booking System.
 
 ## System documentation
 
-- [README](https://thomcleary.github.io/cits3200-unipark-booking/README)
+- [README](https://thomcleary.github.io/cits3200-unipark-booking/read_me) (how to setup the system)
 
 ## Help guides
 
