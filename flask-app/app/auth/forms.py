@@ -14,10 +14,7 @@ class LoginForm(FlaskForm):
     email = StringField('Staff Email:', validators=[
         DataRequired(),
         Length(1, 64),
-        Regexp(
-            r'^\s*.*\s*$',
-            message="regexp not met, change this msg"
-        )
+        Email()
     ])
 
     password = PasswordField('Password:', validators=[
