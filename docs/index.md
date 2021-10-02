@@ -1,4 +1,5 @@
 # Documentation
+A directory for all documentation for UWA's UniPark Booking System.
 
 ## System documentation
 
@@ -10,4 +11,4 @@
 
 - [User Help Directory](https://thomcleary.github.io/cits3200-unipark-booking/user_directory)
 
-
+<br><br><br>
