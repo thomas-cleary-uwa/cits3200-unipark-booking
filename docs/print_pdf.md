@@ -1,6 +1,8 @@
 # How to print the reservation sheet
 Guide on how to print the reservation sheet from the admin interface.
 
+[Go back to Admin Help Directory](https://thomcleary.github.io/cits3200-unipark-booking/admin_directory)
+
 ## Step 1.
 
 Go to Manage Bookings by clicking the Bookings drop down on the top left of the page.
