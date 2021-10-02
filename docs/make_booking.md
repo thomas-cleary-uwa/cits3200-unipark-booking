@@ -22,14 +22,14 @@ To make a booking, select the arrival and departure time from a set of available
 
 ![image](https://user-images.githubusercontent.com/88474382/135708640-c0285f09-67e7-4124-9ee3-eaed779ff3fe.png)
 
-Note
+**Note
 - Carpark timetables can be collapsed by clicking the carpark header
 - Scroll across times by clicking and dragging the timetable left or right
 - The location of individual bays can be found by clicking on the Google Maps icon
 
 ### Bay-view timetable
 
-The timetable for an individual bay can be found by clicking on the car icon on the timetable corresponding to the numbered bay. Bookings can also be made through this timetable view. Click confirm to proceed to the next step for finalising the booking.
+The timetable for an individual bay can be found by clicking on the car icon on the timetable corresponding to the numbered bay. Bookings can also be made through this timetable view. Select the arrival and departure time on the timetable then click confirm to proceed to the next step for finalising the booking.
 
 ![image](https://user-images.githubusercontent.com/88474382/135716637-b901074b-9294-49f1-be96-c416822d6144.png)
 
