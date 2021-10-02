@@ -8,12 +8,13 @@ Go to the Bookings drop down on the top right and click "New Booking". This will
 
 ## Step 2.
 
-Bay colour code
-- Green: bay is available
-- Orange: bay is not available (a 15 minute change-over time at the start and end of bookings for guests)
-- Red: bay is not available
-- Yellow: your selected booking
+### Timetable colour key
+- **Green:** bay is available
+- **Orange:** bay is not available (a 15 minute change-over time at the start and end of bookings for guests)
+- **Red:** bay is not available
+- **Yellow:** your selected booking
 
+### Day-view timetable
 To make a booking, select the arrival and departure time from a set of available time slots. The booking details are displayed in the banner above the booking date. Click confirm to proceed to the next step for finalising the booking.
 
 ![image](https://user-images.githubusercontent.com/88474382/135708640-c0285f09-67e7-4124-9ee3-eaed779ff3fe.png)
@@ -22,6 +23,16 @@ Note
 - Carpark timetables can be collapsed by clicking the carpark header
 - Scroll across times by clicking and dragging the timetable left or right
 - The location of individual bays can be found by clicking on the Google Maps icon
+
+### Bay-view timetable
+
+The timetable for an individual bay can be found by clicking on the car icon on the timetable corresponding to the numbered bay. 
+
+![image](https://user-images.githubusercontent.com/88474382/135716412-b0c89aee-1610-449d-944b-90bf8453aebe.png)
+
+Bookings can also be made through this timetable view.
+
+![image](https://user-images.githubusercontent.com/88474382/135716347-36c27310-1f1d-42c3-a93c-84eb5dfa5a25.png)
 
 ## Step 3.
 
