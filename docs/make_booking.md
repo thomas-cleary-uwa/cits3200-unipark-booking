@@ -26,13 +26,9 @@ Note
 
 ### Bay-view timetable
 
-The timetable for an individual bay can be found by clicking on the car icon on the timetable corresponding to the numbered bay. 
+The timetable for an individual bay can be found by clicking on the car icon on the timetable corresponding to the numbered bay. Bookings can also be made through this timetable view. Click confirm to proceed to the next step for finalising the booking.
 
-![image](https://user-images.githubusercontent.com/88474382/135716412-b0c89aee-1610-449d-944b-90bf8453aebe.png)
-
-Bookings can also be made through this timetable view.
-
-![image](https://user-images.githubusercontent.com/88474382/135716347-36c27310-1f1d-42c3-a93c-84eb5dfa5a25.png)
+![image](https://user-images.githubusercontent.com/88474382/135716637-b901074b-9294-49f1-be96-c416822d6144.png)
 
 ## Step 3.
 
