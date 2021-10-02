@@ -11,3 +11,7 @@ A directory of guides on how to use the UniPark booking system for admins.
 6. [How to edit and delete users and admins](https://thomcleary.github.io/cits3200-unipark-booking/change_user_role)
 7. [How to add departments]()
 8. [How to edit and delete departments]()
+
+## User Directories
+
+- [Help Directory for Users](https://thomcleary.github.io/cits3200-unipark-booking/user_directory)
