@@ -1,5 +1,5 @@
-# How to add new users
-Guide on how to add a new user for a specified department.
+# How to add new users and admins
+Guide on how to add new users and admins to the booking system.
 
 ## Step 1.
 
@@ -15,6 +15,16 @@ ADD PICTURE OF CLICKING ADD USER
 
 ## Step 3.
 
-Finally, fill in the details on the form and then click "Update User". The user will then appear on the All Users page.
+### Add user
+
+Fill in the details on the form and change the Role to "user". 
+
+### Add admin
+
+Fill in the details on the form and change the Role to "admin". 
 
 ADD PICTURE OF THE FORM
+
+## Step 4.
+
+Finally, click "Update User" and the user or admin will be added to the system.
