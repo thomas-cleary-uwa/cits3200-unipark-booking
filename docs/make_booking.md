@@ -2,7 +2,7 @@
 
 ## Step 1.
 
-Go to the Bookings drop down on the top right and click "New Booking". This will take you to a list of carpark timetables where you can place your bookings.
+Go to the Bookings drop down on the top left and click "New Booking". This will take you to a list of carpark timetables where you can place your bookings.
 
 ![image](https://user-images.githubusercontent.com/88474382/135707657-8fda2644-628c-4d15-b846-d2ef928950d3.png)
 
