@@ -25,6 +25,6 @@ Note
 
 ## Step 3.
 
-Finalise the booking by filling in the details on the form and submit by clicking "Confirm Booking".
+Finalise the booking by filling in the details on the form and submit by clicking "Confirm Booking". A 15 minute change-over period will be appended to the start and end of the booking (indicated in orange) to ensure that the bay will be available for the next guest.
 
 ![image](https://user-images.githubusercontent.com/88474382/135708871-efa4d15b-b1a1-408b-9956-e7cff9699379.png)
