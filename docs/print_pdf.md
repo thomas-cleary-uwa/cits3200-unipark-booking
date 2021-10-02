@@ -1,7 +1,3 @@
-layout: page
-title: "How to print the reservation sheet"
-permalink: /help/print_pdf/
-
 # How to print the reservation sheet
 Guide on how to print the reservation sheet from the admin interface.
 
