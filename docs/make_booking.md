@@ -5,7 +5,9 @@ Guide on how to place a booking on the behalf of a guest.
 
 ## Step 1.
 
-Go to the Bookings drop down on the top left and click "New Booking". This will take you to a list of carpark timetables where you can place your bookings.
+Go to the Bookings drop down on the top left and click "New Booking". This will take you to a list of carpark timetables where you can place your bookings. 
+
+There are four car-parks around UWA that have reservable bays: carpark 9, 12, 19 and 22. The location of each carpark can be found by clicking on the "Map" tab or by clicking [here](http://192.168.1.134:5000/static/media/images/carpark-map.jpg). *Note that carpark 15 is no longer in use for reservations.*
 
 ![image](https://user-images.githubusercontent.com/88474382/135707657-8fda2644-628c-4d15-b846-d2ef928950d3.png)
 
@@ -18,7 +20,7 @@ Go to the Bookings drop down on the top left and click "New Booking". This will 
 - **Yellow:** your selected booking
 
 ### Day-view timetable
-To make a booking, select the arrival and departure time from a set of available time slots. The booking details are displayed in the banner above the booking date. Click confirm to proceed to the next step for finalising the booking.
+To make a booking, select the arrival and departure time from a set of available time slots for a single bay. The booking details are displayed in the banner above the booking date. Click confirm to proceed to the next step for finalising the booking.
 
 ![image](https://user-images.githubusercontent.com/88474382/135708640-c0285f09-67e7-4124-9ee3-eaed779ff3fe.png)
 
