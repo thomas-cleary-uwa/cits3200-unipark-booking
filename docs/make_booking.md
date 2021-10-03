@@ -2,6 +2,7 @@
 Guide on how to place a booking on the behalf of a guest. 
 
 [Go back to Admin Help Directory](https://thomcleary.github.io/cits3200-unipark-booking/admin_directory)
+<br><br>
 
 ## Step 1.
 
@@ -10,6 +11,7 @@ Go to the Bookings drop down on the top left and click "New Booking". This will 
 There are four car-parks around UWA that have reservable bays: carpark 9, 12, 19 and 22. The location of each carpark can be found by clicking on the "Map" tab or by clicking [here](http://192.168.1.134:5000/static/media/images/carpark-map.jpg). *Note that carpark 15 is no longer in use for reservations.*
 
 ![image](https://user-images.githubusercontent.com/88474382/135707657-8fda2644-628c-4d15-b846-d2ef928950d3.png)
+<br><br>
 
 ## Step 2.
 
@@ -24,19 +26,22 @@ To make a booking, select the arrival and departure time from a set of available
 
 ![image](https://user-images.githubusercontent.com/88474382/135708640-c0285f09-67e7-4124-9ee3-eaed779ff3fe.png)
 
-**Note
+**Note**
 - Carpark timetables can be collapsed by clicking the carpark header
 - Scroll across times by clicking and dragging the timetable left or right
 - The location of individual bays can be found by clicking on the Google Maps icon
+<br><br>
 
 ### Bay-view timetable
 
 The timetable for an individual bay can be found by clicking on the car icon on the timetable corresponding to the numbered bay. Bookings can also be made through this timetable view. Select the arrival and departure time on the timetable then click confirm to proceed to the next step for finalising the booking.
 
 ![image](https://user-images.githubusercontent.com/88474382/135716637-b901074b-9294-49f1-be96-c416822d6144.png)
+<br><br>
 
 ## Step 3.
 
 Finalise the booking by filling in the details on the form and submit by clicking "Confirm Booking". A 15 minute change-over period will be appended to the start and end of the booking (indicated in orange) to ensure that the bay will be available for the next guest.
 
 ![image](https://user-images.githubusercontent.com/88474382/135708871-efa4d15b-b1a1-408b-9956-e7cff9699379.png)
+<br><br>
