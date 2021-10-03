@@ -1,6 +1,8 @@
 # Help Directory for Admins
 A directory of guides on how to use the UniPark booking system for admins.
 
+[Go back to documentation](https://thomcleary.github.io/cits3200-unipark-booking/)
+
 ## Guides
 
 1. [How to make a booking](https://thomcleary.github.io/cits3200-unipark-booking/make_booking)
