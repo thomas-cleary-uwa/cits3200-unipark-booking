@@ -12,7 +12,7 @@
 {% block content %}
 
 <div class="row justify-content-center">
-  <div class="col-md-4 uwa-light-panel mb-5" id="login-form">
+  <div class="col-md-6 uwa-light-panel mb-5" id="login-form">
 
     <div class="row uwa-dark-panel">
       <div class="col-md-4">
@@ -26,6 +26,47 @@
       {{ add_user_form.hidden_tag() }}
 
       <div class="form-group">
+
+        <div class="row login-visible">
+          <div class="col-md-4">
+            {{ add_user_form.first_name.label() }}<br>
+          </div>
+          <div class="col-md-8">
+            {{ add_user_form.first_name(size=48) }}<br>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-8">
+            {% for error in add_user_form.first_name.errors %}
+              <div class="alert alert-danger fade show" role="alert">
+                  <strong>{{ error }}</strong>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="row login-visible">
+          <div class="col-md-4">
+            {{ add_user_form.last_name.label() }}<br>
+          </div>
+          <div class="col-md-8">
+            {{ add_user_form.last_name(size=48) }}<br>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-8">
+            {% for error in add_user_form.last_name.errors %}
+              <div class="alert alert-danger fade show" role="alert">
+                  <strong>{{ error }}</strong>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+
         <div class="row login-visible">
           <div class="col-md-4">
             {{ add_user_form.email.label() }}<br>
@@ -35,75 +76,12 @@
           </div>
         </div>
 
-      <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-8">
-          {% for error in add_user_form.email.errors %}
-            <div class="alert alert-danger fade show" role="alert">
-                <strong>{{ error }}</strong>
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-
-
-      <div class="row login-visible">
-        <div class="col-md-4">
-          {{ add_user_form.password.label() }}<br>
-        </div>
-        <div class="col-md-8">
-          {{ add_user_form.password(size=48) }}<br>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-8">
-          {% for error in add_user_form.password.errors %}
-            <div class="alert alert-danger fade show" role="alert">
-                <strong>{{ error }}</strong>
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-
-
-      <div class="row login-visible">
-        <div class="col-md-4">
-          {{ add_user_form.password2.label() }}<br>
-        </div>
-        <div class="col-md-8">
-          {{ add_user_form.password2(size=48) }}<br>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-8">
-          {% for error in add_user_form.password2.errors %}
-            <div class="alert alert-danger fade show" role="alert">
-                <strong>{{ error }}</strong>
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-
-
-      <div class="row login-visible">
-        <div class="col-md-4">
-          {{ add_user_form.role.label }}<br>
-        </div>
-        <div class="col-md-8">
-          {{ add_user_form.role() }}<br>
-        </div>
-      </div>
-
         <div class="row">
           <div class="col-md-4"></div>
           <div class="col-md-8">
-            {% for error in add_user_form.role.errors %}
+            {% for error in add_user_form.email.errors %}
               <div class="alert alert-danger fade show" role="alert">
-                <strong>{{ error }}</strong>
+                  <strong>{{ error }}</strong>
               </div>
             {% endfor %}
           </div>
@@ -112,23 +90,86 @@
 
         <div class="row login-visible">
           <div class="col-md-4">
-            {{ add_user_form.department.label }}<br>
+            {{ add_user_form.password.label() }}<br>
           </div>
           <div class="col-md-8">
-            {{ add_user_form.department() }}<br>
+            {{ add_user_form.password(size=48) }}<br>
           </div>
         </div>
-  
+
         <div class="row">
           <div class="col-md-4"></div>
           <div class="col-md-8">
-            {% for error in add_user_form.department.errors %}
+            {% for error in add_user_form.password.errors %}
               <div class="alert alert-danger fade show" role="alert">
-                <strong>{{ error }}</strong>
+                  <strong>{{ error }}</strong>
               </div>
             {% endfor %}
           </div>
         </div>
+
+
+        <div class="row login-visible">
+          <div class="col-md-4">
+            {{ add_user_form.password2.label() }}<br>
+          </div>
+          <div class="col-md-8">
+            {{ add_user_form.password2(size=48) }}<br>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-8">
+            {% for error in add_user_form.password2.errors %}
+              <div class="alert alert-danger fade show" role="alert">
+                  <strong>{{ error }}</strong>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+
+
+        <div class="row login-visible">
+          <div class="col-md-4">
+            {{ add_user_form.role.label }}<br>
+          </div>
+          <div class="col-md-8">
+            {{ add_user_form.role() }}<br>
+          </div>
+        </div>
+
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-8">
+              {% for error in add_user_form.role.errors %}
+                <div class="alert alert-danger fade show" role="alert">
+                  <strong>{{ error }}</strong>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+
+
+          <div class="row login-visible">
+            <div class="col-md-4">
+              {{ add_user_form.department.label }}<br>
+            </div>
+            <div class="col-md-8">
+              {{ add_user_form.department() }}<br>
+            </div>
+          </div>
+    
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-8">
+              {% for error in add_user_form.department.errors %}
+                <div class="alert alert-danger fade show" role="alert">
+                  <strong>{{ error }}</strong>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
 
 
         <div class="row login-visible">

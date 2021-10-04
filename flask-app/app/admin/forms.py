@@ -18,6 +18,20 @@ from .. import create_app
 class AddUserForm(FlaskForm):
     """ Form for admin user to create a new user """
 
+    first_name = StringField('First Name: ', validators=[
+        DataRequired(),
+        Length(1, 64),
+        ],
+        render_kw={"placeholder" : "John"}
+    )
+
+    last_name = StringField('Last Name: ', validators=[
+        DataRequired(),
+        Length(1, 64),
+        ],
+        render_kw={"placeholder" : "Doe"}
+    )
+    
     email = StringField('Email: ', validators=[
         DataRequired(),
         Length(1, 64),

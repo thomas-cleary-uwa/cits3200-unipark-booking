@@ -4,7 +4,7 @@ Authors: Thomas Cleary,
 """
 
 import random
-import pdfkit
+'import pdfkit'
 import os
 
 from datetime import date, datetime, timedelta
