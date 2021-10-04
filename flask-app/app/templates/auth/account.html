@@ -1,0 +1,163 @@
+{% extends 'base/base.html' %}
+
+
+{% block title %}
+Admin - Edit User
+{% endblock %}
+
+{% block pageBanner %}
+Edit User
+{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+  <div class="col-md-6 uwa-light-panel mb-5" id="login-form">
+
+    <div class="row uwa-dark-panel">
+      <div class="col-md-4">
+        <p class="panel-banner uwa-heading">
+          Edit User
+        </p>
+      </div>
+      <div class="col-md-8">
+        <p class="panel-banner uwa-heading">{{ editing_account.first_name }} {{ editing_account.last_name }} - {{
+          editing_account.email }}</p>
+      </div>
+    </div>
+
+    <form action="" method="POST" novalidate>
+      {{ edit_account_form.hidden_tag() }}
+
+      <div class="form-group">
+        <div class="row login-visible">
+          <div class="col-md-4">
+            {{ edit_account_form.email.label() }}<br>
+          </div>
+          <div class="col-md-8">
+            {{ edit_account_form.email(size=48) }}<br>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-8">
+            {% for error in edit_account_form.email.errors %}
+            <div class="alert alert-danger fade show" role="alert">
+              <strong>{{ error }}</strong>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+
+        <div class="row login-visible">
+          <div class="col-md-4">
+            {{ edit_account_form.first_name.label() }}<br>
+          </div>
+          <div class="col-md-8">
+            {{ edit_account_form.first_name(size=48) }}<br>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-8">
+            {% for error in edit_account_form.first_name.errors %}
+            <div class="alert alert-danger fade show" role="alert">
+              <strong>{{ error }}</strong>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+
+        <div class="row login-visible">
+          <div class="col-md-4">
+            {{ edit_account_form.last_name.label() }}<br>
+          </div>
+          <div class="col-md-8">
+            {{ edit_account_form.last_name(size=48) }}<br>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-8">
+            {% for error in edit_account_form.last_name.errors %}
+            <div class="alert alert-danger fade show" role="alert">
+              <strong>{{ error }}</strong>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+
+        <div class="row login-visible">
+          <div class="col-md-4">
+            {{ edit_account_form.role.label }}<br>
+          </div>
+          <div class="col-md-8">
+            {{ edit_account_form.role() }}<br>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-8">
+            {% for error in edit_account_form.role.errors %}
+            <div class="alert alert-danger fade show" role="alert">
+              <strong>{{ error }}</strong>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+
+        <div class="row login-visible">
+          <div class="col-md-4">
+            {{ edit_account_form.department.label }}<br>
+          </div>
+          <div class="col-md-8">
+            {{ edit_account_form.department() }}<br>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-8">
+            {% for error in edit_account_form.department.errors %}
+            <div class="alert alert-danger fade show" role="alert">
+              <strong>{{ error }}</strong>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+
+        <div class="row login-visible">
+          <div class="col-md-6 offset-md-4 pt-3 uwa-submit">
+            <button class="btn uwa-btn" type="submit">
+              <span class="material-icons md-24">
+                how_to_reg
+              </span>
+              Update User
+            </button>
+          </div>
+          <div class="col-md-6 offset-md-4 pt-3 uwa-submit">
+            <a class="btn uwa-btn" href="{{ url_for('auth.change_password',user_id=editing_account.id) }}">
+              <span class="material-icons md-24">
+                room_preferences
+              </span>
+              Change Password
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>
+
+
+{% endblock %}

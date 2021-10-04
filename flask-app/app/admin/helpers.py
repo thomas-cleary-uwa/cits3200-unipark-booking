@@ -75,7 +75,6 @@ def get_edit_user_form():
 def get_user(user_id):
     """ return user, else if not found a redirect to users page """
     editing_user = User.query.get(user_id)
-    
     if editing_user is None:
         flash("Something went wrong: Could not find this user")
         return (True, redirect(url_for("admin.users")))
