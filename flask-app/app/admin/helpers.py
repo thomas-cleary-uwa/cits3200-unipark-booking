@@ -39,9 +39,8 @@ def add_new_user(add_user_form):
     email = add_user_form.email.data.lower().strip()
     password = add_user_form.password.data.strip()
 
-    names = email.split("@")[0].split(".")
-    first_name = names[0].capitalize().strip()
-    last_name = names[1].capitalize().strip()
+    first_name = add_user_form.first_name.data.lower().capitalize()
+    last_name = add_user_form.last_name.data.lower().capitalize()
 
     role_name = add_user_form.role.data # ignore pylint error, we just added the role member
     dep_name = add_user_form.department.data # ignore pylint error, we just added the department member
