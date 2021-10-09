@@ -1,0 +1,22 @@
+<p>Dear {{ user_first_name }} {{ user_last_name }},</p>
+
+  <p>Your booking has been confirmed. Please find details of this booking below.</p>
+
+  <p>Car Park {{ lot_num }} - Bay {{ bay_num }}</p>
+
+  <p>Booking Reference: {{ booking.booking_code }}</p>
+
+  <p><span>Guest Name:</span> {{ booking.guest_name }}</p>
+
+  <p><span>Date:</span> {{ booking.date_booked.strftime("%a, %-d %b %Y") }}</p>
+
+  <p><span>Time:</span> {{ booking.start_time }} - {{ booking.end_time }}</p>
+
+  <p>
+    <span>Registration #:</span>
+    {% if booking.vehicle_rego %} {{ booking.vehicle_rego }}
+    {% else %} NOT GIVEN
+    {% endif %}
+  </p>
+
+  <p><small>Note: replies to this email are not monitored</small></p>

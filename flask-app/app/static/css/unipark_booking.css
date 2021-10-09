@@ -31,6 +31,11 @@
   --uwa-yellow : rgb(248, 211, 75);
   --uwa-darker-yellow : rgb(219, 183, 61);
 
+  --uwa-green: rgb(83, 177, 52);
+  --uwa-red: rgb(177, 52, 83);
+  --uwa-orange: rgb(197, 116, 71);
+
+
   --uwa-form-separator-colour : rgb(219, 219, 219);
 }
 
@@ -39,6 +44,12 @@
 /*
 *** Google Material Icon Classes **********************************************
 */
+
+.material-icons.md-12 { 
+  font-size: 12px; 
+  vertical-align: middle;
+}
+
 .material-icons.md-24 { 
   font-size: 24px; 
   vertical-align: middle;
@@ -54,6 +65,12 @@
   vertical-align: middle;
 }
 
+/*
+*** General Classes **********************************************************
+*/
+.hidden {
+  visibility: hidden;
+}
 
 
 /*
@@ -62,6 +79,12 @@
 
 body {
   font-family: SourceSansPro, Arial, Helvetica, sans-serif;
+}
+
+.content-container {
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 4em;
 }
 
 .flex-nav {
@@ -76,6 +99,29 @@ body {
   margin-bottom: auto;
 }
 
+
+.dropdown-menu {
+  font-family: uwaSlab, SourceSansPro, Arial, Helvetica, sans-serif;
+  font-size: 0.75em;
+  background-color: var(--uwa-light-grey);
+  border-color: var(--uwa-yellow);
+  z-index: 2;
+}
+
+.dropdown-menu .dropdown-item {
+  padding-left: 0.5em;
+  color: var(--uwa-blue);
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: var(--uwa-dark-grey);
+}
+
+.dropdown-item:hover span {
+  color: var(--uwa-darker-yellow);
+}
+
+
 #uwa-navbar {
   background-color: var(--uwa-blue);
 
@@ -89,22 +135,31 @@ body {
   font-size: xx-large;
 }
 
-#uwa-navbar a, #uwa-navbar span{
-  color : rgb(255, 255, 255);
+
+#uwa-navbar .uwa-nav-btn{
+  color : white;
   padding : 0.5em;
 }
 
-#logout-link:hover span {
+#uwa-navbar .uwa-nav-btn:hover {
   color : var(--uwa-yellow);
+  background-color: var(--uwa-darker-blue);
+  border-radius: 10%;
 }
 
 #uwa-nav-logo {
-  padding-left: 0;
+  padding: 0.5em;
 }
 
 #uwa-nav-logo:hover, #logout-link:hover {
   background-color: var(--uwa-darker-blue);
   border-radius: 10%;
+}
+
+#page-banner {
+  padding : 1em 1em 1em 1em;
+  font-family: uwaSlab;
+  z-index: 1;
 }
 
 #uwa-flash-msg {
@@ -163,6 +218,8 @@ body {
   color: var(--uwa-blue);
   border-radius: 0;
   padding: 0.05em 0.1em, 0.05em 0.1em;
+  margin-right: 0.5em;
+
 }
 
 .uwa-submit {
@@ -177,7 +234,7 @@ body {
 }
 
 .uwa-btn .material-icons.md-24 { 
-  padding-left: 0.5em;
+  padding-right: 0.5em;
 }
 
 
@@ -216,17 +273,64 @@ body {
   padding-right: 0;
 }
 
-#welcome-banner {
-  padding : 1em 1em 1em 1em;
-  font-family: uwaSlab;
-}
-
 
 
 /* 
-*** /index route **************************************************************
+*** /bookings/parking-lots route **************************************************************
 */
-.map {
+.timetable th:first-child,
+.timetable td:first-child {
+  position: sticky;
+  border-width: thick !important;
+  left: 0;
+  background-color: var(--uwa-light-grey);
+}
+
+.timetable td:first-child,
+.timetable td:nth-child(2) {
+  padding-right: 0;
+  padding-left: 0;
+  text-align: center !important; 
+}
+
+.timetable td:first-child, .timetable thead th {
+  background-color: var(--uwa-light-grey);
+}
+
+.timetable thead th,
+.timetable td {
+  border-width: thick !important;
+  border-color: var(--uwa-dark-grey);
+  min-width: 70px;
+  min-height: 70px;
+  color: var(--uwa-blue);
+}
+
+.timetable {
+  border-collapse: separate;
+}
+
+.timetable thead > * {
+  color: var(--uwa-blue)
+}
+
+.timeslot-red {
+  background-color: var(--uwa-red);
+}
+
+.timeslot-green {
+  background-color: var(--uwa-green);
+}
+
+.timeslot-yellow {
+  background-color: var(--uwa-darker-yellow);
+}
+
+.timeslot-orange {
+  background-color: var(--uwa-orange);
+}
+
+#parking-lot-map {
   width : 100%;
   height : auto;
 

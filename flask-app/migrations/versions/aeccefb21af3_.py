@@ -1,4 +1,4 @@
-""" remove unique constraint from first and last name of user
+"""remove unique constraint from first and last name of user
 
 Revision ID: aeccefb21af3
 Revises: 5eacdf675440

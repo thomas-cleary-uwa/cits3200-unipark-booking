@@ -2,7 +2,19 @@
 A car bay booking web application for UWA's UniPark office
 <br>
 
-**NOTE: DO NOT DIRECTLY MERGE / PUSH TO MAIN OR DEV (PLEASE CREATE A PULL REQUEST)**
+## Branches
+
+#### main
+- Version of app, fully confident in. (Safe backup)
+
+#### dev
+- Version of app that has been tested / unit tested.
+
+#### dev-untested
+- Version of app with most current features, not all features tested.
+- Pull requests for new features sent to this branch.
+
+**NOTE: DO NOT DIRECTLY MERGE / PUSH TO ONE OF THESE BRANCHES (PLEASE CREATE A PULL REQUEST)**
 <br><br>
 
 ## Linting
@@ -42,6 +54,30 @@ NOTE: On windows
 
 NOTE: Your system may have pip aliased as something other than `pip`
 
+### 3.b Install wkhtmltopdf
+Install this program to be able to use *pdfkit* to generate reservation signs
+https://wkhtmltopdf.org/
+
+If you want to disable pdf generation and confirmaton emails, comment out this section of *bookings/helpers.py*
+
+```
+if not no_email:
+    bay = new_booking.bay
+
+    lot_num = bay.lot.lot_number
+    bay_num = bay.bay_number
+    
+    thr = Thread(target=generate_reservation_sign, args=[
+        current_app._get_current_object(),
+        new_booking,
+        bay_num,
+        lot_num,
+        User.query.get(current_user.id)
+    ])
+    thr.start()
+```
+
+
 ### 4. Add .env File
 `$ touch .env` - and then edit .env in a text editor (Command only on linux / macOS)<br>
 or<br>
@@ -56,8 +92,16 @@ Currently need values for:
 - FLASK_CONFIG=**(config name from config.py, eg. development)**
 - FLASK_ENV=**(development or production)**
 - SECRET_KEY=**(secret key used for encryption eg. youwillneverguessthis)**
-- ADMIN_EMAIL=**(eg. test@uwa.edu.au)**
+
+- ADMIN_EMAIL=**(eg. uni.park@uwa.edu.au)**
 - ADMIN_PASSWORD=**(atleast 8 characters, eg. admin1234)**
+
+- TEST_USER_EMAIL=**(your email address)** (used with run_fresh_app.py -u)
+- TEST_USER_PASSWORD=**(eg. user1234)**
+
+- MAIL_USERNAME=unipark.mailtest@gmail.com
+- MAIL_PASSWORD=uniparkt3st
+- MAIL_DEFAULT_SENDER=unipark.mailtest@gmail.com
 
 ### 5. Setup the Database and Run the Flask App
 To run the app you need a local instance of the database. 
@@ -83,7 +127,22 @@ To automatically run the above commands and start the application simply run fro
 
 **NOTE: This script also calls `flask run`**
 
-`$ python run/run_fresh_app.py`
+There are options being added to the run_fresh_app.py script so use 
+
+`$ python run/run_fresh_app.py --help`
+
+or
+
+`$ python run/run_fresh_app.py --h`
+
+to see options
+
+For example, 
+
+`$ python run/run_fresh_app.py --add-user`
+
+will run a _fresh_ version of the app with a regular user inserted already.
+
 
 
 ### 6. Finally

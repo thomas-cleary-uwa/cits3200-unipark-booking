@@ -28,6 +28,18 @@ class Config:
     # unless signals for object changes are needed
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+    # GMAIL Config vars
+    MAIL_SERVER   = 'smtp.googlemail.com' 
+    MAIL_PORT     = 587
+    MAIL_USE_TLS  = True 
+    MAIL_USERNAME = os.environ.get('MAIL_USERNAME') 
+    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+    MAIL_DEFAULT_SENDER = os.environ.get('MAIL_DEFAULT_SENDER')
+
+    # email variables
+    MAIL_SUBJECT_PREFIX = '[UniPark]'
+    MAIL_SENDER = 'UniPark Admin <{}>'.format(MAIL_USERNAME)
+
     @staticmethod
     def init_app(app):
         """ Can be used as an additional way to customise the application's
@@ -42,6 +54,13 @@ class DevelopmentConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') \
                               or \
                               'sqlite:///' + os.path.join(basedir, 'db-dev.sqlite')
+
+
+class SetupConfig(DevelopmentConfig):
+    """ config used during run_fresh_app """
+    WTF_CSRF_ENABLED = False
+    TEST_USER_EMAIL  = os.environ.get('TEST_USER_EMAIL') or "test.user@uwa.edu.au"
+    TEST_USER_PASSWORD = os.environ.get('TEST_USER_PASSWORD') or "user1234"
 
 
 
@@ -73,6 +92,7 @@ configs = {
     'development': DevelopmentConfig,
     'testing'    : TestingConfig,
     'production' : ProductionConfig,
+    'setup'      : SetupConfig,
 
     'default'    : DevelopmentConfig
 }
