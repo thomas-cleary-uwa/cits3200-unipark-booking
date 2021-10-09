@@ -1,8 +1,6 @@
-# README
-How to setup the UniPark Booking System.
+# cits3200-unipark-booking
+A car bay booking web application for UWA's UniPark office
 <br>
-
-[Go back to documentation](https://thomcleary.github.io/cits3200-unipark-booking/)
 
 ## Linting
 To avoid some incorrect linting when using ***pylint*** add this line to your _.vscode/settings.json_ file:
@@ -12,11 +10,11 @@ To avoid some incorrect linting when using ***pylint*** add this line to your _.
 
 ## Walkthroughs
 
-0. [Setup](https://youtu.be/_bJY0cp90w4)
-1. [What happens when you run the app](https://youtu.be/aZ9d8qhxnsc)
-2. [Working with Flask and a Database](https://youtu.be/tXokeftmGkE)
-3. [Explanation of the _app_ package](https://youtu.be/pCmkMkBuaEE)
-4. [Explanation of the unit tests](https://youtu.be/NuK26NFPl1E)
+0. Setup: https://youtu.be/_bJY0cp90w4
+1. What happens when you run the app: https://youtu.be/aZ9d8qhxnsc
+2. Working with Flask and a Database: https://youtu.be/tXokeftmGkE
+3. Explanation the the _app_ package: https://youtu.be/pCmkMkBuaEE
+4. Explanation of the unit tests: https://youtu.be/NuK26NFPl1E
 <br><br>
 
 ## To Run the Flask App
