@@ -5,11 +5,16 @@
   Login - UniPark Booking
 {% endblock %}
 
+{% block pageBanner %}
+  UniPark Bookings
+{% endblock %}
+
+
 {% block content %}
 
 <div class="row justify-content-center">
 
-  <div class="col-md-9 uwa-light-panel mb-5" id="login-form">
+  <div class="col-sm-4 uwa-light-panel mb-5" id="login-form">
     <div class="row uwa-dark-panel">
       <p class="panel-banner uwa-heading">
         Log In
@@ -33,7 +38,9 @@
           <div class="col-md-4"></div>
           <div class="col-md-8">
             {% for error in login_form.email.errors %}
-              <span style="color:red;">[{{ error }}]</span>
+                <div class="alert alert-danger fade show" role="alert">
+                  <strong>{{ error }}</strong>
+                </div>
             {% endfor %}  
           </div>
         </div>
@@ -51,18 +58,20 @@
           <div class="col-md-4"></div>
           <div class="col-md-8">
             {% for error in login_form.password.errors %}
-              <span style="color:red;">[{{ error }}]</span>
+              <div class="alert alert-danger fade show" role="alert">
+                <strong>{{ error }}</strong>
+              </div>
             {% endfor %}
           </div>
         </div>
 
         <div class="row login-visible">
           <div class="col-md-8 offset-md-4 pt-3 uwa-submit">
-            <button class="btn uwa-btn uwa-heading" type="submit">
-              Log In 
-              <span class="material-icons md-24 uwa-heading">
+            <button class="btn uwa-btn" type="submit">
+              <span class="material-icons md-24">
                 login
               </span>
+              Log In 
             </button>
           </div>
         </div>

@@ -1,0 +1,67 @@
+{% extends 'base/base.html' %}
+
+
+{% block title %}
+  Admin - Add Department
+{% endblock %}
+
+{% block pageBanner %}
+  Add Department
+{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+  <div class="col-md-4 uwa-light-panel mb-5" id="login-form">
+
+    <div class="row uwa-dark-panel">
+      <div class="col-md-4">
+        <p class="panel-banner uwa-heading">
+          New Department
+        </p>
+      </div>
+    </div>
+
+    <form action="" method="POST" novalidate>
+      {{ form.hidden_tag() }}
+
+      <div class="form-group">
+
+        <div class="row login-visible">
+          <div class="col-md-4">
+            {{ form.name.label() }}<br>
+          </div>
+          <div class="col-md-8">
+            {{ form.name(size=32) }}<br>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-8">
+            {% for error in form.name.errors %}
+              <div class="alert alert-danger fade show" role="alert">
+                <strong>{{ error }}</strong>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="row login-visible">
+          <div class="col-md-8 offset-md-4 pt-3 uwa-submit">
+            <button class="btn uwa-btn" type="submit">
+              <span class="material-icons md-24">
+                add
+              </span>
+              Add Department
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>
+
+
+{% endblock %}

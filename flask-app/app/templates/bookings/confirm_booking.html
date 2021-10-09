@@ -1,0 +1,148 @@
+{% extends 'base/base.html' %}
+
+
+{% block title %}
+  Bookings - Confirm Booking
+{% endblock %}
+
+{% block pageBanner %}
+  Confirm Booking - Car Park {{ lot_num }} Bay {{ bay_num }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="row justify-content-center">
+
+    <div class="col-md-4 uwa-light-panel mb-5" id="login-form">
+      <div class="row uwa-dark-panel">
+        <div class="col-md-4">
+          <p class="panel-banner uwa-heading">
+            Your Booking
+          </p>
+        </div>
+        <div class="col-md-8">
+          <p class="panel-banner uwa-heading">{{ date.strftime("%a, %-d %b %Y") }} - {{ start_time }} to {{ end_time }}</p>
+        </div>
+      </div>
+
+      <form action="" method="POST" novalidate>
+        {{ form.hidden_tag() }}
+      
+        <div class="form-group">
+          <div class="row login-visible">
+            <div class="col-md-4">
+              {{ form.title.label }}<br>
+            </div>
+            <div class="col-md-8">
+              {{ form.title() }}<br>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-8">
+              {% for error in form.title.errors %}
+                <div class="alert alert-danger fade show" role="alert">
+                  <strong>{{ error }}</strong>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="row login-visible">
+            <div class="col-md-4">
+              {{ form.guest_first_name.label }}<br>
+            </div>
+            <div class="col-md-8">
+              {{ form.guest_first_name(class_="login-field") }}<br>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-8">
+              {% for error in form.guest_first_name.errors %}
+                <div class="alert alert-danger fade show" role="alert">
+                  <strong>{{ error }}</strong>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="row login-visible">
+            <div class="col-md-4">
+              {{ form.guest_last_name.label }}<br>
+            </div>
+            <div class="col-md-8">
+              {{ form.guest_last_name(class_="login-field") }}<br>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-8">
+              {% for error in form.guest_last_name.errors %}
+                <div class="alert alert-danger fade show" role="alert">
+                  <strong>{{ error }}</strong>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="row login-visible">
+            <div class="col-md-4">
+              {{ form.vehicle_rego.label }}<br>
+            </div>
+            <div class="col-md-8">
+              {{ form.vehicle_rego(class_="login-field") }}<br>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-8">
+              {% for error in form.vehicle_rego.errors %}
+                <div class="alert alert-danger fade show" role="alert">
+                  <strong>{{ error }}</strong>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="row login-visible">
+            <div class="col-md-4">
+              {{ form.ts_and_cs.label }}<br>
+            </div>
+            <div class="col-md-8">
+              {{ form.ts_and_cs() }}<br>
+            </div>
+          </div>
+    
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-8">
+              {% for error in form.ts_and_cs.errors %}
+                <div class="alert alert-danger fade show" role="alert">
+                  <strong>{{ error }}</strong>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="row login-visible">
+            <div class="col-md-8 offset-md-4 pt-3 uwa-submit">
+              <button class="btn uwa-btn" type="submit">
+                <span class="material-icons md-24">
+                  check
+                </span>
+                Confirm Booking
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
