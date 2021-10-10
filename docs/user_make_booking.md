@@ -20,7 +20,6 @@ There are four car-parks around UWA that have reservable bays: carpark 9, 12, 19
 - **Orange:** bay is not available (a 15 minute change-over time at the start and end of bookings for guests)
 - **Red:** bay is not available
 - **Yellow:** your selected booking
-<br><br>
 
 ### Day-view timetable
 To make a booking, select the arrival and departure time from a set of available time slots for a single bay. The booking details are displayed in the banner above the booking date. 
