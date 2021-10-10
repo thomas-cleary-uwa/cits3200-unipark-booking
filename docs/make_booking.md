@@ -30,7 +30,7 @@ To make a booking, select the arrival and departure time from a set of available
 - Carpark timetables can be collapsed by clicking the carpark header
 - Scroll across times by clicking and dragging the timetable left or right
 - The location of individual bays can be found by clicking on the Google Maps icon
-<br><br>
+<br>
 
 ### Bay-view timetable
 
