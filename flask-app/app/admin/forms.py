@@ -40,6 +40,13 @@ class AddUserForm(FlaskForm):
         render_kw={"placeholder" : "firstname.lastname@uwa.edu.au"}
     )
 
+    contact = StringField('Contact Number: ', validators=[
+        DataRequired(),
+        Length(1, 64),
+        ],
+        render_kw={"placeholder" : "0411222333"}
+    )
+
     password = PasswordField('Password: ', validators=[
         DataRequired(),
         Length(8, 64),
