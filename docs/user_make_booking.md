@@ -8,7 +8,7 @@ Guide on how to make a booking on the behalf of a guest.
 
 Go to the Bookings drop down on the top left and click "New Booking". This will take you to a list of carpark timetables where you can place your bookings. 
 
-There are four car-parks around UWA that have reservable bays: carpark 9, 12, 19 and 22. The location of each carpark can be found by clicking on the "Map" tab or by clicking [here](http://192.168.1.134:5000/static/media/images/carpark-map.jpg). *Note that carpark 15 is no longer in use for reservations.*
+There are four car-parks around UWA that have reservable bays: carpark 9, 12, 19 and 22. The location of each carpark can be found by clicking on the "Map" tab or by clicking [here](https://user-images.githubusercontent.com/88474382/137065444-b87ecfaa-c6ed-447b-b4d2-4f203ae4bb74.png). *Note that carpark 15 is no longer in use for reservations.*
 
  ![image](https://user-images.githubusercontent.com/88474382/136699107-958b511c-2923-4c14-b748-ca0b6734d805.png)
 <br><br>
