@@ -1,16 +1,16 @@
 # How to make a booking
-Guide on how to make a booking on the behalf of a guest. 
+Guide on how to place a booking on the behalf of a guest. 
 
-[Go back to User Help Directory](user_directory.md)
+[Go back to Admin Help Directory](https://thomcleary.github.io/cits3200-unipark-booking/admin_directory)
 <br><br>
 
 ## Step 1.
 
-Go to the Bookings drop down on the top left and click "New Booking". This will take you to a list of carpark timetables where you can place your bookings. 
+To get to the bookings page, click on the "New Bookings" button on the top left of the page, next to the UWA logo. This will take you to a list of carpark timetables where you can place your bookings. 
 
-There are four car-parks around UWA that have reservable bays: carpark 9, 12, 19 and 22. The location of each carpark can be found by clicking on the "Map" tab or by clicking [here](https://user-images.githubusercontent.com/88474382/137065444-b87ecfaa-c6ed-447b-b4d2-4f203ae4bb74.png). *Note that carpark 15 is no longer in use for reservations.*
+There are four car-parks around UWA that have reservable bays: carpark 9, 12, 19 and 22. The location of each carpark can be found by clicking on the "Map" tab or by clicking [here](https://user-images.githubusercontent.com/88474382/137065444-b87ecfaa-c6ed-447b-b4d2-4f203ae4bb74.png). *Note that carpark 15 is no longer in use for reservations.* Click on the carpark name where you would like the booking to be and the timetable for all the bays at that carpark will drop down.
 
- ![image](https://user-images.githubusercontent.com/88474382/136699107-958b511c-2923-4c14-b748-ca0b6734d805.png)
+![image](https://user-images.githubusercontent.com/88474382/137627947-271d15f1-1153-4b41-9a62-08c0a5151ba3.png)
 <br><br>
 
 ## Step 2.
@@ -20,39 +20,29 @@ There are four car-parks around UWA that have reservable bays: carpark 9, 12, 19
 - **Orange:** bay is not available (a 15 minute change-over time at the start and end of bookings for guests)
 - **Red:** bay is not available
 - **Yellow:** your selected booking
+<br>
 
 ### Day-view timetable
-To make a booking, select the arrival and departure time from a set of available time slots for a single bay. The booking details are displayed in the banner above the booking date. 
+To make a booking, select the arrival and departure time from a set of available time slots for a single bay. The booking details are then displayed in the banner above the booking date. Click confirm to proceed to the next step for finalising the booking.
 
-![image](https://user-images.githubusercontent.com/88474382/136699168-0f906385-c6c0-4807-a72f-66063ceef9fc.png)
-
-Click confirm to proceed to the next step for finalising the booking.
-
-![image](https://user-images.githubusercontent.com/88474382/136699162-571f3ad2-61c2-4176-a6a2-6ae05085822d.png)
+![image](https://user-images.githubusercontent.com/88474382/137628267-0218113b-1f86-4b85-a0c5-99b9565c7c70.png)
 
 **Note**
 - Carpark timetables can be collapsed by clicking the carpark header
 - Scroll across times by clicking and dragging the timetable left or right
-- The location of individual bays can be found by clicking on the Google Maps icon at the bottom of page or the tab above all the list
+- The location of individual bays can be found by clicking on the Google Maps icon
 <br>
 
 ### Bay-view timetable
 
-The timetable for an individual bay can be found by clicking on the car icon on the timetable corresponding to the numbered bay. Bookings can also be made through this timetable view. Select the arrival and departure time on the timetable then click confirm to proceed to the next step for finalising the booking.
+The timetable for an individual bay can be found by clicking on the car icon on the timetable (beside the Google Maps icon) corresponding to the numbered bay. Bookings can also be made through this timetable view. Select the arrival and departure time on the timetable then click confirm to proceed to the next step for finalising the booking.
 
-![image](https://user-images.githubusercontent.com/88474382/135716637-b901074b-9294-49f1-be96-c416822d6144.png)
+![image](https://user-images.githubusercontent.com/88474382/137628269-5541a848-35e6-46dd-984d-d68b48fa1d0b.png)
 <br><br>
 
 ## Step 3.
 
 Finalise the booking by filling in the details on the form and submit by clicking "Confirm Booking". A 15 minute change-over period will be appended to the start and end of the booking (indicated in orange) to ensure that the bay will be available for the next guest.
 
-![image](https://user-images.githubusercontent.com/88474382/136699185-b1d670dd-0acb-45c8-b4d8-c8da6cbe7adf.png)
-
-You will then be redirected back to the bookings page and the banner will say "Booking Succeeded" if the booking was successfully placed.
-
-![image](https://user-images.githubusercontent.com/88474382/136699233-11945c20-4f5e-4ecf-8bb2-bef3219fbd21.png)
+<img width="1440" alt="Screen Shot 2021-10-17 at 6 06 34 pm" src="https://user-images.githubusercontent.com/88474382/137628291-6b4a3f55-41d8-4a9a-bea5-48b14c1f9cf7.png">
 <br><br>
-
- 
-
