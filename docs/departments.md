@@ -6,30 +6,47 @@ Guide on how to add, edit and delete UWA departments from the booking system. Th
 
 ## Step 1.
 
-Go to the All Users page by clicking "Users" on the top left. Then, click on "Manage Departments" at the bottom of the list.
+Go to the All Users page by clicking "Users" on the top left.
 
-![image](https://user-images.githubusercontent.com/88474382/135739709-1ac4e7b6-e276-4273-bf18-1795c20f9ccc.png)
+![image](https://user-images.githubusercontent.com/88474382/137626692-d09185d7-d7a1-4565-bb48-039e27c49215.png)
 <br><br>
 
 ## Step 2.
 
+Scroll to the bottom of the Users page and click "Manage Departments".
+
+![image](https://user-images.githubusercontent.com/88474382/137626719-7d60224b-adf9-463a-9578-9843a3c0d6b9.png)
+<br><br>
+
+## Step 3.
+
 ### Add departments
 
-Add a department by scrolling to the end of the page and clicking on "Add Department". This will take you to the following form. Simply fill in the new department's name and click "Add Department", and the department will be added.
+Add a department by scrolling to the end of the page and clicking on "Add Department". 
 
-![image](https://user-images.githubusercontent.com/88474382/135739901-1509b1dd-1deb-464f-a0c0-3ba901664b1c.png)
+![image](https://user-images.githubusercontent.com/88474382/137626773-c882b52e-3ed5-4b74-889a-6e0243fc07cd.png)
+<br><br>
+
+This will take you to the following form. Simply fill in the new department's name and click "Add Department", and the department will be added.
+
+<img width="1440" alt="image" src="https://user-images.githubusercontent.com/88474382/137626838-50523137-3df8-495d-8bae-56f7fa3803ad.png">
 <br><br>
 
 ### Edit departments
 
-Edit departments by clicking on the pencil icon in the "Edit" column corresponding to the department you want to edit. You will then be taken to a form where the department name can be changed.
+Edit departments by clicking on the pencil icon in the "Edit" column corresponding to the department you want to edit.
 
-![image](https://user-images.githubusercontent.com/88474382/135739971-8ae19554-6fba-4a76-9f2d-3e81c17d58dc.png)
+![image](https://user-images.githubusercontent.com/88474382/137626902-6a0ae178-1085-437b-9b3e-9f6b0c9785a5.png)
+<br><br>
+
+You will then be taken to the following form where the department name can be changed.
+
+<img width="1440" alt="image" src="https://user-images.githubusercontent.com/88474382/137626854-9919b5a7-3edb-4b1d-897c-0d2566fec831.png">
 <br><br>
 
 ### Delete departments
 
 Delete departments by clicking on the bin icon in the "Delete" column.
 
-![image](https://user-images.githubusercontent.com/88474382/135740058-11e9e227-f25a-4830-8530-67855ca9e0f8.png)
+![image](https://user-images.githubusercontent.com/88474382/137626935-f62e0f0e-746b-4a80-8e91-48166150ab97.png)
 <br><br>
