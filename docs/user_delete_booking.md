@@ -1,7 +1,7 @@
 # How to delete bookings
 Guide on how to delete a booking.
 
-[Go back to Admin Help Directory](https://thomcleary.github.io/cits3200-unipark-booking/admin_directory)
+[Go back to User Help Directory](https://thomcleary.github.io/cits3200-unipark-booking/user_directory)
 
 ## Step 1.
 
