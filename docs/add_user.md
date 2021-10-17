@@ -13,7 +13,7 @@ To add new users, click on "Users" on the page header.
 
 ## Step 2.
 
-Scroll to the bottom of the Users page and click "Add User"
+Scroll to the bottom of the Users page and click "Add User".
 
 ![image](https://user-images.githubusercontent.com/88474382/137617686-8b6ed9e8-fff4-470d-9bbc-541ec2075258.png)
 <br><br>
