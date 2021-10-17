@@ -25,7 +25,7 @@ There are four car-parks around UWA that have reservable bays: carpark 9, 12, 19
 ### Day-view timetable
 To make a booking, select the arrival and departure time from a set of available time slots for a single bay. The booking details are then displayed in the banner above the booking date. Click confirm to proceed to the next step for finalising the booking.
 
-![choose_booking_and_confirm_2](https://user-images.githubusercontent.com/88474382/137615790-888808a7-6399-40c1-878e-fd4c35e9bb3b.png)
+![image](https://user-images.githubusercontent.com/88474382/137623024-e32ab1bb-da3f-4310-9723-90ef39bb1ff9.png)
 
 **Note**
 - Carpark timetables can be collapsed by clicking the carpark header
@@ -44,5 +44,5 @@ The timetable for an individual bay can be found by clicking on the car icon on 
 
 Finalise the booking by filling in the details on the form and submit by clicking "Confirm Booking". A 15 minute change-over period will be appended to the start and end of the booking (indicated in orange) to ensure that the bay will be available for the next guest.
 
-![image](https://user-images.githubusercontent.com/88474382/137615949-6438db41-93c7-464a-9957-27d7dc9db03c.png)
+<img width="1440" alt="Screen Shot 2021-10-17 at 6 00 54 pm" src="https://user-images.githubusercontent.com/88474382/137623035-dbda956f-e63d-4311-a93c-60ee5214cd54.png">
 <br><br>
