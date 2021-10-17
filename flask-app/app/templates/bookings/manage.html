@@ -71,7 +71,7 @@
                             </a>
                           </td>
                           <td>
-                            <a onclick='confirmDelete("this booking")' href="{{ url_for('bookings.delete', booking_code=booking.booking_code) }}">
+                            <a onclick='return(confirmDelete("this booking"))' href="{{ url_for('bookings.delete', booking_code=booking.booking_code) }}">
                               <span class="material-icons md-24 uwa-heading uwa-link">
                                 delete
                               </span>
