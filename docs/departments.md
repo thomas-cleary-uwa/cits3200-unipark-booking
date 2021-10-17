@@ -25,7 +25,7 @@ Scroll to the bottom of the Users page and click "Manage Departments".
 Add a department by scrolling to the end of the page and clicking on "Add Department". 
 
 ![image](https://user-images.githubusercontent.com/88474382/137626773-c882b52e-3ed5-4b74-889a-6e0243fc07cd.png)
-<br><br>
+<br>
 
 This will take you to the following form. Simply fill in the new department's name and click "Add Department", and the department will be added.
 
@@ -37,7 +37,7 @@ This will take you to the following form. Simply fill in the new department's na
 Edit departments by clicking on the pencil icon in the "Edit" column corresponding to the department you want to edit.
 
 ![image](https://user-images.githubusercontent.com/88474382/137626902-6a0ae178-1085-437b-9b3e-9f6b0c9785a5.png)
-<br><br>
+<br>
 
 You will then be taken to the following form where the department name can be changed.
 
