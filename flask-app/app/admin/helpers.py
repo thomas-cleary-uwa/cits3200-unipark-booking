@@ -101,6 +101,9 @@ def edit_user_info(edit_user_form, editing_user):
     if email_check_user is not None and email_check_user.id != editing_user.id:
         flash("The entered email address is already in use.")
         return redirect(url_for('admin.edit_user', user_id=editing_user.id))
+
+    if edit_user_form.role.data == "inactive":
+        edit_user_form.role.data = "disabled"
     
     editing_user.email = entered_email
     editing_user.first_name = edit_user_form.first_name.data.strip().capitalize()
