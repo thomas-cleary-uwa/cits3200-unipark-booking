@@ -243,21 +243,21 @@ def attempt_booking(form, bay, date, start, end, no_email=False):
     db.session.add(new_booking)
     db.session.commit()
 
-    if not no_email:
-        # use seperate thread to generate pdf
-        bay = new_booking.bay
+    # if not no_email:
+    #     # use seperate thread to generate pdf
+    #     bay = new_booking.bay
 
-        lot_num = bay.lot.lot_number
-        bay_num = bay.bay_number
+    #     lot_num = bay.lot.lot_number
+    #     bay_num = bay.bay_number
         
-        thr = Thread(target=generate_reservation_sign, args=[
-            current_app._get_current_object(),
-            new_booking,
-            bay_num,
-            lot_num,
-            User.query.get(current_user.id)
-        ])
-        thr.start()
+    #     thr = Thread(target=generate_reservation_sign, args=[
+    #         current_app._get_current_object(),
+    #         new_booking,
+    #         bay_num,
+    #         lot_num,
+    #         User.query.get(current_user.id)
+    #     ])
+    #     thr.start()
 
     return True
 

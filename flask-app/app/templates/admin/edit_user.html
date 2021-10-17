@@ -93,17 +93,17 @@
 
       <div class="row login-visible">
         <div class="col-md-4">
-          {{ edit_user_form.contact_no.label() }}<br>
+          {{ edit_user_form.contact.label() }}<br>
         </div>
         <div class="col-md-8">
-          {{ edit_user_form.contact_no(size=48) }}<br>
+          {{ edit_user_form.contact(size=48) }}<br>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-8">
-          {% for error in edit_user_form.contact_no.errors %}
+          {% for error in edit_user_form.contact.errors %}
             <div class="alert alert-danger fade show" role="alert">
               <strong>{{ error }}</strong>
             </div>

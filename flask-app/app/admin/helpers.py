@@ -39,8 +39,9 @@ def add_new_user(add_user_form):
     email = add_user_form.email.data.lower().strip()
     password = add_user_form.password.data.strip()
 
-    first_name = add_user_form.first_name.data.lower().capitalize()
-    last_name = add_user_form.last_name.data.lower().capitalize()
+    first_name = add_user_form.first_name.data.strip().lower().capitalize()
+    last_name = add_user_form.last_name.data.strip().lower().capitalize()
+    contact_number = add_user_form.contact.data.strip()
 
     role_name = add_user_form.role.data # ignore pylint error, we just added the role member
     dep_name = add_user_form.department.data # ignore pylint error, we just added the department member
@@ -50,6 +51,7 @@ def add_new_user(add_user_form):
         password=password,
         first_name=first_name,
         last_name=last_name,
+        contact_number=contact_number,
         role_id = Role.query.filter_by(name=role_name).first().id,
         department_id = Department.query.filter_by(name=dep_name).first().id
     )
@@ -100,6 +102,7 @@ def edit_user_info(edit_user_form, editing_user):
     editing_user.email = entered_email
     editing_user.first_name = edit_user_form.first_name.data.strip().capitalize()
     editing_user.last_name = edit_user_form.last_name.data.strip().capitalize()
+    editing_user.contact_number = edit_user_form.contact.data.strip()
     editing_user.role_id = Role.query.filter_by(name=edit_user_form.role.data).first().id
     editing_user.department_id = Department.query.filter_by(name=edit_user_form.department.data).first().id
 

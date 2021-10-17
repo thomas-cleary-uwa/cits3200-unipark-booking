@@ -43,6 +43,10 @@ class AddUserForm(FlaskForm):
     contact = StringField('Contact Number: ', validators=[
         DataRequired(),
         Length(1, 64),
+        Regexp(
+            r'^\s*[0-9]+\s*$',
+            message='Contact number can only contain digits'
+        )
         ],
         render_kw={"placeholder" : "0411222333"}
     )
@@ -78,10 +82,7 @@ class EditUserForm(FlaskForm):
     email = StringField('Email: ', validators=[
         DataRequired(),
         Length(1, 64),
-        Regexp(
-            r'^\s*[A-Za-z]+\.[A-Za-z]+@uwa\.edu\.au\s*$',
-            message='Username must be an firstname.lastname@uwa.edu.au address'
-        )
+        Email()
     ])
 
     first_name = StringField("First Name: ", validators=[
@@ -100,12 +101,12 @@ class EditUserForm(FlaskForm):
         )
     ])
 
-    contact_no = StringField('Contact Number: ', validators=[
+    contact = StringField('Contact Number: ', validators=[
         DataRequired(),
         Length(1, 10),
         Regexp(
-            r'^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$',
-            message='Contact number cannot contain any alphabets and must be 10 digits'
+            r'^\s*[0-9]+\s*$',
+            message='Contact number can only contain digits'
         )
         ],
        
