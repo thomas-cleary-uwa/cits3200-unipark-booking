@@ -19,12 +19,14 @@ Select the department that you would like to print the booking from. A list will
 
 ## Step 3.
 
-To get the PDF reservation sign for a specific booking, click on the PDF icon in the second last column of the corresponding row labelled "PDF sign". This will download a copy of the reservation sign detailing the booking's personalised information.
+To get the PDF reservation sign for a specific booking, click on the PDF icon in the second last column of the corresponding row labelled "PDF sign". A copy of the reservation sign detailing the booking's personalised information will then appear in another window.
 
-![Screen Shot 2021-10-17 at 3 26 12 pm](https://user-images.githubusercontent.com/88474382/137617014-1845e0dd-1798-403d-8710-1de2876acd0c.png)
+![image](https://user-images.githubusercontent.com/88474382/137617014-1845e0dd-1798-403d-8710-1de2876acd0c.png)
 <br><br>
 
 ## Step 4.
 
-Print the downloaded PDF reservation sign.
+Print the downloaded PDF reservation sign. 
+
+![MicrosoftTeams-image (2)](https://user-images.githubusercontent.com/88474382/137621388-a659cfe6-b749-4c14-99ec-383782ec30f9.png)
 <br><br>
