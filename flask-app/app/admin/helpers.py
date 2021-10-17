@@ -44,6 +44,9 @@ def add_new_user(add_user_form):
     contact_number = add_user_form.contact.data.strip()
 
     role_name = add_user_form.role.data # ignore pylint error, we just added the role member
+    if role_name == "inactive":
+        role_name = "disabled"
+
     dep_name = add_user_form.department.data # ignore pylint error, we just added the department member
 
     new_user = User(

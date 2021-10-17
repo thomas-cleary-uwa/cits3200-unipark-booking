@@ -15,7 +15,7 @@ def attempt_log_in(login_form):
         return redirect(url_for("auth.login"))
 
     if user.role.name == "disabled":
-        flash("Your account is currently disabled")
+        flash("Your account is currently inactive")
         return redirect(url_for("auth.login"))
 
     if user is not None and user.verify_password(login_form.password.data):
