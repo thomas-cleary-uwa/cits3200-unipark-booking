@@ -282,7 +282,8 @@ def generate_reservation_sign(app, booking, bay_num, lot_num, user):
             "--margin-bottom" : 20,
             "--margin-left" : 25,
             "--margin-right" : 30,
-            "--margin-top" : 20
+            "--margin-top" : 40,
+            "--page-size"  : "A3"
         }
 
         pdfkit.from_string(
