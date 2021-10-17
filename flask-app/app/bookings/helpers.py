@@ -69,12 +69,18 @@ def get_user_bookings(curr_user):
     users = {}
     for user_id in users_with_booking:
         users[user_id] = User.query.get(user_id)
-
+    # 17/10/21 - NOT SURE WHY I WROTE THE ABOVE 4 LINES
 
     user_bookings = {user_id : [] for user_id in users_with_booking}
 
     for booking in bookings:
         user_bookings[booking.user.id].append(booking)
+
+    
+    # sort each list in user_bookings by the date booking is made for
+    for user_id in user_bookings:
+        user_bookings[user_id].sort(key=lambda x: x.date_booked)
+
     
     return (user_bookings, users)
 
