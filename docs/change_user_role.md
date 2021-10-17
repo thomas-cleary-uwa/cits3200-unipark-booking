@@ -6,23 +6,23 @@ Guide on how to edit and delete users and admins.
 
 ## Step 1.
 
-Go to the All Users page by clicking "Users" on the top left of the page. Then click on the "Add User" button at the bottom of the page.
+To edit and delete new users, click on "Users" in the page header. 
 
-![image](https://user-images.githubusercontent.com/88474382/135740445-923568cc-ecdc-4b9f-b3f6-4035e56a325a.png)
+![image](https://user-images.githubusercontent.com/88474382/137620595-b2f73853-06e2-409b-b4ca-81b85936ff69.png)
 <br><br>
 
 ## Step 2.
 
 ### Edit users and admins
 
-Edit users/admins by clicking on the pencil icon in the "Edit" column. To make a user inactive, change the Role of the user to "inactive". Inactive users cannot use the booking system.
+Edit users/admins by clicking on the pencil icon in the "Edit" column and then adjusting the details in the form. Click "Update User" to confirm. To make a user inactive, change the Role of the user to "inactive". Inactive users cannot log into the booking system.
 
-![image](https://user-images.githubusercontent.com/88474382/135740694-0c1a4cc0-9920-4c17-a32b-ba0b7501dbcc.png)
+<img width="1440" alt="image" src="https://user-images.githubusercontent.com/88474382/137620648-49c14963-72b2-463c-ba6c-393481cae8dd.png">
 <br><br>
 
 ### Delete users and admins
 
 Delete users/admins by clicking on the bin icon in the "Delete" column.
 
-![image](https://user-images.githubusercontent.com/88474382/135740777-e62a230c-e883-49a3-a6d5-84f2582c447b.png)
+![Screen Shot 2021-10-17 at 2 09 02 pm](https://user-images.githubusercontent.com/88474382/137620669-0173f735-c6b2-40ce-aa51-a7deccdc5a5a.png)
 <br><br>
