@@ -46,7 +46,8 @@ class Role(db.Model):
     @staticmethod
     def get_names():
         """ return a list of role names """
-        return [role.name for role in Role.query.all()]
+        roles = [role.name for role in Role.query.all()]
+        return [name if name != "disabled" else "inactive" for name in roles]
 
 
     @staticmethod
@@ -137,6 +138,7 @@ class User(UserMixin, db.Model):
     # Profile Attributes
     first_name = db.Column(db.String(64), index=True)
     last_name  = db.Column(db.String(64), index=True)
+    contact_number = db.Column(db.String(64), nullable=True)
 
     # Foreign Keys
     role_id = db.Column(db.Integer, db.ForeignKey('Role.id'))

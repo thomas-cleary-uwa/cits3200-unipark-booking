@@ -189,7 +189,8 @@ def manage():
     # all users if admin, else just current user's bookings
     user_bookings, users = get_user_bookings(current_user)
 
-    print(user_bookings)
+    if len(user_bookings.keys()) == 0:
+        user_bookings = None
 
     return render_template("bookings/manage.html", bookings=user_bookings, users=users)
 

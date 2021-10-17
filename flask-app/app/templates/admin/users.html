@@ -23,7 +23,7 @@
             <th style="width: 18%;">First Name</th>
             <th style="width: 18%;">Last Name</th>
             <th style="width: 18%;">Email</th>
-            <th style="width: 18%;">Role</th>
+            <th style="width: 18%;">Contact Number</th>
             <th>Edit</th>
             <th>Delete</th>
           </thead>
@@ -33,7 +33,7 @@
             <td>{{ user.first_name }}</td>
             <td>{{ user.last_name }}</td>
             <td>{{ user.email }}</td>
-            <td>{{ user.role.name }}</td>
+            <td>{{ user.contact_number }}</td>
             <td>
               <a href="{{ url_for('admin.edit_user', user_id=user.id) }}">
                 <span class="material-icons md-24 uwa-link">
@@ -62,7 +62,7 @@
             <th style="width: 18%;">First Name</th>
             <th style="width: 18%;">Last Name</th>
             <th style="width: 18%;">Email</th>
-            <th style="width: 18%;">Role</th>
+            <th style="width: 18%;">Contact Number</th>
             <th>Edit</th>
             <th>Delete</th>
           </thead>
@@ -72,7 +72,7 @@
             <td>{{ user.first_name }}</td>
             <td>{{ user.last_name }}</td>
             <td>{{ user.email }}</td>
-            <td>{{ user.role.name }}</td>
+            <td>{{ user.contact_number }}</td>
             <td>
               <a href="{{ url_for('admin.edit_user', user_id=user.id) }}">
                 <span class="material-icons md-24 uwa-link">
@@ -101,7 +101,7 @@
             <th style="width: 18%;">First Name</th>
             <th style="width: 18%;">Last Name</th>
             <th style="width: 18%;">Email</th>
-            <th style="width: 18%;">Role</th>
+            <th style="width: 18%;">Contact Number</th>
             <th>Edit</th>
             <th>Delete</th>
           </thead>
@@ -111,7 +111,7 @@
             <td>{{ user.first_name }}</td>
             <td>{{ user.last_name }}</td>
             <td>{{ user.email }}</td>
-            <td>{{ user.role.name }}</td>
+            <td>{{ user.contact_number }}</td>
             <td>
               <a href="{{ url_for('admin.edit_user', user_id=user.id) }}">
                 <span class="material-icons md-24 uwa-link">

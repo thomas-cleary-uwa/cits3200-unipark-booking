@@ -40,6 +40,17 @@ class AddUserForm(FlaskForm):
         render_kw={"placeholder" : "firstname.lastname@uwa.edu.au"}
     )
 
+    contact = StringField('Contact Number: ', validators=[
+        DataRequired(),
+        Length(1, 64),
+        Regexp(
+            r'^\s*[0-9]+\s*$',
+            message='Contact number can only contain digits'
+        )
+        ],
+        render_kw={"placeholder" : "0411222333"}
+    )
+
     password = PasswordField('Password: ', validators=[
         DataRequired(),
         Length(8, 64),
@@ -71,10 +82,7 @@ class EditUserForm(FlaskForm):
     email = StringField('Email: ', validators=[
         DataRequired(),
         Length(1, 64),
-        Regexp(
-            r'^\s*[A-Za-z]+\.[A-Za-z]+@uwa\.edu\.au\s*$',
-            message='Username must be an firstname.lastname@uwa.edu.au address'
-        )
+        Email()
     ])
 
     first_name = StringField("First Name: ", validators=[
@@ -92,6 +100,17 @@ class EditUserForm(FlaskForm):
             message="Name must only contain letters."
         )
     ])
+
+    contact = StringField('Contact Number: ', validators=[
+        DataRequired(),
+        Length(1, 10),
+        Regexp(
+            r'^\s*[0-9]+\s*$',
+            message='Contact number can only contain digits'
+        )
+        ],
+       
+    )
 
     # department added as dynamic attribute
     # role added as dyanmic attribute 

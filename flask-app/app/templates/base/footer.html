@@ -13,12 +13,23 @@
       </div>
       <div class="col-md-6">
         <p class="text-right uwa-link">
-          <a class="uwa-link" href="https://www.web.uwa.edu.au/contact/map">
-            Campus Map
+          {% if not current_user.is_anonymous %}
+          {% if current_user.is_administrator() %}
+          <a class="uwa-link" target="_blank" href="https://thomcleary.github.io/cits3200-unipark-booking/">
+            Help Guide
             <span class="material-icons md-24">
-              map
+              help
             </span>
           </a>
+          {% else %}
+          <a class="uwa-link" target="_blank" href="https://thomcleary.github.io/cits3200-unipark-booking/user_directory">
+            Help Guide
+            <span class="material-icons md-24">
+              help
+            </span>
+          </a>
+          {% endif %}
+          {% endif %}
         </p>
       </div>
     </div>

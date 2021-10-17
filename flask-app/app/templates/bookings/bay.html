@@ -42,6 +42,7 @@
       <table id="lot{{ bay.lot.lot_number }}-bay{{ bay.bay_number }}" class="table table-bordered timetable">
         <thead>
           <th>Date</th>
+          <th>Google Maps</th>
           {% for time in times %}
           <th>{{ time }}</th>
           {% endfor %}
@@ -53,7 +54,15 @@
             <td>
               {{ date.strftime("%-d %b") }}
             </td>
-
+            
+            <td>
+              <a class="uwa-link" target="_blank" href="https://maps.google.com/?q={{ bay.latitude }},{{ bay.longitude }}">
+                <span class="material-icons md-24 uwa-link">
+                  place
+                </span>
+              </a>
+            </td>
+            
             {% for booked in timeslots %}
               {% if booked %}
               <td class="timeslot-red timeslot">
