@@ -15,7 +15,7 @@
     <div class="row">
       <div class="col-md-12">
 
-
+        {% if bookings %}
         {% for user_id in bookings %}
           {% set user_bookings = bookings[user_id] %}
             <div class="panel panel-default">
@@ -87,6 +87,11 @@
 
             </div>
         {% endfor %}
+        {% else %}
+        <h1 class="uwa-heading-large">
+          No Bookings Made
+        </h1>
+        {% endif %}
       </div>
     </div>
   </div>
