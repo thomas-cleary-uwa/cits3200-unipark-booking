@@ -21,5 +21,5 @@ Select the department that you would like to delete the booking from. A list wil
 
 To delete a specific booking, click on the bin icon in the last column of the corresponding row labelled "Delete". This will delete the selected booking.
 
-![image](https://user-images.githubusercontent.com/88474382/137616701-d6a0377b-840b-49ba-9493-52f8e21df3e4.png)
+![image](https://user-images.githubusercontent.com/88474382/137624453-a3516ffe-253f-4df8-a237-f2a4a63fb2e2.png)
 <br><br>
