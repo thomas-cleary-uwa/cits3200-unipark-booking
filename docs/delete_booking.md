@@ -5,21 +5,21 @@ Guide on how to delete a booking.
 
 ## Step 1.
 
-Go to Manage Bookings by clicking the Bookings drop down on the top left of the page.
+To go to the manage bookings page, click on "Manage Bookings" in the header of the page.
 
-![image](https://user-images.githubusercontent.com/88474382/135210315-4345d032-f2ba-4de8-958b-b299b2a58b29.png)
+![image](https://user-images.githubusercontent.com/88474382/137616781-2d5aa5bc-1fe6-4327-b28e-4c69771e1f5b.png)
 <br><br>
 
 ## Step 2. 
 
 Select the department that you would like to delete the booking from. A list will appear containing all the bookings that have been made from the selected department.
 
-![image](https://user-images.githubusercontent.com/88474382/135707326-2d427a97-41a5-4425-ab00-ec10d1064908.png)
+![image](https://user-images.githubusercontent.com/88474382/137616663-099e1e03-a991-4971-9c35-f5a927986a55.png)
 <br><br>
 
 ## Step 3.
 
 To delete a specific booking, click on the bin icon in the last column of the corresponding row labelled "Delete". This will delete the selected booking.
 
-![image](https://user-images.githubusercontent.com/88474382/135709131-f6240059-c64f-4c33-a706-9ef3df21b784.png)
+![image](https://user-images.githubusercontent.com/88474382/137616701-d6a0377b-840b-49ba-9493-52f8e21df3e4.png)
 <br><br>
