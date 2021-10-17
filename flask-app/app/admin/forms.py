@@ -100,6 +100,17 @@ class EditUserForm(FlaskForm):
         )
     ])
 
+    contact_no = StringField('Contact Number: ', validators=[
+        DataRequired(),
+        Length(1, 10),
+        Regexp(
+            r'^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$',
+            message='Contact number cannot contain any alphabets and must be 10 digits'
+        )
+        ],
+       
+    )
+
     # department added as dynamic attribute
     # role added as dyanmic attribute 
     # (when using this form us setattr() to add a SelectField attribute to this class)
