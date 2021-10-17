@@ -1,5 +1,5 @@
 # How to print the reservation sheet
-Guide on how to print the reservation sheet from the admin interface.
+Guide on how to get the reservation sheet from the admin interface for printing.
 
 [Go back to Admin Help Directory](https://thomcleary.github.io/cits3200-unipark-booking/admin_directory)
 
