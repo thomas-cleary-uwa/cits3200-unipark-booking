@@ -14,7 +14,7 @@ To go to the manage bookings page, click on "Manage Bookings" in the header of t
 
 Select the department that you would like to delete the booking from. A list will appear containing all the bookings that have been made from the selected department.
 
-![image](https://user-images.githubusercontent.com/88474382/137616663-099e1e03-a991-4971-9c35-f5a927986a55.png)
+![image](https://user-images.githubusercontent.com/88474382/137677908-85406f7a-b276-4d29-9ea1-cd48d1c9f74f.png)
 <br><br>
 
 ## Step 3.
