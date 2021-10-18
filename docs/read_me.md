@@ -5,7 +5,7 @@ A car bay booking web application for UWA's UniPark office
 ## Linting
 To avoid some incorrect linting when using ***pylint*** add this line to your _.vscode/settings.json_ file:
 
-` "python.linting.pylintArgs": ["--load-plugins", "pylint_flask_sqlalchemy", "pylint_flask"] `
+`"python.linting.pylintArgs": ["--load-plugins", "pylint_flask_sqlalchemy", "pylint_flask"]`
 <br><br>
 
 ## Walkthroughs
