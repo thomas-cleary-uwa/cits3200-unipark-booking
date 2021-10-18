@@ -11,7 +11,7 @@ def attempt_log_in(login_form):
     user = User.query.filter_by(email=login_form.email.data.strip()).first()
 
     if user is None:
-        flash("Invalid username of password.")
+        flash("Invalid username or password.")
         return redirect(url_for("auth.login"))
 
     if user.role.name == "disabled":
